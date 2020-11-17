@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnmyojiJob.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,16 @@ namespace WindowsFormsApp
         public ToolsForm()
         {
             InitializeComponent();
+        }
+
+        private void ToolsForm_Load(object sender, EventArgs e)
+        {
+            IntPtr awin = MouseHookHelper.FindWindow("WeChatMainWndForPC", "微信");
+            if (awin == IntPtr.Zero)
+            {
+                MessageBox.Show("没有找到窗体");
+                return;
+            }
         }
 
     }
