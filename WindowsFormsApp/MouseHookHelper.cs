@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace OnmyojiJob.Service
+namespace Main
 {
     public class MouseHookHelper
     {
@@ -156,5 +159,25 @@ namespace OnmyojiJob.Service
 
         #endregion
 
+        public static void LeftMouseClick(MouseHookHelper.POINT pointInfo)
+        {
+
+            //先移动鼠标到指定位置
+            SetCursorPos(pointInfo.X, pointInfo.Y);
+
+            //按下鼠标左键
+            mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTDOWN,
+                        pointInfo.X * 65536 / Screen.PrimaryScreen.Bounds.Width,
+                        pointInfo.Y * 65536 / Screen.PrimaryScreen.Bounds.Height, 0, 0);
+            //休眠0.2秒
+            Thread.Sleep(200);
+
+
+            //松开鼠标左键
+            mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTUP,
+                        pointInfo.X * 65536 / Screen.PrimaryScreen.Bounds.Width,
+                        pointInfo.Y * 65536 / Screen.PrimaryScreen.Bounds.Height, 0, 0);
+
+        }
     }
 }
