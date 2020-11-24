@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -120,8 +121,23 @@ namespace Main
         }
 
         //[DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        /// <summary>
+        /// 鼠标移动到指定位置
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <returns></returns>
         [DllImport("user32.dll")]
         public static extern bool SetCursorPos(int X, int Y);
+        /// <summary>
+        /// 鼠标事件
+        /// </summary>
+        /// <param name="dwFlags"></param>
+        /// <param name="dx"></param>
+        /// <param name="dy"></param>
+        /// <param name="cButtons"></param>
+        /// <param name="dwExtraInfo"></param>
+        /// <returns></returns>
         [DllImport("user32.dll")]
         public static extern int mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
 
@@ -169,8 +185,9 @@ namespace Main
             mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTDOWN,
                         pointInfo.X * 65536 / Screen.PrimaryScreen.Bounds.Width,
                         pointInfo.Y * 65536 / Screen.PrimaryScreen.Bounds.Height, 0, 0);
-            //休眠0.2秒
-            Thread.Sleep(200);
+            //随机间隔时间,防止规律按下
+            Random random = new Random();
+            Thread.Sleep(random.Next(100,500));
 
 
             //松开鼠标左键
@@ -178,6 +195,31 @@ namespace Main
                         pointInfo.X * 65536 / Screen.PrimaryScreen.Bounds.Width,
                         pointInfo.Y * 65536 / Screen.PrimaryScreen.Bounds.Height, 0, 0);
 
+        }
+
+        [DllImport("user32.dll")]
+        internal extern static IntPtr GetDesktopWindow();
+
+        [DllImport("user32.dll")]
+        internal extern static IntPtr GetDC(IntPtr windowHandle);
+
+        [DllImport("gdi32.dll")]
+        internal extern static IntPtr GetCurrentObject(IntPtr hdc, ushort objectType);
+
+        [DllImport("user32.dll")]
+        internal extern static void ReleaseDC(IntPtr hdc);
+        public static Image Capture(IntPtr desktopWindow)
+        {
+            //IntPtr desktopWindow = GetDesktopWindow();
+
+            IntPtr desktopDC = GetDC(desktopWindow);
+            IntPtr desktopBitmap = GetCurrentObject(desktopDC, 7);
+
+            Image desktopImage = Image.FromHbitmap(desktopBitmap);
+
+            ReleaseDC(desktopDC);
+
+            return desktopImage;
         }
     }
 }

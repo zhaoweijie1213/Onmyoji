@@ -1,5 +1,6 @@
 ﻿using Main;
 using Main.Enum;
+using Main.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,10 +17,8 @@ namespace WindowsFormsApp
 {
     public partial class mainForm : Form
     {
-
-
-        public static int x = 1356;
-        public static int y = 220;
+        //private static readonly int x = 1356;
+        //private static readonly int y = 220;
         public mainForm()
         {
             InitializeComponent();
@@ -36,7 +35,8 @@ namespace WindowsFormsApp
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            IntPtr awin = MouseHookHelper.FindWindow("Win32Window", "阴阳师-网易游戏");
+            //IntPtr awin = MouseHookHelper.FindWindow("Win32Window", "阴阳师-网易游戏");
+            IntPtr awin = MouseHookHelper.FindWindow("WeChatMainWndForPC", "微信");
             if (awin == IntPtr.Zero)
             {
                 MessageBox.Show("没有找到窗体");
@@ -56,10 +56,13 @@ namespace WindowsFormsApp
             //设置为当前窗体
             MouseHookHelper.SetForegroundWindow(awin);
             MouseHookHelper.ShowWindow(awin, MouseHookHelper.SW_SHOWNOACTIVATE);//4、5
+            //设置鼠标位置
             SetCursorPos(x,y);
 
-
-
+            //获取图片
+            Image image = MouseHookHelper.Capture(awin);
+            //保存图片
+            EventService.SaveImage(image);
             //鼠标点击
             MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
             {

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -15,7 +16,14 @@ namespace Main
     /// </summary>
     public class PicGetHelper
     {
-
+        public void  CutePic(int X,int Y)
+        {
+            Bitmap image = new Bitmap(26, 18);
+            Graphics imgGraphics = Graphics.FromImage(image);
+            //设置截屏区域   
+            imgGraphics.CopyFromScreen(X, Y, 0, 0, new Size(26, 18));
+            image.Save("", ImageFormat.Tiff);
+        }
     }
     /// <summary>
     /// clsCaptureDesktop 的摘要说明。
