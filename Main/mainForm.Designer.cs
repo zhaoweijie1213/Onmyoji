@@ -34,7 +34,7 @@ namespace WindowsFormsApp
             this.btnMouse = new System.Windows.Forms.Button();
             this.movementTimer = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMouse = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -73,21 +73,21 @@ namespace WindowsFormsApp
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // txtMouse
             // 
-            this.textBox1.Location = new System.Drawing.Point(373, 144);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(246, 23);
-            this.textBox1.TabIndex = 3;
+            this.txtMouse.Location = new System.Drawing.Point(373, 144);
+            this.txtMouse.Name = "txtMouse";
+            this.txtMouse.Size = new System.Drawing.Size(246, 23);
+            this.txtMouse.TabIndex = 3;
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(373, 97);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(89, 21);
+            this.checkBox1.Size = new System.Drawing.Size(123, 21);
             this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.Text = "查看鼠标运行轨迹";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -104,10 +104,10 @@ namespace WindowsFormsApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(722, 373);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtMouse);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnMouse);
             this.Controls.Add(this.btnSearch);
@@ -125,7 +125,7 @@ namespace WindowsFormsApp
         private System.Windows.Forms.Button btnMouse;
         private System.Windows.Forms.Timer movementTimer;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMouse;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button2;
     }

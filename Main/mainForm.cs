@@ -74,8 +74,8 @@ namespace WindowsFormsApp
             Point screenPoint = Control.MousePosition;//鼠标相对于屏幕左上角的坐标
 
             Point formPoint = this.PointToClient(Control.MousePosition);//鼠标相对于窗体左上角的坐标
-            MessageBox.Show($"{screenPoint.X},{screenPoint.Y}");
-            MessageBox.Show($"{formPoint.X},{formPoint.X}");
+            //MessageBox.Show($"{screenPoint.X},{screenPoint.Y}");
+            //MessageBox.Show($"{formPoint.X},{formPoint.X}");
 
 
         }
@@ -125,13 +125,6 @@ namespace WindowsFormsApp
                 MessageBox.Show("No windows found!");
                 return;
             }
-            //获取窗体中"button1"按钮
-            //IntPtr ptrStartBtn = MouseHookHelper.FindWindowEx(ptrTaskbar, IntPtr.Zero, null, "探索");
-            //if (ptrStartBtn == IntPtr.Zero)
-            //{
-            //    MessageBox.Show("No button found!");
-            //    return;
-            //}
             //获取窗体大小
             GetWindowRect(new HandleRef(this, ptrTaskbar), out rect);
             endPosition.X = (rect.left + rect.right) / 2;
@@ -148,7 +141,7 @@ namespace WindowsFormsApp
                 SetCursorPos(endPosition.X, endPosition.Y);
                 mouse_event(MouseHookHelper.MouseEventFlag.LeftDown, 0, 0, 0, UIntPtr.Zero);
                 mouse_event(MouseHookHelper.MouseEventFlag.LeftUp, 0, 0, 0, UIntPtr.Zero);
-                textBox1.Text = String.Format("{0},{1}", MousePosition.X, MousePosition.Y);
+                txtMouse.Text = String.Format("{0},{1}", MousePosition.X, MousePosition.Y);
             }
         }
 
@@ -163,7 +156,7 @@ namespace WindowsFormsApp
                 mouse_event(MouseHookHelper.MouseEventFlag.LeftDown, 0, 0, 0, UIntPtr.Zero);
                 mouse_event(MouseHookHelper.MouseEventFlag.LeftUp, 0, 0, 0, UIntPtr.Zero);
             }
-            textBox1.Text = String.Format("{0},{1}", MousePosition.X, MousePosition.Y);
+            txtMouse.Text = String.Format("{0},{1}", MousePosition.X, MousePosition.Y);
             mouse_event(MouseHookHelper.MouseEventFlag.Move, stepx, stepy, 0, UIntPtr.Zero);
         }
 
@@ -206,6 +199,7 @@ namespace WindowsFormsApp
             {
                 String strCaption = "x = " + MyMouseHookStruct.pt.X.ToString("d") + "  y = " + MyMouseHookStruct.pt.Y.ToString("d");
                 this.Text = strCaption;
+                txtMouse.Text = strCaption;
                 return MouseHookHelper.CallNextHookEx(hHook, nCode, wParam, lParam);
             }
         }
