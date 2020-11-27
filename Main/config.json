@@ -1,3 +1,8 @@
 {
-  "imagePath": "D:\\JobImage\\"
+  "imagePath": "F:\\JobImage\\",
+  //∞¢¿Ô‘∆AccessKey
+  "aliyunAccessKey": {
+    "AccessKeyID": "LTAI4GBui8Q5abpDAMV8RMxm",
+    "AccessKeySecret": "Ggcnyzl82rRQe3YR6jusHPUmW0Vagd"
+  }
 }

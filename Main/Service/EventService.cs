@@ -47,7 +47,7 @@ namespace Main.Service
         {
             string jsonfile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");//JSON文件路径
 
-            using (System.IO.StreamReader file = System.IO.File.OpenText(jsonfile))
+            using (StreamReader file = File.OpenText(jsonfile))
             {
                 using (JsonTextReader reader = new JsonTextReader(file))
                 {

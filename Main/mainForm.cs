@@ -35,8 +35,8 @@ namespace WindowsFormsApp
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            IntPtr awin = MouseHookHelper.FindWindow("Win32Window", "阴阳师-网易游戏");
-            //IntPtr awin = MouseHookHelper.FindWindow("WeChatMainWndForPC", "微信");
+            //IntPtr awin = MouseHookHelper.FindWindow("Win32Window", "阴阳师-网易游戏");
+            IntPtr awin = MouseHookHelper.FindWindow("WeChatMainWndForPC", "微信");
             if (awin == IntPtr.Zero)
             {
                 MessageBox.Show("没有找到窗体");
@@ -61,8 +61,9 @@ namespace WindowsFormsApp
 
             //获取图片
             Image image = MouseHookHelper.Capture(awin);
-            //保存图片
-            EventService.SaveImage(image);
+            Bitmap bmp = new Bitmap(image);
+            PicGetHelper.GetP(bmp);
+
             //鼠标点击
             MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
             {
