@@ -37,6 +37,7 @@ namespace WindowsFormsApp
             this.txtMouse = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.timerMouseEvent = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // btnSearch
@@ -69,7 +70,7 @@ namespace WindowsFormsApp
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
+            this.button1.Text = "查看鼠标运行的轨迹";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -100,6 +101,10 @@ namespace WindowsFormsApp
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // timerMouseEvent
+            // 
+            this.timerMouseEvent.Tick += new System.EventHandler(this.timerMouseEvent_Tick);
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -128,6 +133,7 @@ namespace WindowsFormsApp
         private System.Windows.Forms.TextBox txtMouse;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Timer timerMouseEvent;
     }
 }
 

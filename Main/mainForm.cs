@@ -123,7 +123,8 @@ namespace WindowsFormsApp
         {
             NativeRECT rect;
             //获取主窗体句柄
-            IntPtr ptrTaskbar = MouseHookHelper.FindWindow("Win32Window", "阴阳师-网易游戏");
+            //IntPtr ptrTaskbar = MouseHookHelper.FindWindow("Win32Window", "阴阳师-网易游戏");
+            IntPtr ptrTaskbar = MouseHookHelper.FindWindow("WeChatMainWndForPC", "微信");
             if (ptrTaskbar == IntPtr.Zero)
             {
                 MessageBox.Show("No windows found!");
@@ -208,5 +209,9 @@ namespace WindowsFormsApp
             }
         }
 
+        private void timerMouseEvent_Tick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -23,10 +23,12 @@ namespace Main
         {
             using (var ocr = new TesseractEngine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tessdata"), "chi_sim", EngineMode.Default))
             {
-                var image = ImageWordService.ToBlackWhite(img);
+                //转黑白图片
+                //var image = ImageWordService.ToBlackWhite(img);
+
                 //保存图片
-                EventService.SaveImage(image);
-                var page = ocr.Process(image);
+                EventService.SaveImage(img);
+                var page = ocr.Process(img);
             }
         }
     }
