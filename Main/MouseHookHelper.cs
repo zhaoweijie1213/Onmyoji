@@ -19,7 +19,9 @@ namespace Main
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string lclassName, string windowTitle);
+        public static extern IntPtr FindWindowEx(IntPtr? parentHandle, IntPtr? childAfter, string lclassName, string windowTitle);
+
+
 
         [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true, CharSet = CharSet.Auto)]
         public static extern IntPtr SendMessage(IntPtr hwnd, uint wMsg, int wParam, string lParam);

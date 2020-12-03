@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Collections.Generic;
 
-class CSharpAPIsDemo
+public class CSharpAPIsDemo
 {
     private delegate bool WNDENUMPROC(IntPtr hWnd, int lParam);
     [DllImport("user32.dll")]
@@ -40,7 +40,10 @@ class CSharpAPIsDemo
             GetClassNameW(hWnd, sb, sb.Capacity);
             wnd.szClassName = sb.ToString();
             //add it into list    
-            wndList.Add(wnd);
+            if (wnd.szClassName== "Win32Window"&&wnd.szWindowName== "阴阳师-网易游戏")
+            {
+                wndList.Add(wnd);
+            }
             return true;
         }, 0);
 

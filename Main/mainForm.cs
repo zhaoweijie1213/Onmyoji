@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -28,6 +29,7 @@ namespace WindowsFormsApp
         {
 
         }
+        int hHook;
         /// <summary>
         /// 获取游戏句柄
         /// </summary>
@@ -35,35 +37,66 @@ namespace WindowsFormsApp
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //IntPtr awin = MouseHookHelper.FindWindow("Win32Window", "阴阳师-网易游戏");
-            IntPtr awin = MouseHookHelper.FindWindow("WeChatMainWndForPC", "微信");
-            if (awin == IntPtr.Zero)
-            {
-                MessageBox.Show("没有找到窗体");
-                return;
-            }
-            //获取窗体坐标信息
-            MouseHookHelper.RECT rect = new MouseHookHelper.RECT();
-            MouseHookHelper.GetWindowRect(awin, ref rect);
-            int width = rect.Right - rect.Left;             //窗口的宽度
-            int height = rect.Bottom - rect.Top;            //窗口的高度
-            int x = rect.Left;
-            int y = rect.Top;
+            //IntPtr awin = MouseHookHelper.FindWindowEx(null,null,"Win32Window", "阴阳师-网易游戏");
+            //IntPtr awin = MouseHookHelper.FindWindow("WeChatMainWndForPC", "微信");
+
+
+            //if (awin == IntPtr.Zero)
+            //{
+            //    MessageBox.Show("没有找到窗体");
+            //    return;
+            //}
+            ////获取窗体坐标信息
+            //MouseHookHelper.RECT rect = new MouseHookHelper.RECT();
+            //MouseHookHelper.GetWindowRect(awin, ref rect);
+            //int width = rect.Right - rect.Left;             //窗口的宽度
+            //int height = rect.Bottom - rect.Top;            //窗口的高度
+            //int x = rect.Left;
+            //int y = rect.Top;
             //var res = JobTool.GetFFoHandle();
             //SendKeys.Send("输入文本");//用于输入文字
             //SendKeys.SendWait("{ENTER}"); //用于输入按键命令
 
             //设置为当前窗体
-            MouseHookHelper.SetForegroundWindow(awin);
-            MouseHookHelper.ShowWindow(awin, MouseHookHelper.SW_SHOWNOACTIVATE);//4、5
+            //MouseHookHelper.SetForegroundWindow(awin);
+            //MouseHookHelper.ShowWindow(awin, MouseHookHelper.SW_SHOWNOACTIVATE);//4、5
             //设置鼠标位置
-            SetCursorPos(x,y);
+            //SetCursorPos(x,y);
 
-            //获取图片
-            Image image = MouseHookHelper.Capture(awin);
-            Bitmap bmp = new Bitmap(image);
-            PicGetHelper.GetP(bmp);
+            ////获取图片
+            //Image image = MouseHookHelper.Capture(awin);
+            //Bitmap bmp = new Bitmap(image);
+            //PicGetHelper.GetP(bmp);
+            CSharpAPIsDemo api = new CSharpAPIsDemo();
+            //得到所有阴阳师的窗体
+            var windowsList = api.GetAllDesktopWindows();
+            foreach (var item in windowsList)
+            {
+                if (hHook == 0)
+                {
+                    var MyProcedure = new MouseHookHelper.HookProc(this.MouseHookProc);
+                    var s = Marshal.GetHINSTANCE(Assembly.GetExecutingAssembly().GetModules()[0]);
+                    var a = Process.GetCurrentProcess().Modules;
 
+                    //这里挂节钩子
+                   hHook = MouseHookHelper.SetWindowsHookEx((int)IdHookEnum.WH_MOUSE_LL, MyProcedure, item.hWnd, 0);
+                    if (hHook == 0)
+                    {
+                        MessageBox.Show("请以管理员方式打开");
+                        return;
+                    }
+                }
+                else
+                {
+                    bool ret = MouseHookHelper.UnhookWindowsHookEx(hHook);
+                    if (ret == false)
+                    {
+                        MessageBox.Show("请以管理员方式打开");
+                        return;
+                    }
+                    hHook = 0;
+                }
+            }
             //鼠标点击
             MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
             {
@@ -123,8 +156,8 @@ namespace WindowsFormsApp
         {
             NativeRECT rect;
             //获取主窗体句柄
-            //IntPtr ptrTaskbar = MouseHookHelper.FindWindow("Win32Window", "阴阳师-网易游戏");
-            IntPtr ptrTaskbar = MouseHookHelper.FindWindow("WeChatMainWndForPC", "微信");
+            IntPtr ptrTaskbar = MouseHookHelper.FindWindow("Win32Window", "阴阳师-网易游戏");
+            //IntPtr ptrTaskbar = MouseHookHelper.FindWindow("WeChatMainWndForPC", "微信");
             if (ptrTaskbar == IntPtr.Zero)
             {
                 MessageBox.Show("No windows found!");
@@ -165,7 +198,7 @@ namespace WindowsFormsApp
             mouse_event(MouseHookHelper.MouseEventFlag.Move, stepx, stepy, 0, UIntPtr.Zero);
         }
 
-        int hHook;
+
         private void button2_Click(object sender, EventArgs e)
         {
             if (hHook == 0)
@@ -211,6 +244,11 @@ namespace WindowsFormsApp
 
         private void timerMouseEvent_Tick(object sender, EventArgs e)
         {
+            Random rnd = new Random();
+            int firstX = rnd.Next(273,1000);
+            int firstY = rnd.Next(140,483);
+            int SecondX = rnd.Next(1150, 1850);
+            int SecondY = rnd.Next(69, 470);
 
         }
     }
