@@ -38,6 +38,7 @@ namespace WindowsFormsApp
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.timerMouseEvent = new System.Windows.Forms.Timer(this.components);
+            this.stopClickBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSearch
@@ -49,6 +50,7 @@ namespace WindowsFormsApp
             this.btnSearch.Text = "查找窗口";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSearch_KeyDown);
             // 
             // btnMouse
             // 
@@ -107,19 +109,33 @@ namespace WindowsFormsApp
             this.timerMouseEvent.Interval = 2000;
             this.timerMouseEvent.Tick += new System.EventHandler(this.timerMouseEvent_Tick);
             // 
+            // stopClickBtn
+            // 
+            this.stopClickBtn.Location = new System.Drawing.Point(99, 190);
+            this.stopClickBtn.Name = "stopClickBtn";
+            this.stopClickBtn.Size = new System.Drawing.Size(75, 23);
+            this.stopClickBtn.TabIndex = 6;
+            this.stopClickBtn.Text = "停止定时器";
+            this.stopClickBtn.UseVisualStyleBackColor = true;
+            this.stopClickBtn.Click += new System.EventHandler(this.stopClickBtn_Click);
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(722, 373);
+            this.Controls.Add(this.stopClickBtn);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.txtMouse);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnMouse);
             this.Controls.Add(this.btnSearch);
+            this.KeyPreview = true;
             this.Name = "mainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Home";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -136,6 +152,7 @@ namespace WindowsFormsApp
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Timer timerMouseEvent;
+        private System.Windows.Forms.Button stopClickBtn;
     }
 }
 

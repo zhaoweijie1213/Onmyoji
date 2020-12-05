@@ -11,8 +11,10 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Main.JobTool;
 
 namespace WindowsFormsApp
 {
@@ -30,6 +32,10 @@ namespace WindowsFormsApp
 
         }
         int hHook;
+        MouseHookHelper.RECT winodwsSpace1 = new MouseHookHelper.RECT();
+        MouseHookHelper.RECT winodwsSpace2 = new MouseHookHelper.RECT();
+        MouseHookHelper.RECT winodwsSpace3 = new MouseHookHelper.RECT();
+        bool mouseClick = false;
         /// <summary>
         /// 获取游戏句柄
         /// </summary>
@@ -70,40 +76,79 @@ namespace WindowsFormsApp
             CSharpAPIsDemo api = new CSharpAPIsDemo();
             //得到所有阴阳师的窗体
             var windowsList = api.GetAllDesktopWindows();
-            foreach (var item in windowsList)
+          
+            MouseHookHelper.GetWindowRect(windowsList[0].hWnd, ref winodwsSpace1);
+            MouseHookHelper.GetWindowRect(windowsList[1].hWnd, ref winodwsSpace2);
+            MouseHookHelper.GetWindowRect(windowsList[2].hWnd, ref winodwsSpace3);
+            //foreach (var item in windowsList)
+            //{
+            //    var s = 
+            //}
+            mouseClick = true;
+            while (mouseClick)
             {
-                if (hHook == 0)
+                Random rnd = new Random();
+                if (mouseClick)
                 {
-                    var MyProcedure = new MouseHookHelper.HookProc(this.MouseHookProc);
-                    var s = Marshal.GetHINSTANCE(Assembly.GetExecutingAssembly().GetModules()[0]);
-                    var a = Process.GetCurrentProcess().Modules;
-
-                    //这里挂节钩子
-                   hHook = MouseHookHelper.SetWindowsHookEx((int)IdHookEnum.WH_MOUSE_LL, MyProcedure, item.hWnd, 0);
-                    if (hHook == 0)
+                    //int firstX = rnd.Next(winodwsSpace1.Right - 20, winodwsSpace1.Right - 1);
+                    int firstX = rnd.Next(1850, 1890);
+                    //int firstY = rnd.Next(winodwsSpace1.Bottom + 1, winodwsSpace1.Bottom + 20);
+                    int firstY = rnd.Next(913, 940);
+                    //int SecondX = rnd.Next(winodwsSpace2.Left, winodwsSpace2.Right);
+                    int SecondX = rnd.Next(1230, 1280);
+                    //int SecondY = rnd.Next(winodwsSpace2.Top, winodwsSpace2.Bottom);
+                    int SecondY = rnd.Next(160, 400);
+                    //int ThirdX = rnd.Next(winodwsSpace3.Left, winodwsSpace3.Right);
+                    int ThirdX = rnd.Next(420, 470);
+                    //int ThirdY = rnd.Next(winodwsSpace3.Top, winodwsSpace3.Bottom);
+                    int ThirdY = rnd.Next(160, 400);
+                    //鼠标点击1
+                    MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
                     {
-                        MessageBox.Show("请以管理员方式打开");
-                        return;
-                    }
-                }
-                else
-                {
-                    bool ret = MouseHookHelper.UnhookWindowsHookEx(hHook);
-                    if (ret == false)
+                        //1356,220
+                        X = firstX,
+                        Y = firstY
+                    });
+                    Thread.Sleep(rnd.Next(500, 800));
+                    //鼠标点击2
+                    MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
                     {
-                        MessageBox.Show("请以管理员方式打开");
-                        return;
-                    }
-                    hHook = 0;
+                        //1356,220
+                        X = SecondX,
+                        Y = SecondY
+                    });
+                    Thread.Sleep(rnd.Next(1000, 1200));
+                    MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+                    {
+                        //1356,220
+                        X = SecondX,
+                        Y = SecondY
+                    });
+                    Thread.Sleep(rnd.Next(500, 800));
+                    //鼠标点击3
+                    MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+                    {
+                        //1356,220
+                        X = ThirdX,
+                        Y = ThirdY
+                    });
+                    Thread.Sleep(rnd.Next(500, 800));
+                    MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+                    {
+                        //1356,220
+                        X = ThirdX,
+                        Y = ThirdY
+                    });
+                    Thread.Sleep(3000);
                 }
             }
             //鼠标点击
-            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
-            {
-                //1356,220
-                X = 1351,
-                Y = 344
-            });
+            //MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            //{
+            //    //1356,220
+            //    X = 1351,
+            //    Y = 344
+            //});
         }
 
         private void btnMouse_Click(object sender, EventArgs e)
@@ -204,8 +249,10 @@ namespace WindowsFormsApp
             if (hHook == 0)
             {
                 var MyProcedure = new MouseHookHelper.HookProc(this.MouseHookProc);
-                //这里挂节钩子
+                //全局钩子
                 hHook = MouseHookHelper.SetWindowsHookEx((int)IdHookEnum.WH_MOUSE_LL, MyProcedure, Marshal.GetHINSTANCE(Assembly.GetExecutingAssembly().GetModules()[0]), 0);
+                //IntPtr pInstance = Marshal.GetHINSTANCE(Assembly.GetExecutingAssembly().ManifestModule);
+                //MouseHookHelper.SetWindowsHookEx((int)IdHookEnum.WH_MOUSE_LL, m_MouseHookProcedure, pInstance, 0);
                 if (hHook == 0)
                 {
                     MessageBox.Show("请以管理员方式打开");
@@ -244,12 +291,22 @@ namespace WindowsFormsApp
 
         private void timerMouseEvent_Tick(object sender, EventArgs e)
         {
-            Random rnd = new Random();
-            int firstX = rnd.Next(273,1000);
-            int firstY = rnd.Next(140,483);
-            int SecondX = rnd.Next(1150, 1850);
-            int SecondY = rnd.Next(69, 470);
+            timerMouseEvent.Enabled = false;
 
+        }
+
+        private void stopClickBtn_Click(object sender, EventArgs e)
+        {
+            timerMouseEvent.Stop();
+        }
+
+        private void btnSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.Enter)
+            {
+                mouseClick = false;
+                MessageBox.Show("停止");
+            }
         }
     }
 }

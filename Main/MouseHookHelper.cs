@@ -39,9 +39,21 @@ namespace Main
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
         {
+            /// <summary>
+            /// x1
+            /// </summary>
             public int Left;                             //最左坐标
+            /// <summary>
+            /// y1
+            /// </summary>
             public int Top;                             //最上坐标
+            /// <summary>
+            /// x2
+            /// </summary>
             public int Right;                           //最右坐标
+            /// <summary>
+            /// y2
+            /// </summary>
             public int Bottom;                        //最下坐标
         }
         #endregion
@@ -168,6 +180,16 @@ namespace Main
         //安装钩子
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern int SetWindowsHookEx(int idHook, HookProc lpfn, IntPtr hInstance, int threadId);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="idHook"></param>
+        ///// <param name="lpfn"></param>
+        ///// <param name="pInstance"></param>
+        ///// <param name="threadId"></param>
+        ///// <returns></returns>
+        //[DllImport("user32.dll", CallingConvention = CallingConvention.StdCall)]
+        //public static extern IntPtr SetWindowsHookEx(int idHook, HookProc lpfn, IntPtr pInstance, int threadId);
         //卸载钩子
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern bool UnhookWindowsHookEx(int idHook);
@@ -223,5 +245,19 @@ namespace Main
 
             return desktopImage;
         }
+
+        //[DllImport("user32.dll")]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //static extern bool GetWindowRect(IntPtr hWnd, ref RECT lpRect);
+
+        //[StructLayout(LayoutKind.Sequential)]
+        //public struct RECT
+        //{
+        //    public int Left; //最左坐标
+        //    public int Top; //最上坐标
+        //    public int Right; //最右坐标
+        //    public int Bottom; //最下坐标
+        //}
+
     }
 }
