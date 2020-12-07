@@ -30,6 +30,7 @@ namespace WindowsFormsApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnMouse = new System.Windows.Forms.Button();
             this.movementTimer = new System.Windows.Forms.Timer(this.components);
@@ -118,6 +119,7 @@ namespace WindowsFormsApp
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnMouse);
             this.Controls.Add(this.btnSearch);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "mainForm";
             this.Text = "Home";
             this.Load += new System.EventHandler(this.mainForm_Load);
