@@ -40,13 +40,23 @@ namespace WindowsFormsApp
             this.button2 = new System.Windows.Forms.Button();
             this.timerMouseEvent = new System.Windows.Forms.Timer(this.components);
             this.btnPictrue = new System.Windows.Forms.Button();
+            this.txtWindowSpace = new System.Windows.Forms.TextBox();
+            this.txtFormSpace = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(99, 82);
+            this.btnSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSearch.BackgroundImage")));
+            this.btnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Window;
+            this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Window;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Location = new System.Drawing.Point(50, 29);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(75, 66);
             this.btnSearch.TabIndex = 0;
             this.btnSearch.Text = "查找窗口";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -54,9 +64,11 @@ namespace WindowsFormsApp
             // 
             // btnMouse
             // 
-            this.btnMouse.Location = new System.Drawing.Point(99, 144);
+            this.btnMouse.FlatAppearance.BorderSize = 0;
+            this.btnMouse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMouse.Location = new System.Drawing.Point(50, 112);
             this.btnMouse.Name = "btnMouse";
-            this.btnMouse.Size = new System.Drawing.Size(75, 23);
+            this.btnMouse.Size = new System.Drawing.Size(75, 60);
             this.btnMouse.TabIndex = 1;
             this.btnMouse.Text = "鼠标位置";
             this.btnMouse.UseVisualStyleBackColor = true;
@@ -68,9 +80,11 @@ namespace WindowsFormsApp
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(99, 253);
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(50, 279);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(75, 56);
             this.button1.TabIndex = 2;
             this.button1.Text = "查看鼠标运行的轨迹";
             this.button1.UseVisualStyleBackColor = true;
@@ -78,7 +92,7 @@ namespace WindowsFormsApp
             // 
             // txtMouse
             // 
-            this.txtMouse.Location = new System.Drawing.Point(373, 144);
+            this.txtMouse.Location = new System.Drawing.Point(353, 113);
             this.txtMouse.Name = "txtMouse";
             this.txtMouse.Size = new System.Drawing.Size(246, 23);
             this.txtMouse.TabIndex = 3;
@@ -86,7 +100,7 @@ namespace WindowsFormsApp
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(373, 97);
+            this.checkBox1.Location = new System.Drawing.Point(353, 53);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(123, 21);
             this.checkBox1.TabIndex = 4;
@@ -95,7 +109,7 @@ namespace WindowsFormsApp
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(373, 253);
+            this.button2.Location = new System.Drawing.Point(353, 276);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -111,19 +125,58 @@ namespace WindowsFormsApp
             // 
             // btnPictrue
             // 
-            this.btnPictrue.Location = new System.Drawing.Point(99, 200);
+            this.btnPictrue.FlatAppearance.BorderSize = 0;
+            this.btnPictrue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPictrue.Location = new System.Drawing.Point(50, 193);
             this.btnPictrue.Name = "btnPictrue";
-            this.btnPictrue.Size = new System.Drawing.Size(75, 23);
+            this.btnPictrue.Size = new System.Drawing.Size(75, 59);
             this.btnPictrue.TabIndex = 6;
             this.btnPictrue.Text = "获取窗口图片";
             this.btnPictrue.UseVisualStyleBackColor = true;
             this.btnPictrue.Click += new System.EventHandler(this.btnPictrue_Click);
             // 
+            // txtWindowSpace
+            // 
+            this.txtWindowSpace.Location = new System.Drawing.Point(353, 169);
+            this.txtWindowSpace.Name = "txtWindowSpace";
+            this.txtWindowSpace.Size = new System.Drawing.Size(246, 23);
+            this.txtWindowSpace.TabIndex = 7;
+            // 
+            // txtFormSpace
+            // 
+            this.txtFormSpace.Location = new System.Drawing.Point(353, 222);
+            this.txtFormSpace.Name = "txtFormSpace";
+            this.txtFormSpace.Size = new System.Drawing.Size(246, 23);
+            this.txtFormSpace.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(353, 146);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(167, 17);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "鼠标相对于屏幕左上角的坐标:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(353, 199);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(167, 17);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "鼠标相对于窗体左上角的坐标:";
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(722, 373);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtFormSpace);
+            this.Controls.Add(this.txtWindowSpace);
             this.Controls.Add(this.btnPictrue);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.checkBox1);
@@ -133,7 +186,7 @@ namespace WindowsFormsApp
             this.Controls.Add(this.btnSearch);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "mainForm";
-            this.Text = "Home";
+            this.Text = "无限樱饼";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -151,6 +204,11 @@ namespace WindowsFormsApp
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Timer timerMouseEvent;
         private System.Windows.Forms.Button btnPictrue;
+        private System.Windows.Forms.TextBox txtWindowSpace;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtFormSpace;
     }
 }
 

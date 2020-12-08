@@ -153,9 +153,10 @@ namespace WindowsFormsApp
             Point screenPoint = Control.MousePosition;//鼠标相对于屏幕左上角的坐标
 
             Point formPoint = this.PointToClient(Control.MousePosition);//鼠标相对于窗体左上角的坐标
-            //MessageBox.Show($"{screenPoint.X},{screenPoint.Y}");
-            //MessageBox.Show($"{formPoint.X},{formPoint.X}");
-
+            //MessageBox.Show($"鼠标相对于屏幕左上角的坐标：{screenPoint.X},{screenPoint.Y}");
+            //MessageBox.Show($"鼠标相对于窗体左上角的坐标：{formPoint.X},{formPoint.X}");
+            txtWindowSpace.Text = $"{screenPoint.X},{screenPoint.Y}";
+            txtFormSpace.Text = $"{formPoint.X},{formPoint.Y}";
 
         }
 
