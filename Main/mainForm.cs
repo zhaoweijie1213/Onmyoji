@@ -69,10 +69,7 @@ namespace WindowsFormsApp
             //设置鼠标位置
             //SetCursorPos(x,y);
 
-            ////获取图片
-            //Image image = MouseHookHelper.Capture(awin);
-            //Bitmap bmp = new Bitmap(image);
-            //PicGetHelper.GetP(bmp);
+    
             CSharpAPIsDemo api = new CSharpAPIsDemo();
             //得到所有阴阳师的窗体
             var windowsList = api.GetAllDesktopWindows();
@@ -306,6 +303,32 @@ namespace WindowsFormsApp
             {
                 mouseClick = false;
                 MessageBox.Show("停止");
+            }
+        }
+
+        /// <summary>
+        /// 获取窗口图片
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPictrue_Click(object sender, EventArgs e)
+        {
+
+
+            CSharpAPIsDemo api = new CSharpAPIsDemo();
+            //得到所有阴阳师的窗体
+            var windowsList = api.GetAllDesktopWindows();
+            if (windowsList.Length==0)
+            {
+                MessageBox.Show("没有找到窗体");
+                return;
+            }
+            foreach (var item in windowsList)
+            {
+                ////获取图片
+                Image image = MouseHookHelper.Capture(item.hWnd);
+                Bitmap bmp = new Bitmap(image);
+                PicGetHelper.GetP(bmp);
             }
         }
     }

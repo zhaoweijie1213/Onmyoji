@@ -39,6 +39,7 @@ namespace WindowsFormsApp
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.timerMouseEvent = new System.Windows.Forms.Timer(this.components);
+            this.btnPictrue = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSearch
@@ -108,11 +109,22 @@ namespace WindowsFormsApp
             this.timerMouseEvent.Interval = 2000;
             this.timerMouseEvent.Tick += new System.EventHandler(this.timerMouseEvent_Tick);
             // 
+            // btnPictrue
+            // 
+            this.btnPictrue.Location = new System.Drawing.Point(99, 200);
+            this.btnPictrue.Name = "btnPictrue";
+            this.btnPictrue.Size = new System.Drawing.Size(75, 23);
+            this.btnPictrue.TabIndex = 6;
+            this.btnPictrue.Text = "获取窗口图片";
+            this.btnPictrue.UseVisualStyleBackColor = true;
+            this.btnPictrue.Click += new System.EventHandler(this.btnPictrue_Click);
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(722, 373);
+            this.Controls.Add(this.btnPictrue);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.txtMouse);
@@ -138,6 +150,7 @@ namespace WindowsFormsApp
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Timer timerMouseEvent;
+        private System.Windows.Forms.Button btnPictrue;
     }
 }
 

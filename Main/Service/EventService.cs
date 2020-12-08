@@ -26,16 +26,17 @@ namespace Main.Service
                 //string fileName = DateTime.Now.Ticks.ToString() + random + ".png";
                 //获取项目wwwroot目录
                 //string path = AppDomain.CurrentDomain.BaseDirectory;
-                string path = Readjson("imagePath");
+                //string path = Readjson("imagePath");
+                string path = AppDomain.CurrentDomain.BaseDirectory;
                 //配置文件目录
                 string directoryPath = path + "";
                 if (!Directory.Exists(directoryPath))//如果路径不存在
                 {
                     Directory.CreateDirectory(directoryPath);//创建一个路径的文件夹
                 }
-                string Path = directoryPath + fileName;
+                string savePath = Path.Combine(directoryPath, fileName);
                 //save方法路径不存在会报错
-                img.Save(Path, ImageFormat.Png);
+                img.Save(savePath, ImageFormat.Png);
             }
         }
         /// <summary>
