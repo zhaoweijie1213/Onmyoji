@@ -298,14 +298,6 @@ namespace WindowsFormsApp
             timerMouseEvent.Stop();
         }
 
-        private void btnSearch_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode==Keys.Enter)
-            {
-                mouseClick = false;
-                MessageBox.Show("停止");
-            }
-        }
 
         /// <summary>
         /// 获取窗口图片
@@ -330,6 +322,71 @@ namespace WindowsFormsApp
                 Image image = MouseHookHelper.Capture(item.hWnd);
                 Bitmap bmp = new Bitmap(image);
                 PicGetHelper.GetP(bmp);
+            }
+        }
+
+        private void mainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            //  这里写具体实现
+            if (e.KeyCode.Equals(Keys.F1))
+            {
+                MessageBox.Show("开始");
+                startListen();
+            }
+            if (e.KeyCode.Equals(Keys.F4))
+            {
+                MessageBox.Show("结束");
+            }
+        }
+
+        KeyEventHandler myKeyEventHandeler;
+        KeyboardHook service = new KeyboardHook();
+        /// <summary>
+        /// 开始监听
+        /// </summary>
+        public void startListen()
+        {
+           
+            var myKeyEventHandeler = new KeyEventHandler(mainForm_KeyDown);
+            service.KeyDownEvent += myKeyEventHandeler;//钩住键按下
+            service.Start();//安装键盘钩子
+        }
+
+        /// <summary>
+        /// 结束监听
+        /// </summary>
+        public void stopListen()
+        {
+            if (myKeyEventHandeler != null)
+            {
+                service.KeyDownEvent -= myKeyEventHandeler;//取消按键事件
+                myKeyEventHandeler = null;
+                service.Stop();//关闭键盘钩子
+            }
+        }
+
+        private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+         
+        }
+
+        private void mainForm_SizeChanged(object sender, EventArgs e)
+        {
+            //窗体尺寸变体事件中，如何窗体是最小化状态就让窗体不显示在任务栏上 
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.ShowInTaskbar = false;
+            }
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)//判断鼠标的按键
+            {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+                this.Activate();
+                this.ShowInTaskbar = true;
             }
         }
     }

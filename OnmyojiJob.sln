@@ -10,11 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnmyojiTool", "OnmyojiTool\OnmyojiTool.csproj", "{20DBE7A9-9349-4D9F-B116-DAAB25AC3A59}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Main", "Main\Main.csproj", "{D88DD9D4-13D6-4771-AE65-C3A4E8C7DB3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AliyunRecognizeCharacter", "AliyunRecognizeCharacter\AliyunRecognizeCharacter.csproj", "{614B46A7-02F6-412E-BE17-4A5109401237}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AliyunRecognizeCharacter", "AliyunRecognizeCharacter\AliyunRecognizeCharacter.csproj", "{614B46A7-02F6-412E-BE17-4A5109401237}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +24,6 @@ Global
 		{0D983B2E-9953-4A9D-9DC2-7E9ED57E7DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D983B2E-9953-4A9D-9DC2-7E9ED57E7DE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D983B2E-9953-4A9D-9DC2-7E9ED57E7DE2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{20DBE7A9-9349-4D9F-B116-DAAB25AC3A59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20DBE7A9-9349-4D9F-B116-DAAB25AC3A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20DBE7A9-9349-4D9F-B116-DAAB25AC3A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20DBE7A9-9349-4D9F-B116-DAAB25AC3A59}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D88DD9D4-13D6-4771-AE65-C3A4E8C7DB3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D88DD9D4-13D6-4771-AE65-C3A4E8C7DB3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D88DD9D4-13D6-4771-AE65-C3A4E8C7DB3C}.Release|Any CPU.ActiveCfg = Release|Any CPU

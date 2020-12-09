@@ -44,6 +44,7 @@ namespace WindowsFormsApp
             this.txtFormSpace = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // btnSearch
@@ -51,8 +52,6 @@ namespace WindowsFormsApp
             this.btnSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSearch.BackgroundImage")));
             this.btnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSearch.FlatAppearance.BorderSize = 0;
-            this.btnSearch.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Window;
-            this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Window;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Location = new System.Drawing.Point(50, 29);
             this.btnSearch.Name = "btnSearch";
@@ -64,6 +63,8 @@ namespace WindowsFormsApp
             // 
             // btnMouse
             // 
+            this.btnMouse.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMouse.BackgroundImage")));
+            this.btnMouse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnMouse.FlatAppearance.BorderSize = 0;
             this.btnMouse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMouse.Location = new System.Drawing.Point(50, 112);
@@ -167,6 +168,13 @@ namespace WindowsFormsApp
             this.label2.TabIndex = 10;
             this.label2.Text = "鼠标相对于窗体左上角的坐标:";
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -185,9 +193,13 @@ namespace WindowsFormsApp
             this.Controls.Add(this.btnMouse);
             this.Controls.Add(this.btnSearch);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "mainForm";
             this.Text = "无限樱饼";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainForm_FormClosing);
             this.Load += new System.EventHandler(this.mainForm_Load);
+            this.SizeChanged += new System.EventHandler(this.mainForm_SizeChanged);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mainForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,10 +217,10 @@ namespace WindowsFormsApp
         private System.Windows.Forms.Timer timerMouseEvent;
         private System.Windows.Forms.Button btnPictrue;
         private System.Windows.Forms.TextBox txtWindowSpace;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtFormSpace;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 

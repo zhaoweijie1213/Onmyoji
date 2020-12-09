@@ -22,6 +22,10 @@ public class CSharpAPIsDemo
         public string szClassName;
     }
 
+    /// <summary>
+    /// 获取所有的窗口
+    /// </summary>
+    /// <returns></returns>
     public WindowInfo[] GetAllDesktopWindows()
     {
         List<WindowInfo> wndList = new List<WindowInfo>();

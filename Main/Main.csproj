@@ -30,7 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OnmyojiTool\OnmyojiTool.csproj" />
     <ProjectReference Include="..\Service\OnmyojiJob.Service.csproj" />
   </ItemGroup>
 

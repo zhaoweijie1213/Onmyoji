@@ -32,6 +32,12 @@ namespace Main
         #endregion
 
         #region 获取窗体位置
+        /// <summary>
+        /// 获取窗体位置信息
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <param name="lpRect"></param>
+        /// <returns></returns>
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetWindowRect(IntPtr hWnd, ref RECT lpRect);
