@@ -27,7 +27,7 @@ namespace Main.Service
                 //获取项目wwwroot目录
                 //string path = AppDomain.CurrentDomain.BaseDirectory;
                 //string path = Readjson("imagePath");
-                string path = AppDomain.CurrentDomain.BaseDirectory;
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Readjson("imagePath"));
                 //配置文件目录
                 string directoryPath = path + "";
                 if (!Directory.Exists(directoryPath))//如果路径不存在

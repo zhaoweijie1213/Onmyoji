@@ -25,6 +25,7 @@ namespace WindowsFormsApp
 
         KeyEventHandler myKeyEventHandeler;
         KeyboardHook service = new KeyboardHook();
+        EventMethodService eventMethod = new EventMethodService();
         public mainForm()
         {
             InitializeComponent();
@@ -35,9 +36,6 @@ namespace WindowsFormsApp
 
         }
         int hHook;
-        MouseHookHelper.RECT winodwsSpace1 = new MouseHookHelper.RECT();
-        MouseHookHelper.RECT winodwsSpace2 = new MouseHookHelper.RECT();
-        MouseHookHelper.RECT winodwsSpace3 = new MouseHookHelper.RECT();
 
         /// <summary>
         /// 获取游戏句柄
@@ -46,8 +44,8 @@ namespace WindowsFormsApp
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            EventMethodService eventMethod = new EventMethodService();
-            eventMethod.mouseClick = true;
+
+            eventMethod.mouseClick = false;
             //得到所有阴阳师的窗体
             var rects = eventMethod.GetRects();
             eventMethod.MouseClick(rects);
@@ -127,10 +125,6 @@ namespace WindowsFormsApp
         }
 
 
-        //定义变量
-        const int AnimationCount = 80;
-        private Point endPosition;
-        private int count;
 
         //结构体布局 本机位置
         [StructLayout(LayoutKind.Sequential)]
@@ -252,11 +246,15 @@ namespace WindowsFormsApp
             //  这里写具体实现
             if (e.KeyCode.Equals(Keys.F1))
             {
-                MessageBox.Show("开始");
                 startListen();
+                eventMethod.mouseClick = true;
+                //得到所有阴阳师的窗体
+                var rects = eventMethod.GetRects();
+                eventMethod.MouseClick(rects);
             }
             if (e.KeyCode.Equals(Keys.F4))
             {
+                eventMethod.mouseClick = false;
                 MessageBox.Show("结束");
             }
         }
