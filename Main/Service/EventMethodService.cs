@@ -10,7 +10,7 @@ namespace Main.Service
     /// </summary>
     public class EventMethodService
     {
-        public void MouseClick()
+        public List<RECT> GetRects()
         {
             CSharpAPIsDemo api = new CSharpAPIsDemo();
             List<RECT> rect = new List<RECT>();
@@ -22,6 +22,14 @@ namespace Main.Service
                 RECT sp = new RECT();
                 GetWindowRect(item.hWnd,  ref sp);
                 rect.Add(sp);
+            }
+            return rect;
+        }
+        public void MouseClick(List<RECT> rect)
+        {
+            foreach (var item in rect)
+            {
+
             }
         }
     }

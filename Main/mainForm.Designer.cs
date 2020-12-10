@@ -33,8 +33,6 @@ namespace WindowsFormsApp
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnMouse = new System.Windows.Forms.Button();
-            this.movementTimer = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             this.txtMouse = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -74,22 +72,6 @@ namespace WindowsFormsApp
             this.btnMouse.Text = "鼠标位置";
             this.btnMouse.UseVisualStyleBackColor = true;
             this.btnMouse.Click += new System.EventHandler(this.btnMouse_Click);
-            // 
-            // movementTimer
-            // 
-            this.movementTimer.Tick += new System.EventHandler(this.movementTimer_Tick);
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(50, 279);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 56);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "查看鼠标运行的轨迹";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtMouse
             // 
@@ -189,7 +171,6 @@ namespace WindowsFormsApp
             this.Controls.Add(this.button2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.txtMouse);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnMouse);
             this.Controls.Add(this.btnSearch);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -209,8 +190,6 @@ namespace WindowsFormsApp
 
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnMouse;
-        private System.Windows.Forms.Timer movementTimer;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txtMouse;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button2;
