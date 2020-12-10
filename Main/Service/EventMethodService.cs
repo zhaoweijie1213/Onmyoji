@@ -10,6 +10,14 @@ namespace Main.Service
     /// </summary>
     public class EventMethodService
     {
+        public bool mouseClick { get; set; } = false;
+
+        public const int spXmin = 0;
+        public const int spXmax = 0;
+
+        public const int spYmin = 0;
+        public const int spYmax = 0;
+
         public List<RECT> GetRects()
         {
             CSharpAPIsDemo api = new CSharpAPIsDemo();
@@ -30,6 +38,14 @@ namespace Main.Service
             foreach (var item in rect)
             {
 
+                int X = 0;
+                int Y = 0;
+                MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+                {
+                    //1356,220
+                    X = X,
+                    Y = Y
+                });
             }
         }
     }

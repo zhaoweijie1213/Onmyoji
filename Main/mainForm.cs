@@ -38,7 +38,7 @@ namespace WindowsFormsApp
         MouseHookHelper.RECT winodwsSpace1 = new MouseHookHelper.RECT();
         MouseHookHelper.RECT winodwsSpace2 = new MouseHookHelper.RECT();
         MouseHookHelper.RECT winodwsSpace3 = new MouseHookHelper.RECT();
-        bool mouseClick = false;
+
         /// <summary>
         /// 获取游戏句柄
         /// </summary>
@@ -46,19 +46,15 @@ namespace WindowsFormsApp
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-    
-            CSharpAPIsDemo api = new CSharpAPIsDemo();
+            EventMethodService eventMethod = new EventMethodService();
+            eventMethod.mouseClick = true;
             //得到所有阴阳师的窗体
-            var windowsList = api.GetAllDesktopWindows();
-          
-            MouseHookHelper.GetWindowRect(windowsList[0].hWnd, ref winodwsSpace1);
-            MouseHookHelper.GetWindowRect(windowsList[1].hWnd, ref winodwsSpace2);
-            MouseHookHelper.GetWindowRect(windowsList[2].hWnd, ref winodwsSpace3);
+            var rects = eventMethod.GetRects();
+            eventMethod.MouseClick(rects);
             //foreach (var item in windowsList)
             //{
             //    var s = 
             //}
-            mouseClick = true;
             //while (mouseClick)
             //{
             //    Random rnd = new Random();
