@@ -26,7 +26,7 @@ namespace Main.Service
             request.Version = "2019-12-30";
             request.Action = "RecognizeCharacter";
             // request.Protocol = ProtocolType.HTTP;
-            request.AddQueryParameters("ImageURL", "http://explorer-image.oss-cn-shanghai.aliyuncs.com/1652898910756959/8B158CD2-6891-417E-8D1F-D0424E87936B.png?OSSAccessKeyId=LTAI4Fk9FstqSEYnqKJ5Dpeo&Expires=1606474961&Signature=zZdFjTzJT0736EXjOZu43%2FVDFZs%3D");
+            request.AddQueryParameters("ImageURL", "http://explorer-image.oss-cn-shanghai.aliyuncs.com/1652898910756959/8B158CD2-6891-417E-8D1F-D0424E87936B.png?");
             request.AddQueryParameters("MinHeight", "590");
             request.AddQueryParameters("OutputProbability", "true");
             try

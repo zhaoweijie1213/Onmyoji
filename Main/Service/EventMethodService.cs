@@ -43,16 +43,20 @@ namespace Main.Service
         }
         public  void MouseClick(List<RECT> rect)
         {
-            PointRange rpoint = new PointRange();
-            rpoint.MinX= (decimal)0.914;
-            rpoint.MaxX= (decimal)0.982;
-            rpoint.MinY= (decimal)0.829;
-            rpoint.MaxY= (decimal)0.943;
-            PointRange lpoint = new PointRange();
-            lpoint.MinX = (decimal)0.094;
-            lpoint.MaxX = (decimal)0.2;
-            lpoint.MinY = (decimal)0.21;
-            lpoint.MaxY = (decimal)0.641;
+            PointRange rpoint = new PointRange
+            {
+                MinX = (decimal)0.914,
+                MaxX = (decimal)0.982,
+                MinY = (decimal)0.829,
+                MaxY = (decimal)0.943
+            };
+            PointRange lpoint = new PointRange
+            {
+                MinX = (decimal)0.093,
+                MaxX = (decimal)0.2,
+                MinY = (decimal)0.21,
+                MaxY = (decimal)0.641
+            };
 
 
             while (mouseClick)
@@ -62,18 +66,12 @@ namespace Main.Service
                 {
                     int windowsWidth = item.Right - item.Left;
                     int windowsHeight = item.Bottom - item.Top;
-                    int X = 0;
-                    int Y = 0;
-                    if (rect.IndexOf(item)==0)
+                    int X;
+                    int Y;
+                    if (rect.IndexOf(item) == 0)
                     {
-                        X = item.Left + rnd.Next(windowsWidth * (int)(rpoint.MinX * 1000)/1000, windowsWidth * (int)(rpoint.MaxX * 1000)/1000);
-                        Y = item.Top + rnd.Next(windowsHeight * (int)(rpoint.MinY * 1000)/1000, windowsHeight * (int)(rpoint.MaxY * 1000)/1000);
-                        MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
-                        {
-                            X = X,
-                            Y = Y
-                        });
-                        Thread.Sleep(rnd.Next(100, 200));
+                        X = item.Left + rnd.Next(windowsWidth * (int)(rpoint.MinX * 1000) / 1000, windowsWidth * (int)(rpoint.MaxX * 1000) / 1000);
+                        Y = item.Top + rnd.Next(windowsHeight * (int)(rpoint.MinY * 1000) / 1000, windowsHeight * (int)(rpoint.MaxY * 1000) / 1000);
                         MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
                         {
                             X = X,
@@ -89,7 +87,7 @@ namespace Main.Service
                             X = X,
                             Y = Y
                         });
-                        Thread.Sleep(rnd.Next(100, 200));
+                        Thread.Sleep(rnd.Next(500, 800));
                         MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
                         {
                             X = X,
@@ -98,7 +96,7 @@ namespace Main.Service
                     }
                     Thread.Sleep(rnd.Next(500, 800));
                 }
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
             }
           
         }

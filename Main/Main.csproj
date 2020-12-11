@@ -21,14 +21,14 @@
     <PackageReference Include="AForge.Core" Version="1.0.0" />
     <PackageReference Include="AForge.Imaging.Core" Version="1.0.0" />
     <PackageReference Include="AlibabaCloud.SDK.Ocr20191230" Version="0.0.13" />
-    <PackageReference Include="AlibabaCloud.SDK.Viapiutils20200401" Version="0.0.1" />
+    <PackageReference Include="AlibabaCloud.SDK.Viapiutils20200401" Version="0.0.2" />
     <PackageReference Include="aliyun-net-sdk-core" Version="1.5.10" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="PDFix.OcrTesseract" Version="6.4.1" />
+    <PackageReference Include="PDFix.OcrTesseract" Version="6.5.0" />
     <PackageReference Include="PInvoke.User32" Version="0.7.78" />
     <PackageReference Include="Tesseract" Version="4.1.1" />
     <PackageReference Include="Tesseract.Drawing" Version="4.1.1" />
-    <PackageReference Include="Vintasoft.Imaging.Ocr.Tesseract" Version="4.1.2.19" />
+    <PackageReference Include="Vintasoft.Imaging.Ocr.Tesseract" Version="4.1.2.21" />
   </ItemGroup>
 
   <ItemGroup>

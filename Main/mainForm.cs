@@ -25,7 +25,7 @@ namespace WindowsFormsApp
 
         KeyEventHandler myKeyEventHandeler;
         KeyboardHook service = new KeyboardHook();
-       
+
         public mainForm()
         {
             InitializeComponent();
@@ -243,10 +243,11 @@ namespace WindowsFormsApp
 
         private void mainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            //  这里写具体实现
             EventMethodService eventMethod = new EventMethodService();
+            //  这里写具体实现
             if (e.KeyCode.Equals(Keys.F1))
             {
+                startListen();
                 eventMethod.mouseClick = true;
                 //得到所有阴阳师的窗体
                 var rects = eventMethod.GetRects();
