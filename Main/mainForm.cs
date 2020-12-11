@@ -25,7 +25,7 @@ namespace WindowsFormsApp
 
         KeyEventHandler myKeyEventHandeler;
         KeyboardHook service = new KeyboardHook();
-        //EventMethodService eventMethod = new EventMethodService();
+       
         public mainForm()
         {
             InitializeComponent();
@@ -44,11 +44,11 @@ namespace WindowsFormsApp
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
-            EventMethodService.mouseClick = true;
+            EventMethodService eventMethod = new EventMethodService();
+            eventMethod.mouseClick = true;
             //得到所有阴阳师的窗体
-            var rects = EventMethodService.GetRects();
-            EventMethodService.MouseClick(rects);
+            var rects = eventMethod.GetRects();
+            eventMethod.MouseClick(rects);
             //foreach (var item in windowsList)
             //{
             //    var s = 
@@ -244,17 +244,17 @@ namespace WindowsFormsApp
         private void mainForm_KeyDown(object sender, KeyEventArgs e)
         {
             //  这里写具体实现
+            EventMethodService eventMethod = new EventMethodService();
             if (e.KeyCode.Equals(Keys.F1))
             {
-                startListen();
-                EventMethodService.mouseClick = true;
+                eventMethod.mouseClick = true;
                 //得到所有阴阳师的窗体
-                var rects = EventMethodService.GetRects();
-                EventMethodService.MouseClick(rects);
+                var rects = eventMethod.GetRects();
+                eventMethod.MouseClick(rects);
             }
             if (e.KeyCode.Equals(Keys.F4))
             {
-                EventMethodService.mouseClick = false;
+                eventMethod.mouseClick = false;
                 MessageBox.Show("结束");
             }
         }
