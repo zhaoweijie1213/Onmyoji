@@ -10,9 +10,9 @@ namespace Main.Service
     /// <summary>
     /// 各种事件
     /// </summary>
-    public static class EventMethodService
+    public  class EventMethodService
     {
-        public static bool mouseClick { get; set; } = false;
+        public  bool mouseClick { get; set; } = false;
         ////队长
         //public  decimal RspXmin = 842/921;
         //public  decimal RspXmax = 905/ 921;
@@ -26,7 +26,7 @@ namespace Main.Service
         //public  decimal LspYmin = 112 / 536;
         //public  decimal LspYmax = 344 / 536;
 
-        public static List<RECT> GetRects()
+        public  List<RECT> GetRects()
         {
             CSharpAPIsDemo api = new CSharpAPIsDemo();
             List<RECT> rect = new List<RECT>();
@@ -41,7 +41,7 @@ namespace Main.Service
             }
             return rect;
         }
-        public static void MouseClick(List<RECT> rect)
+        public  void MouseClick(List<RECT> rect)
         {
             PointRange rpoint = new PointRange();
             rpoint.MinX= (decimal)0.914;
@@ -73,12 +73,12 @@ namespace Main.Service
                             X = X,
                             Y = Y
                         });
-                        Thread.Sleep(rnd.Next(100, 200));
-                        MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
-                        {
-                            X = X,
-                            Y = Y
-                        });
+                        //Thread.Sleep(rnd.Next(500, 800));
+                        //MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+                        //{
+                        //    X = X,
+                        //    Y = Y
+                        //});
                     }
                     else
                     {
@@ -89,7 +89,7 @@ namespace Main.Service
                             X = X,
                             Y = Y
                         });
-                        Thread.Sleep(rnd.Next(100, 200));
+                        Thread.Sleep(rnd.Next(500, 800));
                         MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
                         {
                             X = X,
