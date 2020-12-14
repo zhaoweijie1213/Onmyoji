@@ -24,7 +24,7 @@ namespace WindowsFormsApp
         //private static readonly int y = 220;
 
         KeyEventHandler myKeyEventHandeler;
-        KeyboardHook service = new KeyboardHook();
+        readonly KeyboardHook service = new KeyboardHook();
 
         public mainForm()
         {
@@ -44,8 +44,10 @@ namespace WindowsFormsApp
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            EventMethodService eventMethod = new EventMethodService();
-            eventMethod.mouseClick = true;
+            EventMethodService eventMethod = new EventMethodService
+            {
+                mouseClick = true
+            };
             //得到所有阴阳师的窗体
             var rects = eventMethod.GetRects();
             eventMethod.MouseClick(rects);

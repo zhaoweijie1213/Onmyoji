@@ -20,11 +20,13 @@ namespace Main.Service
         {
             IClientProfile profile = DefaultProfile.GetProfile("cn-shanghai", "<accessKeyId>", "<accessSecret>");
             DefaultAcsClient client = new DefaultAcsClient(profile);
-            CommonRequest request = new CommonRequest();
-            request.Method = MethodType.POST;
-            request.Domain = "ocr.cn-shanghai.aliyuncs.com";
-            request.Version = "2019-12-30";
-            request.Action = "RecognizeCharacter";
+            CommonRequest request = new CommonRequest
+            {
+                Method = MethodType.POST,
+                Domain = "ocr.cn-shanghai.aliyuncs.com",
+                Version = "2019-12-30",
+                Action = "RecognizeCharacter"
+            };
             // request.Protocol = ProtocolType.HTTP;
             request.AddQueryParameters("ImageURL", "http://explorer-image.oss-cn-shanghai.aliyuncs.com/1652898910756959/8B158CD2-6891-417E-8D1F-D0424E87936B.png?");
             request.AddQueryParameters("MinHeight", "590");

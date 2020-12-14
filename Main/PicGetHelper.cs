@@ -21,15 +21,13 @@ namespace Main
     {
         public static void GetP(Bitmap img)
         {
-            using (var ocr = new TesseractEngine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tessdata"), "chi_sim", EngineMode.Default))
-            {
-                //转黑白图片
-                //var image = ImageWordService.ToBlackWhite(img);
+            using var ocr = new TesseractEngine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tessdata"), "chi_sim", EngineMode.Default);
+            //转黑白图片
+            //var image = ImageWordService.ToBlackWhite(img);
 
-                //保存图片
-                EventService.SaveImage(img);
-                var page = ocr.Process(img);
-            }
+            //保存图片
+            EventService.SaveImage(img);
+            var page = ocr.Process(img);
         }
     }
 
