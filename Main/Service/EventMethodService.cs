@@ -10,9 +10,9 @@ namespace Main.Service
     /// <summary>
     /// 各种事件
     /// </summary>
-    public  class EventMethodService
+    public class EventMethodService
     {
-        public  bool mouseClick { get; set; } = false;
+        public bool mouseClick { get; set; } = false;
         ////队长
         //public  decimal RspXmin = 842/921;
         //public  decimal RspXmax = 905/ 921;
@@ -26,7 +26,7 @@ namespace Main.Service
         //public  decimal LspYmin = 112 / 536;
         //public  decimal LspYmax = 344 / 536;
 
-        public  List<RECT> GetRects()
+        public List<RECT> GetRects()
         {
             CSharpAPIsDemo api = new CSharpAPIsDemo();
             List<RECT> rect = new List<RECT>();
@@ -36,69 +36,181 @@ namespace Main.Service
             {
                 //得到窗口的坐标
                 RECT sp = new RECT();
-                GetWindowRect(item.hWnd,  ref sp);
+                GetWindowRect(item.hWnd, ref sp);
                 rect.Add(sp);
             }
             return rect;
         }
-        public  void MouseClick(List<RECT> rect)
+        public void MouseClick(List<RECT> rect)
         {
             PointRange rpoint = new PointRange
             {
-                MinX = (decimal)0.914,
-                MaxX = (decimal)0.982,
-                MinY = (decimal)0.829,
-                MaxY = (decimal)0.943
+                MinX = (decimal)914,
+                MaxX = (decimal)982,
+                MinY = (decimal)829,
+                MaxY = (decimal)943
             };
             PointRange lpoint = new PointRange
             {
-                MinX = (decimal)0.093,
-                MaxX = (decimal)0.2,
-                MinY = (decimal)0.21,
-                MaxY = (decimal)0.641
+                MinX = (decimal)095,
+                MaxX = (decimal)200,
+                MinY = (decimal)210,
+                MaxY = (decimal)641
             };
-
-
-            while (mouseClick)
+            if (rect.Count == 1)
             {
-                Random rnd = new Random();
-                foreach (var item in rect)
+                while (mouseClick)
                 {
-                    int windowsWidth = item.Right - item.Left;
-                    int windowsHeight = item.Bottom - item.Top;
-                    int X;
-                    int Y;
-                    if (rect.IndexOf(item) == 0)
-                    {
-                        X = item.Left + rnd.Next(windowsWidth * (int)(rpoint.MinX * 1000) / 1000, windowsWidth * (int)(rpoint.MaxX * 1000) / 1000);
-                        Y = item.Top + rnd.Next(windowsHeight * (int)(rpoint.MinY * 1000) / 1000, windowsHeight * (int)(rpoint.MaxY * 1000) / 1000);
-                        MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
-                        {
-                            X = X,
-                            Y = Y
-                        });
-                    }
-                    else
-                    {
-                        X = item.Left + rnd.Next(windowsWidth * (int)(lpoint.MinX * 1000) / 1000, windowsWidth * (int)(lpoint.MaxX * 1000) / 1000);
-                        Y = item.Top + rnd.Next(windowsHeight * (int)(lpoint.MinY * 1000) / 1000, windowsHeight * (int)(lpoint.MaxY * 1000) / 1000);
-                        MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
-                        {
-                            X = X,
-                            Y = Y
-                        });
-                        Thread.Sleep(rnd.Next(500, 800));
-                        MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
-                        {
-                            X = X,
-                            Y = Y
-                        });
-                    }
-                    Thread.Sleep(rnd.Next(500, 800));
+                    OneClick(rect, rpoint);
                 }
-                Thread.Sleep(1000);
             }
+            if (rect.Count == 2)
+            {
+                while (mouseClick)
+                {
+                    TwoClick(rect, rpoint, lpoint);
+                }
+                
+            }
+            if (rect.Count == 3)
+            {
+                while (mouseClick)
+                {
+                    ThreeClick(rect, rpoint, lpoint);
+                }
+            }
+
+
+        }
+        public void OneClick(List<RECT> rect, PointRange rpoint)
+        {
+            Random rnd = new Random();
+            //var item = rect[0];
+            int windowsWidth1 = rect[0].Right - rect[0].Left;
+            int windowsHeight1 = rect[0].Bottom - rect[0].Top;
+
+            int windowsWidth2 = rect[1].Right - rect[1].Left;
+            int windowsHeight2 = rect[1].Bottom - rect[1].Top;
+
+            int firstX = rect[0].Left + rnd.Next(windowsWidth1 * (int)(rpoint.MinX) / 1000, windowsWidth1 * (int)(rpoint.MaxX) / 1000);
+            int firstY = rect[0].Top + rnd.Next(windowsHeight1 * (int)(rpoint.MinY) / 1000, windowsHeight1 * (int)(rpoint.MaxY) / 1000);
+            //第一个
+            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            {
+                X = firstX,
+                Y = firstY
+            });
+            Thread.Sleep(1000);
+        }
+
+        public void TwoClick(List<RECT> rect, PointRange rpoint, PointRange lpoint)
+        {
           
+            Random rnd = new Random();
+            //var item = rect[0];
+            int windowsWidth1 = rect[0].Right - rect[0].Left;
+            int windowsHeight1 = rect[0].Bottom - rect[0].Top;   
+
+            int windowsWidth2 = rect[1].Right - rect[1].Left;
+            int windowsHeight2 = rect[1].Bottom - rect[1].Top;
+
+            int firstX = rect[0].Left + rnd.Next(windowsWidth1 * (int)(rpoint.MinX) / 1000, windowsWidth1 * (int)(rpoint.MaxX) / 1000);
+            int firstY = rect[0].Top + rnd.Next(windowsHeight1 * (int)(rpoint.MinY) / 1000, windowsHeight1 * (int)(rpoint.MaxY) / 1000);
+
+            int seconedX = rect[1].Left + rnd.Next(windowsWidth2 * (int)(lpoint.MinX) / 1000, windowsWidth2 * (int)(lpoint.MaxX) / 1000);
+            int seconedY = rect[1].Top + rnd.Next(windowsHeight2 * (int)(lpoint.MinY) / 1000, windowsHeight2 * (int)(lpoint.MaxY) / 1000);
+            //第一个
+            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            {
+                X = firstX,
+                Y = firstY
+            });
+            //第二个
+            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            {
+                X = seconedX,
+                Y = seconedY
+            });
+            Thread.Sleep(rnd.Next(200, 300));
+            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            {
+                X = seconedX,
+                Y = seconedY
+            });
+            Thread.Sleep(rnd.Next(200, 300));
+            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            {
+                X = seconedX,
+                Y = seconedY
+            });
+            Thread.Sleep(1000);
+        }
+        public void ThreeClick(List<RECT> rect, PointRange rpoint, PointRange lpoint)
+        {
+            Random rnd = new Random();
+            //var item = rect[0];
+            int windowsWidth1 = rect[0].Right - rect[0].Left;
+            int windowsHeight1 = rect[0].Bottom - rect[0].Top;
+
+            int windowsWidth2 = rect[1].Right - rect[1].Left;
+            int windowsHeight2 = rect[1].Bottom - rect[1].Top;
+
+            int windowsWidth3 = rect[2].Right - rect[2].Left;
+            int windowsHeight3 = rect[2].Bottom - rect[2].Top;
+
+            int firstX = rect[0].Left + rnd.Next(windowsWidth1 * (int)(rpoint.MinX) / 1000, windowsWidth1 * (int)(rpoint.MaxX) / 1000);
+            int firstY = rect[0].Top + rnd.Next(windowsHeight1 * (int)(rpoint.MinY) / 1000, windowsHeight1 * (int)(rpoint.MaxY) / 1000);
+
+            int seconedX = rect[1].Left + rnd.Next(windowsWidth2 * (int)(lpoint.MinX) / 1000, windowsWidth2 * (int)(lpoint.MaxX) / 1000);
+            int seconedY = rect[1].Top + rnd.Next(windowsHeight2 * (int)(lpoint.MinY) / 1000, windowsHeight2 * (int)(lpoint.MaxY) / 1000);
+
+            int ThirdX = rect[2].Left + rnd.Next(windowsWidth3 * (int)(lpoint.MinX) / 1000, windowsWidth3 * (int)(lpoint.MaxX) / 1000);
+            int ThirdY = rect[2].Top + rnd.Next(windowsHeight3 * (int)(lpoint.MinY) / 1000, windowsHeight3 * (int)(lpoint.MaxY) / 1000);
+
+
+            //第一个
+            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            {
+                X = firstX,
+                Y = firstY
+            });
+            //第二个
+            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            {
+                X = seconedX,
+                Y = seconedY
+            });
+            Thread.Sleep(rnd.Next(200, 300));
+            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            {
+                X = seconedX,
+                Y = seconedY
+            });
+            Thread.Sleep(rnd.Next(200, 300));
+            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            {
+                X = seconedX,
+                Y = seconedY
+            });
+            //第三个
+            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            {
+                X = ThirdX,
+                Y = ThirdY
+            });
+            Thread.Sleep(rnd.Next(200, 300));
+            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            {
+                X = ThirdX,
+                Y = ThirdY
+            });
+            Thread.Sleep(rnd.Next(200, 300));
+            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            {
+                X = seconedX,
+                Y = seconedY
+            });
+            Thread.Sleep(1000);
         }
     }
 
