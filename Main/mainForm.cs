@@ -25,6 +25,7 @@ namespace WindowsFormsApp
 
         KeyEventHandler myKeyEventHandeler;
         readonly KeyboardHook service = new KeyboardHook();
+        EventMethodService eventMethod = new EventMethodService();
 
         public mainForm()
         {
@@ -33,7 +34,7 @@ namespace WindowsFormsApp
 
         private void mainForm_Load(object sender, EventArgs e)
         {
-
+            startListen();
         }
         int hHook;
 
@@ -44,10 +45,10 @@ namespace WindowsFormsApp
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            EventMethodService eventMethod = new EventMethodService
-            {
-                mouseClick = true
-            };
+            //EventMethodService eventMethod = new EventMethodService
+            //{
+            //    mouseClick = true
+            //};
             //得到所有阴阳师的窗体
             var rects = eventMethod.GetRects();
             eventMethod.MouseClick(rects);
@@ -184,17 +185,21 @@ namespace WindowsFormsApp
 
         private void mainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            EventMethodService eventMethod = new EventMethodService();
+    
             //  这里写具体实现
-            if (e.KeyCode.Equals(Keys.F1))
+            if (e.KeyCode.Equals(Keys.F1)&& eventMethod.mouseClick == false)
             {
-                startListen();
                 eventMethod.mouseClick = true;
                 //得到所有阴阳师的窗体
                 var rects = eventMethod.GetRects();
+                if (rects.Count()==0)
+                {
+                    MessageBox.Show("没有找到窗体");
+                    return ;
+                }
                 eventMethod.MouseClick(rects);
             }
-            if (e.KeyCode.Equals(Keys.F4))
+            if (e.KeyCode.Equals(Keys.F4) && eventMethod.mouseClick==true)
             {
                 eventMethod.mouseClick = false;
                 MessageBox.Show("结束");
@@ -206,7 +211,6 @@ namespace WindowsFormsApp
         /// </summary>
         public void startListen()
         {
-           
             var myKeyEventHandeler = new KeyEventHandler(mainForm_KeyDown);
             service.KeyDownEvent += myKeyEventHandeler;//钩住键按下
             service.Start();//安装键盘钩子

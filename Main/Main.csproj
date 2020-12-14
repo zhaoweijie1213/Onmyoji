@@ -18,8 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AForge.Core" Version="1.0.0" />
-    <PackageReference Include="AForge.Imaging.Core" Version="1.0.0" />
+    <PackageReference Include="AForge.Imaging" Version="2.2.5" />
     <PackageReference Include="AlibabaCloud.SDK.Ocr20191230" Version="0.0.13" />
     <PackageReference Include="AlibabaCloud.SDK.Viapiutils20200401" Version="0.0.2" />
     <PackageReference Include="aliyun-net-sdk-core" Version="1.5.10" />
