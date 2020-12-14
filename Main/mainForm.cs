@@ -51,67 +51,6 @@ namespace WindowsFormsApp
             //得到所有阴阳师的窗体
             var rects = eventMethod.GetRects();
             eventMethod.MouseClick(rects);
-            //foreach (var item in windowsList)
-            //{
-            //    var s = 
-            //}
-            //while (mouseClick)
-            //{
-            //    Random rnd = new Random();
-            //    if (mouseClick)
-            //    {
-            //        //int firstX = rnd.Next(winodwsSpace1.Right - 20, winodwsSpace1.Right - 1);
-            //        int firstX = rnd.Next(1850, 1890);
-            //        //int firstY = rnd.Next(winodwsSpace1.Bottom + 1, winodwsSpace1.Bottom + 20);
-            //        int firstY = rnd.Next(913, 940);
-            //        //int SecondX = rnd.Next(winodwsSpace2.Left, winodwsSpace2.Right);
-            //        int SecondX = rnd.Next(1230, 1280);
-            //        //int SecondY = rnd.Next(winodwsSpace2.Top, winodwsSpace2.Bottom);
-            //        int SecondY = rnd.Next(160, 400);
-            //        //int ThirdX = rnd.Next(winodwsSpace3.Left, winodwsSpace3.Right);
-            //        int ThirdX = rnd.Next(420, 470);
-            //        //int ThirdY = rnd.Next(winodwsSpace3.Top, winodwsSpace3.Bottom);
-            //        int ThirdY = rnd.Next(160, 400);
-            //        //鼠标点击1
-            //        MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
-            //        {
-            //            //1356,220
-            //            X = firstX,
-            //            Y = firstY
-            //        });
-            //        Thread.Sleep(rnd.Next(500, 800));
-            //        //鼠标点击2
-            //        MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
-            //        {
-            //            //1356,220
-            //            X = SecondX,
-            //            Y = SecondY
-            //        });
-            //        Thread.Sleep(rnd.Next(1000, 1200));
-            //        MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
-            //        {
-            //            //1356,220
-            //            X = SecondX,
-            //            Y = SecondY
-            //        });
-            //        Thread.Sleep(rnd.Next(500, 800));
-            //        //鼠标点击3
-            //        MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
-            //        {
-            //            //1356,220
-            //            X = ThirdX,
-            //            Y = ThirdY
-            //        });
-            //        Thread.Sleep(rnd.Next(500, 800));
-            //        MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
-            //        {
-            //            //1356,220
-            //            X = ThirdX,
-            //            Y = ThirdY
-            //        });
-            //        Thread.Sleep(3000);
-            //    }
-            //}
         }
 
         private void btnMouse_Click(object sender, EventArgs e)
