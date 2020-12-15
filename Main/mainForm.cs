@@ -202,7 +202,7 @@ namespace WindowsFormsApp
             if (e.KeyCode.Equals(Keys.F4) && eventMethod.mouseClick==true)
             {
                 eventMethod.mouseClick = false;
-                MessageBox.Show("结束");
+                MessageBox.Show("任务结束");
             }
         }
 

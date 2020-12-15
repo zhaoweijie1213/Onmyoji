@@ -43,6 +43,7 @@ namespace WindowsFormsApp
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.lblHelp = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSearch
@@ -157,12 +158,22 @@ namespace WindowsFormsApp
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
+            // lblHelp
+            // 
+            this.lblHelp.AutoSize = true;
+            this.lblHelp.Location = new System.Drawing.Point(353, 29);
+            this.lblHelp.Name = "lblHelp";
+            this.lblHelp.Size = new System.Drawing.Size(147, 17);
+            this.lblHelp.TabIndex = 11;
+            this.lblHelp.Text = "*F1开始任务，F4结束任务";
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(722, 373);
+            this.Controls.Add(this.lblHelp);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtFormSpace);
@@ -200,6 +211,7 @@ namespace WindowsFormsApp
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtFormSpace;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.Label lblHelp;
     }
 }
 
