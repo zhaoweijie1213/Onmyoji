@@ -37,7 +37,7 @@ namespace WindowsFormsApp
             startListen();
         }
         int hHook;
-
+        List<MouseHookHelper.RECT> rects;
         /// <summary>
         /// 获取游戏句柄
         /// </summary>
@@ -50,7 +50,7 @@ namespace WindowsFormsApp
             //    mouseClick = true
             //};
             //得到所有阴阳师的窗体
-            var rects = eventMethod.GetRects();
+            rects = eventMethod.GetRects();
             if (rects.Count()>0)
             {
                 MessageBox.Show("查找窗体成功!");
@@ -157,9 +157,8 @@ namespace WindowsFormsApp
         {
             if (task)
             {
-                eventMethod.mouseClick = true;
-                //得到所有阴阳师的窗体
-                var rects = eventMethod.GetRects();
+                //eventMethod.mouseClick = true;
+
                 if (rects.Count() == 0)
                 {
                     task = false;

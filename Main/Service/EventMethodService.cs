@@ -100,7 +100,7 @@ namespace Main.Service
                 X = firstX,
                 Y = firstY
             });
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
         }
 
         public void TwoClick(List<RECT> rect, PointRange rpoint, PointRange lpoint)
