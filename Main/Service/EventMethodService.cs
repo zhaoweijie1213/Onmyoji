@@ -66,18 +66,18 @@ namespace Main.Service
             }
             if (rect.Count == 2)
             {
-                while (mouseClick)
-                {
+                //while (mouseClick)
+                //{
                     TwoClick(rect, rpoint, lpoint);
-                }
+                //}
                 
             }
             if (rect.Count == 3)
             {
-                while (mouseClick)
-                {
+                //while (mouseClick)
+                //{
                     ThreeClick(rect, rpoint, lpoint);
-                }
+                //}
             }
 
 
@@ -210,7 +210,7 @@ namespace Main.Service
                 X = seconedX,
                 Y = seconedY
             });
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
         }
     }
 

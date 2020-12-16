@@ -148,7 +148,19 @@ namespace WindowsFormsApp
 
         private void timerMouseEvent_Tick(object sender, EventArgs e)
         {
-            timerMouseEvent.Enabled = false;
+            timerMouseEvent.Enabled = true;
+            eventMethod.mouseClick = true;
+            //得到所有阴阳师的窗体
+            var rects = eventMethod.GetRects();
+            if (rects.Count()==0)
+            {
+                timerMouseEvent.Stop();
+                MessageBox.Show("没有找到窗体!");
+            }
+            else
+            {
+                eventMethod.MouseClick(rects);
+            }
 
         }
 
@@ -187,21 +199,23 @@ namespace WindowsFormsApp
         {
     
             //  这里写具体实现
-            if (e.KeyCode.Equals(Keys.F1)&& eventMethod.mouseClick == false)
+            if (e.KeyCode.Equals(Keys.F1))
             {
-                eventMethod.mouseClick = true;
-                //得到所有阴阳师的窗体
-                var rects = eventMethod.GetRects();
-                if (rects.Count()==0)
-                {
-                    MessageBox.Show("没有找到窗体");
-                    return ;
-                }
-                eventMethod.MouseClick(rects);
+                timerMouseEvent.Start();
+                //eventMethod.mouseClick = true;
+                ////得到所有阴阳师的窗体
+                //var rects = eventMethod.GetRects();
+                //if (rects.Count()==0)
+                //{
+                //    MessageBox.Show("没有找到窗体");
+                //    return ;
+                //}
+                //eventMethod.MouseClick(rects);
             }
             if (e.KeyCode.Equals(Keys.F4) && eventMethod.mouseClick==true)
             {
-                eventMethod.mouseClick = false;
+                timerMouseEvent.Stop();
+                //eventMethod.mouseClick = false;
                 MessageBox.Show("任务结束");
             }
         }
