@@ -76,7 +76,7 @@ namespace WindowsFormsApp
             // 
             // txtMouse
             // 
-            this.txtMouse.Location = new System.Drawing.Point(353, 113);
+            this.txtMouse.Location = new System.Drawing.Point(353, 89);
             this.txtMouse.Name = "txtMouse";
             this.txtMouse.Size = new System.Drawing.Size(246, 23);
             this.txtMouse.TabIndex = 3;
@@ -121,7 +121,7 @@ namespace WindowsFormsApp
             // 
             // txtWindowSpace
             // 
-            this.txtWindowSpace.Location = new System.Drawing.Point(353, 169);
+            this.txtWindowSpace.Location = new System.Drawing.Point(353, 164);
             this.txtWindowSpace.Name = "txtWindowSpace";
             this.txtWindowSpace.Size = new System.Drawing.Size(246, 23);
             this.txtWindowSpace.TabIndex = 7;
@@ -136,7 +136,7 @@ namespace WindowsFormsApp
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(353, 146);
+            this.label1.Location = new System.Drawing.Point(353, 134);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(167, 17);
             this.label1.TabIndex = 9;

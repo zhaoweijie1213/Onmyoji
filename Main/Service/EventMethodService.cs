@@ -89,8 +89,8 @@ namespace Main.Service
             int windowsWidth1 = rect[0].Right - rect[0].Left;
             int windowsHeight1 = rect[0].Bottom - rect[0].Top;
 
-            int windowsWidth2 = rect[1].Right - rect[1].Left;
-            int windowsHeight2 = rect[1].Bottom - rect[1].Top;
+            //int windowsWidth2 = rect[1].Right - rect[1].Left;
+            //int windowsHeight2 = rect[1].Bottom - rect[1].Top;
 
             int firstX = rect[0].Left + rnd.Next(windowsWidth1 * (int)(rpoint.MinX) / 1000, windowsWidth1 * (int)(rpoint.MaxX) / 1000);
             int firstY = rect[0].Top + rnd.Next(windowsHeight1 * (int)(rpoint.MinY) / 1000, windowsHeight1 * (int)(rpoint.MaxY) / 1000);

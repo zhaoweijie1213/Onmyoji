@@ -25,7 +25,7 @@ namespace WindowsFormsApp
 
         KeyEventHandler myKeyEventHandeler;
         readonly KeyboardHook service = new KeyboardHook();
-        EventMethodService eventMethod = new EventMethodService();
+        readonly EventMethodService eventMethod = new EventMethodService();
 
         public mainForm()
         {
@@ -51,7 +51,14 @@ namespace WindowsFormsApp
             //};
             //得到所有阴阳师的窗体
             var rects = eventMethod.GetRects();
-            eventMethod.MouseClick(rects);
+            if (rects.Count()>0)
+            {
+                MessageBox.Show("查找窗体成功!");
+            }
+            else
+            {
+                MessageBox.Show("查找窗体失败!请确认开启了阴阳师");
+            }
         }
 
         private void btnMouse_Click(object sender, EventArgs e)
@@ -145,30 +152,25 @@ namespace WindowsFormsApp
                 return MouseHookHelper.CallNextHookEx(hHook, nCode, wParam, lParam);
             }
         }
-
+        bool task = false;
         private void timerMouseEvent_Tick(object sender, EventArgs e)
         {
-            timerMouseEvent.Enabled = true;
-            eventMethod.mouseClick = true;
-            //得到所有阴阳师的窗体
-            var rects = eventMethod.GetRects();
-            if (rects.Count()==0)
+            if (task)
             {
-                timerMouseEvent.Stop();
-                MessageBox.Show("没有找到窗体!");
+                eventMethod.mouseClick = true;
+                //得到所有阴阳师的窗体
+                var rects = eventMethod.GetRects();
+                if (rects.Count() == 0)
+                {
+                    task = false;
+                    MessageBox.Show("没有找到窗体!");
+                }
+                else
+                {
+                    eventMethod.MouseClick(rects);
+                }
             }
-            else
-            {
-                eventMethod.MouseClick(rects);
-            }
-
         }
-
-        private void stopClickBtn_Click(object sender, EventArgs e)
-        {
-            timerMouseEvent.Stop();
-        }
-
 
         /// <summary>
         /// 获取窗口图片
@@ -195,13 +197,21 @@ namespace WindowsFormsApp
             }
         }
 
+
+        /// <summary>
+        /// 键盘监听
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mainForm_KeyDown(object sender, KeyEventArgs e)
         {
     
             //  这里写具体实现
             if (e.KeyCode.Equals(Keys.F1))
             {
-                timerMouseEvent.Start();
+                task = true;
+                //timerMouseEvent.Enabled = true;
+                //timerMouseEvent.Start();
                 //eventMethod.mouseClick = true;
                 ////得到所有阴阳师的窗体
                 //var rects = eventMethod.GetRects();
@@ -214,8 +224,9 @@ namespace WindowsFormsApp
             }
             if (e.KeyCode.Equals(Keys.F4) && eventMethod.mouseClick==true)
             {
-                timerMouseEvent.Stop();
+                //timerMouseEvent.Stop();
                 //eventMethod.mouseClick = false;
+                task = false;
                 MessageBox.Show("任务结束");
             }
         }
