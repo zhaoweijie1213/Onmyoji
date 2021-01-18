@@ -57,7 +57,7 @@ namespace WindowsFormsApp
             }
             else
             {
-                MessageBox.Show("查找窗体失败!请确认开启了阴阳师");
+                MessageBox.Show("查找窗体失败!请确认开启了游戏!");
             }
         }
 
@@ -209,17 +209,6 @@ namespace WindowsFormsApp
             if (e.KeyCode.Equals(Keys.F1))
             {
                 task = true;
-                //timerMouseEvent.Enabled = true;
-                //timerMouseEvent.Start();
-                //eventMethod.mouseClick = true;
-                ////得到所有阴阳师的窗体
-                //var rects = eventMethod.GetRects();
-                //if (rects.Count()==0)
-                //{
-                //    MessageBox.Show("没有找到窗体");
-                //    return ;
-                //}
-                //eventMethod.MouseClick(rects);
             }
             if (e.KeyCode.Equals(Keys.F4) && eventMethod.mouseClick==true)
             {

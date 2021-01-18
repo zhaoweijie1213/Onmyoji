@@ -84,7 +84,7 @@ namespace Main.Service
         }
         public void OneClick(List<RECT> rect, PointRange rpoint)
         {
-            Random rnd = new Random();
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
             //var item = rect[0];
             int windowsWidth1 = rect[0].Right - rect[0].Left;
             int windowsHeight1 = rect[0].Bottom - rect[0].Top;
@@ -105,8 +105,8 @@ namespace Main.Service
 
         public void TwoClick(List<RECT> rect, PointRange rpoint, PointRange lpoint)
         {
-          
-            Random rnd = new Random();
+
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
             //var item = rect[0];
             int windowsWidth1 = rect[0].Right - rect[0].Left;
             int windowsHeight1 = rect[0].Bottom - rect[0].Top;   
@@ -147,7 +147,7 @@ namespace Main.Service
         }
         public void ThreeClick(List<RECT> rect, PointRange rpoint, PointRange lpoint)
         {
-            Random rnd = new Random();
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
             //var item = rect[0];
             int windowsWidth1 = rect[0].Right - rect[0].Left;
             int windowsHeight1 = rect[0].Bottom - rect[0].Top;
