@@ -43,19 +43,21 @@ namespace Main.Service
         }
         public void MouseClick(List<RECT> rect)
         {
+            //右边区域
             PointRange rpoint = new PointRange
             {
-                MinX = (decimal)914,
-                MaxX = (decimal)982,
-                MinY = (decimal)829,
-                MaxY = (decimal)943
+                MinX = 914,
+                MaxX = 982,
+                MinY = 829,
+                MaxY = 943
             };
+            //左边区域
             PointRange lpoint = new PointRange
             {
-                MinX = (decimal)095,
-                MaxX = (decimal)200,
-                MinY = (decimal)210,
-                MaxY = (decimal)641
+                MinX = 095,
+                MaxX = 200,
+                MinY = 210,
+                MaxY = 641
             };
             if (rect.Count == 1)
             {
