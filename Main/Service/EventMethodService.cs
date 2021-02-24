@@ -122,25 +122,25 @@ namespace Main.Service
             int seconedX = rect[1].Left + rnd.Next(windowsWidth2 * (int)(lpoint.MinX) / 1000, windowsWidth2 * (int)(lpoint.MaxX) / 1000);
             int seconedY = rect[1].Top + rnd.Next(windowsHeight2 * (int)(lpoint.MinY) / 1000, windowsHeight2 * (int)(lpoint.MaxY) / 1000);
             //第一个
-            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            LeftMouseClick(new POINT()
             {
                 X = firstX,
                 Y = firstY
             });
             //第二个
-            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            LeftMouseClick(new POINT()
             {
                 X = seconedX,
                 Y = seconedY
             });
             Thread.Sleep(rnd.Next(200, 300));
-            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            LeftMouseClick(new POINT()
             {
                 X = seconedX,
                 Y = seconedY
             });
             Thread.Sleep(rnd.Next(200, 300));
-            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            LeftMouseClick(new POINT()
             {
                 X = seconedX,
                 Y = seconedY
@@ -171,43 +171,43 @@ namespace Main.Service
 
 
             //第一个
-            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            LeftMouseClick(new POINT()
             {
                 X = firstX,
                 Y = firstY
             });
             //第二个
-            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            LeftMouseClick(new POINT()
             {
                 X = seconedX,
                 Y = seconedY
             });
             Thread.Sleep(rnd.Next(200, 300));
-            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            LeftMouseClick(new POINT()
             {
                 X = seconedX,
                 Y = seconedY
             });
             Thread.Sleep(rnd.Next(200, 300));
-            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            LeftMouseClick(new POINT()
             {
                 X = seconedX,
                 Y = seconedY
             });
             //第三个
-            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            LeftMouseClick(new POINT()
             {
                 X = ThirdX,
                 Y = ThirdY
             });
             Thread.Sleep(rnd.Next(200, 300));
-            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            LeftMouseClick(new POINT()
             {
                 X = ThirdX,
                 Y = ThirdY
             });
             Thread.Sleep(rnd.Next(200, 300));
-            MouseHookHelper.LeftMouseClick(new MouseHookHelper.POINT()
+            LeftMouseClick(new POINT()
             {
                 X = seconedX,
                 Y = seconedY
