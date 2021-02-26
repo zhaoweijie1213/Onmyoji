@@ -163,6 +163,8 @@ namespace Main.Service
             int firstX = rect[0].Left + rnd.Next(windowsWidth1 * (int)(rpoint.MinX) / 1000, windowsWidth1 * (int)(rpoint.MaxX) / 1000);
             int firstY = rect[0].Top + rnd.Next(windowsHeight1 * (int)(rpoint.MinY) / 1000, windowsHeight1 * (int)(rpoint.MaxY) / 1000);
 
+
+
             int seconedX = rect[1].Left + rnd.Next(windowsWidth2 * (int)(lpoint.MinX) / 1000, windowsWidth2 * (int)(lpoint.MaxX) / 1000);
             int seconedY = rect[1].Top + rnd.Next(windowsHeight2 * (int)(lpoint.MinY) / 1000, windowsHeight2 * (int)(lpoint.MaxY) / 1000);
 
@@ -209,10 +211,10 @@ namespace Main.Service
             Thread.Sleep(rnd.Next(200, 300));
             LeftMouseClick(new POINT()
             {
-                X = seconedX,
-                Y = seconedY
+                X = ThirdX,
+                Y = ThirdX
             });
-            //Thread.Sleep(1000);
+            Thread.Sleep(rnd.Next(500, 1000));
         }
     }
 
