@@ -26,7 +26,7 @@ namespace WindowsFormsApp
         KeyEventHandler myKeyEventHandeler;
         readonly KeyboardHook service = new KeyboardHook();
         readonly EventMethodService eventMethod = new EventMethodService();
-
+        bool task = false;
         public mainForm()
         {
             InitializeComponent();
@@ -54,11 +54,13 @@ namespace WindowsFormsApp
             if (rects.Count()>0)
             {
                 MessageBox.Show("查找窗体成功!");
+                timerMouseEvent.Enabled = true;
             }
             else
             {
                 MessageBox.Show("查找窗体失败!请确认开启了游戏!");
             }
+
         }
 
         private void btnMouse_Click(object sender, EventArgs e)
@@ -152,7 +154,7 @@ namespace WindowsFormsApp
                 return MouseHookHelper.CallNextHookEx(hHook, nCode, wParam, lParam);
             }
         }
-        bool task = false;
+
         private void timerMouseEvent_Tick(object sender, EventArgs e)
         {
             if (task)

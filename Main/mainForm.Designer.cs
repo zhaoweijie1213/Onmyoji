@@ -103,7 +103,6 @@ namespace WindowsFormsApp
             // 
             // timerMouseEvent
             // 
-            this.timerMouseEvent.Enabled = true;
             this.timerMouseEvent.Interval = 3000;
             this.timerMouseEvent.Tick += new System.EventHandler(this.timerMouseEvent_Tick);
             // 
