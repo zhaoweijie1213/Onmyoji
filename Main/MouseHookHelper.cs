@@ -209,7 +209,7 @@ namespace Main
         {
             //随机间隔时间,防止规律按下
             Random random = new Random();
-            Thread.Sleep(random.Next(200, 400));
+            //Thread.Sleep(random.Next(200, 400));
             //先移动鼠标到指定位置
             SetCursorPos(pointInfo.X, pointInfo.Y);
 
@@ -217,8 +217,8 @@ namespace Main
             mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTDOWN,
                         pointInfo.X * 65536 / Screen.PrimaryScreen.Bounds.Width,
                         pointInfo.Y * 65536 / Screen.PrimaryScreen.Bounds.Height, 0, 0);
-    
 
+            Thread.Sleep(random.Next(200, 400));
 
             //松开鼠标左键
             mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTUP,
@@ -227,7 +227,7 @@ namespace Main
 
 
             //第二次
-            Thread.Sleep(random.Next(200, 400));
+            Thread.Sleep(random.Next(300, 600));
 
 
             //按下鼠标左键

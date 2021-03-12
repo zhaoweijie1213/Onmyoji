@@ -201,7 +201,7 @@ namespace Main.Service
                 X = ThirdX,
                 Y = ThirdY
             });
-            Thread.Sleep(rnd.Next(1000, 1500));
+            Thread.Sleep(2000);
         }
     }
 

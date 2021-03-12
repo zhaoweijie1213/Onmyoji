@@ -53,8 +53,8 @@ namespace WindowsFormsApp
             rects = eventMethod.GetRects();
             if (rects.Count()>0)
             {
-                MessageBox.Show("查找窗体成功!");
-                timerMouseEvent.Enabled = true;
+                //MessageBox.Show("查找窗体成功!");
+                //timerMouseEvent.Enabled = true;
             }
             else
             {
