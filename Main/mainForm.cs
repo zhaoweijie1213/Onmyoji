@@ -157,20 +157,23 @@ namespace WindowsFormsApp
 
         private void timerMouseEvent_Tick(object sender, EventArgs e)
         {
-            if (task)
-            {
-                //eventMethod.mouseClick = true;
-
-                if (rects.Count() == 0)
-                {
-                    task = false;
-                    MessageBox.Show("没有找到窗体!");
-                }
-                else
-                {
-                    eventMethod.MouseClick(rects);
-                }
-            }
+            //if (task)
+            //{
+            //    //eventMethod.mouseClick = true;
+            //    timerMouseEvent.Stop();
+            //    if (rects.Count() == 0)
+            //    {
+            //        task = false;
+            //        MessageBox.Show("没有找到窗体!");
+            //    }
+            //    else
+            //    {
+            //        eventMethod.MouseClick(rects);
+            //        timerMouseEvent.Start();
+            //        this.Activate();
+            //    }
+            //}
+            this.Activate();
         }
 
         /// <summary>
@@ -218,6 +221,7 @@ namespace WindowsFormsApp
                 //eventMethod.mouseClick = false;
                 task = false;
                 MessageBox.Show("任务结束");
+                timerMouseEvent.Stop();
             }
         }
 
@@ -267,6 +271,22 @@ namespace WindowsFormsApp
                 this.Activate();
                 this.ShowInTaskbar = true;
             }
+        }
+
+        private void mainForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ////  这里写具体实现
+            //if (e.KeyChar.Equals(Keys.F1))
+            //{
+            //    task = true;
+            //}
+            //if (e.KeyChar.Equals(Keys.F4) && eventMethod.mouseClick == true)
+            //{
+            //    //timerMouseEvent.Stop();
+            //    //eventMethod.mouseClick = false;
+            //    task = false;
+            //    MessageBox.Show("任务结束");
+            //}
         }
     }
 }

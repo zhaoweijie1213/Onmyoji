@@ -176,14 +176,14 @@ namespace Main.Service
                 X = firstX,
                 Y = firstY
             });
-            Thread.Sleep(rnd.Next(300, 500));
+            Thread.Sleep(rnd.Next(500, 800));
             //第二个
             LeftMouseClick(new POINT()
             {
                 X = seconedX,
                 Y = seconedY
             });
-            Thread.Sleep(rnd.Next(800, 1000));
+            Thread.Sleep(rnd.Next(500, 800));
             LeftMouseClick(new POINT()
             {
                 X = seconedX,
@@ -195,7 +195,7 @@ namespace Main.Service
                 X = ThirdX,
                 Y = ThirdY
             });
-            Thread.Sleep(rnd.Next(800, 1000));
+            Thread.Sleep(rnd.Next(500, 800));
             LeftMouseClick(new POINT()
             {
                 X = ThirdX,
