@@ -220,8 +220,8 @@ namespace WindowsFormsApp
                 //timerMouseEvent.Stop();
                 //eventMethod.mouseClick = false;
                 task = false;
-                MessageBox.Show("任务结束");
                 timerMouseEvent.Stop();
+                MessageBox.Show("任务结束");
             }
         }
 
@@ -275,7 +275,6 @@ namespace WindowsFormsApp
 
         private void mainForm_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ////  这里写具体实现
             //if (e.KeyChar.Equals(Keys.F1))
             //{
             //    task = true;
