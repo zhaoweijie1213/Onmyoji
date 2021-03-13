@@ -157,23 +157,22 @@ namespace WindowsFormsApp
 
         private void timerMouseEvent_Tick(object sender, EventArgs e)
         {
-            //if (task)
-            //{
-            //    //eventMethod.mouseClick = true;
-            //    timerMouseEvent.Stop();
-            //    if (rects.Count() == 0)
-            //    {
-            //        task = false;
-            //        MessageBox.Show("没有找到窗体!");
-            //    }
-            //    else
-            //    {
-            //        eventMethod.MouseClick(rects);
-            //        timerMouseEvent.Start();
-            //        this.Activate();
-            //    }
-            //}
-            this.Activate();
+            if (task)
+            {
+                //eventMethod.mouseClick = true;
+                timerMouseEvent.Stop();
+                if (rects.Count() == 0)
+                {
+                    task = false;
+                    MessageBox.Show("没有找到窗体!");
+                }
+                else
+                {
+                    eventMethod.MouseClick(rects);
+                    timerMouseEvent.Start();
+                    this.Activate();
+                }
+            }
         }
 
         /// <summary>
