@@ -175,20 +175,18 @@ namespace WindowsFormsApp
                     sw.Start();
                     //耗时程序
 
-                 
-      
-
                     EventMethodService eventMethod = new EventMethodService();
                     //txtMouse.Text = "开始";
+                    //2个点击左边,一个点击右边 
                     eventMethod.MouseClick(rects);
 
                     timerMouseEvent.Stop();
                     Thread.Sleep((min+4) * 1000);
                     //timerMouseEvent.Start();
-                    //2
-                    eventMethod.MouseClick(rects);
-                    //3
-                    eventMethod.MouseClick(rects);
+                    //2 点击左边
+                    eventMethod.SecondMouseClick(rects);
+                    //3 点击左边
+                    eventMethod.SecondMouseClick(rects);
                     Thread.Sleep(1000);
                     timerMouseEvent.Start();
                     this.Activate();

@@ -86,11 +86,41 @@ namespace Main.Service
 
         }
 
-
+        /// <summary>
+        /// 全左边区域
+        /// </summary>
+        /// <param name="rect"></param>
         public void SecondMouseClick(List<RECT> rect)
         {
-            //队长
-            var mainRect = rect.Last();
+            //右边区域
+            PointRange rpoint = new PointRange
+            {
+                MinX = 914,
+                MaxX = 982,
+                MinY = 829,
+                MaxY = 943
+            };
+            //左边区域
+            PointRange lpoint = new PointRange
+            {
+                MinX = 095,
+                MaxX = 200,
+                MinY = 210,
+                MaxY = 641
+            };
+            if (rect.Count == 1)
+            {
+                OneClick(rect, rpoint);
+            }
+            if (rect.Count == 2)
+            {
+            
+                SecondTwoClick(rect, rpoint, lpoint);
+            }
+            if (rect.Count == 3)
+            {
+                SecondThreeClick(rect, rpoint, lpoint);
+            }
 
 
         }
@@ -208,7 +238,112 @@ namespace Main.Service
             //});
         }
 
- 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <param name="rpoint"></param>
+        /// <param name="lpoint"></param>
+        public void SecondTwoClick(List<RECT> rect, PointRange rpoint, PointRange lpoint)
+        {
+
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+            //var item = rect[0];
+            int windowsWidth1 = rect[0].Right - rect[0].Left;
+            int windowsHeight1 = rect[0].Bottom - rect[0].Top;
+
+            int windowsWidth2 = rect[1].Right - rect[1].Left;
+            int windowsHeight2 = rect[1].Bottom - rect[1].Top;
+
+            int firstX = rect[0].Left + rnd.Next(windowsWidth1 * (int)(lpoint.MinX) / 1000, windowsWidth1 * (int)(lpoint.MaxX) / 1000);
+            int firstY = rect[0].Top + rnd.Next(windowsHeight1 * (int)(lpoint.MinY) / 1000, windowsHeight1 * (int)(lpoint.MaxY) / 1000);
+
+            int seconedX = rect[1].Left + rnd.Next(windowsWidth2 * (int)(lpoint.MinX) / 1000, windowsWidth2 * (int)(lpoint.MaxX) / 1000);
+            int seconedY = rect[1].Top + rnd.Next(windowsHeight2 * (int)(lpoint.MinY) / 1000, windowsHeight2 * (int)(lpoint.MaxY) / 1000);
+            Thread.Sleep(3000);
+            //第一个
+            LeftMouseClick(new POINT()
+            {
+                X = firstX,
+                Y = firstY
+            });
+            //第二个
+            LeftMouseClick(new POINT()
+            {
+                X = seconedX,
+                Y = seconedY
+            });
+            Thread.Sleep(rnd.Next(200, 300));
+            LeftMouseClick(new POINT()
+            {
+                X = seconedX,
+                Y = seconedY
+            });
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <param name="rpoint"></param>
+        /// <param name="lpoint"></param>
+        public void SecondThreeClick(List<RECT> rect, PointRange rpoint, PointRange lpoint)
+        {
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+            //var item = rect[0];
+            int windowsWidth1 = rect[0].Right - rect[0].Left;
+            int windowsHeight1 = rect[0].Bottom - rect[0].Top;
+
+            int windowsWidth2 = rect[1].Right - rect[1].Left;
+            int windowsHeight2 = rect[1].Bottom - rect[1].Top;
+
+            int windowsWidth3 = rect[2].Right - rect[2].Left;
+            int windowsHeight3 = rect[2].Bottom - rect[2].Top;
+
+            int firstX = rect[0].Left + rnd.Next(windowsWidth1 * (int)(lpoint.MinX) / 1000, windowsWidth1 * (int)(lpoint.MaxX) / 1000);
+            int firstY = rect[0].Top + rnd.Next(windowsHeight1 * (int)(lpoint.MinY) / 1000, windowsHeight1 * (int)(lpoint.MaxY) / 1000);
+
+            int seconedX = rect[1].Left + rnd.Next(windowsWidth2 * (int)(lpoint.MinX) / 1000, windowsWidth2 * (int)(lpoint.MaxX) / 1000);
+            int seconedY = rect[1].Top + rnd.Next(windowsHeight2 * (int)(lpoint.MinY) / 1000, windowsHeight2 * (int)(lpoint.MaxY) / 1000);
+
+            int ThirdX = rect[2].Left + rnd.Next(windowsWidth3 * (int)(lpoint.MinX) / 1000, windowsWidth3 * (int)(lpoint.MaxX) / 1000);
+            int ThirdY = rect[2].Top + rnd.Next(windowsHeight3 * (int)(lpoint.MinY) / 1000, windowsHeight3 * (int)(lpoint.MaxY) / 1000);
+
+            Thread.Sleep(3000);
+            //第一个
+            LeftMouseClick(new POINT()
+            {
+                X = firstX,
+                Y = firstY
+            });
+            Thread.Sleep(rnd.Next(200, 300));
+            //第二个
+            LeftMouseClick(new POINT()
+            {
+                X = seconedX,
+                Y = seconedY
+            });
+            Thread.Sleep(rnd.Next(200, 300));
+            //LeftMouseClick(new POINT()
+            //{
+            //    X = seconedX,
+            //    Y = seconedY
+            //});
+            //第三个
+            LeftMouseClick(new POINT()
+            {
+                X = ThirdX,
+                Y = ThirdY
+            });
+            //Thread.Sleep(rnd.Next(200, 300));
+            //LeftMouseClick(new POINT()
+            //{
+            //    X = ThirdX,
+            //    Y = ThirdY
+            //});
+        }
     }
 
 }
