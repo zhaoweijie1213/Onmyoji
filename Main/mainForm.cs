@@ -168,11 +168,15 @@ namespace WindowsFormsApp
             }
         }
 
-        int count = 0;
-        private async Task timerMouseEvent_TickAsync(object sender, EventArgs e)
+        //总局数
+        int count = 1;
+        private void timerMouseEvent_Tick(object sender, EventArgs e)
         {
             if (task)
             {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                //耗时程序
                 //eventMethod.mouseClick = true;
                 timerMouseEvent.Stop();
                 if (rects.Count() == 0)
@@ -182,8 +186,12 @@ namespace WindowsFormsApp
                 }
                 else
                 {
-                    await MouseClickMethod(DateTime.Now.Second);
+                    _ = MouseClickMethod(DateTime.Now.Second);
                 }
+                sw.Stop();
+                TimeSpan ts = sw.Elapsed;
+                txtMouse.Text = ts.TotalSeconds.ToString();
+                txtWindowSpace.Text = $"共{count++}次";
             }
         }
         /// <summary>
@@ -205,9 +213,7 @@ namespace WindowsFormsApp
             Console.WriteLine(flag + "==============开始===========。。。。");
             quanTask = Task.Run(() =>
             {
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
-                //耗时程序
+                
 
                 EventMethodService eventMethod = new EventMethodService();
                 //txtMouse.Text = "开始";
@@ -224,11 +230,6 @@ namespace WindowsFormsApp
                 Thread.Sleep(1000);
                 timerMouseEvent.Start();
                 this.Activate();
-                sw.Stop();
-                TimeSpan ts = sw.Elapsed;
-                txtMouse.Text = ts.TotalSeconds.ToString();
-                txtWindowSpace.Text = $"共{count++}次";
-
             });//委托方法
             await quanTask;
             if (quanTask.IsCompleted)
@@ -277,6 +278,7 @@ namespace WindowsFormsApp
             if (e.KeyCode.Equals(Keys.F1))
             {
                 task = true;
+                timerMouseEvent.Start();
             }
             if (e.KeyCode.Equals(Keys.F4))
             {

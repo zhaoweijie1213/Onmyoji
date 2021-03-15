@@ -98,7 +98,7 @@ namespace WindowsFormsApp
             // 
             this.timerMouseEvent.Enabled = true;
             this.timerMouseEvent.Interval = 1000;
-            this.timerMouseEvent.Tick += new System.EventHandler(this.timerMouseEvent_TickAsync);
+            this.timerMouseEvent.Tick += new System.EventHandler(this.timerMouseEvent_Tick);
             // 
             // btnPictrue
             // 
