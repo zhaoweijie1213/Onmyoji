@@ -25,8 +25,8 @@ namespace WindowsFormsApp
 
         KeyEventHandler myKeyEventHandeler;
         readonly KeyboardHook service = new KeyboardHook();
-        readonly EventMethodService eventMethod = new EventMethodService();
         bool task = false;
+        int min = 0;
         public mainForm()
         {
             InitializeComponent();
@@ -34,7 +34,7 @@ namespace WindowsFormsApp
 
         private void mainForm_Load(object sender, EventArgs e)
         {
-            startListen();
+            //startListen();
         }
         int hHook;
         List<MouseHookHelper.RECT> rects;
@@ -50,11 +50,13 @@ namespace WindowsFormsApp
             //    mouseClick = true
             //};
             //得到所有阴阳师的窗体
+            EventMethodService eventMethod = new EventMethodService();
             rects = eventMethod.GetRects();
             if (rects.Count()>0)
             {
                 //MessageBox.Show("查找窗体成功!");
                 //timerMouseEvent.Enabled = true;
+                min = txtMin.Text == null ? 22 : Convert.ToInt32(txtMin.Text);
             }
             else
             {
@@ -155,6 +157,7 @@ namespace WindowsFormsApp
             }
         }
 
+        int count = 0;
         private void timerMouseEvent_Tick(object sender, EventArgs e)
         {
             if (task)
@@ -168,9 +171,32 @@ namespace WindowsFormsApp
                 }
                 else
                 {
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
+                    //耗时程序
+
+                 
+      
+
+                    EventMethodService eventMethod = new EventMethodService();
+                    //txtMouse.Text = "开始";
                     eventMethod.MouseClick(rects);
+
+                    timerMouseEvent.Stop();
+                    Thread.Sleep((min+4) * 1000);
+                    //timerMouseEvent.Start();
+                    //2
+                    eventMethod.MouseClick(rects);
+                    //3
+                    eventMethod.MouseClick(rects);
+                    Thread.Sleep(1000);
                     timerMouseEvent.Start();
                     this.Activate();
+                    sw.Stop();
+                    TimeSpan ts = sw.Elapsed;
+                    txtMouse.Text = ts.TotalSeconds.ToString();
+                    txtWindowSpace.Text = $"共{count++}次";
+                  
                 }
             }
         }
@@ -208,13 +234,13 @@ namespace WindowsFormsApp
         /// <param name="e"></param>
         private void mainForm_KeyDown(object sender, KeyEventArgs e)
         {
-    
+            EventMethodService eventMethod = new EventMethodService();
             //  这里写具体实现
             if (e.KeyCode.Equals(Keys.F1))
             {
                 task = true;
             }
-            if (e.KeyCode.Equals(Keys.F4) && eventMethod.mouseClick==true)
+            if (e.KeyCode.Equals(Keys.F4))
             {
                 //timerMouseEvent.Stop();
                 //eventMethod.mouseClick = false;
@@ -224,28 +250,28 @@ namespace WindowsFormsApp
             }
         }
 
-        /// <summary>
-        /// 开始监听
-        /// </summary>
-        public void startListen()
-        {
-            var myKeyEventHandeler = new KeyEventHandler(mainForm_KeyDown);
-            service.KeyDownEvent += myKeyEventHandeler;//钩住键按下
-            service.Start();//安装键盘钩子
-        }
+        ///// <summary>
+        ///// 开始监听
+        ///// </summary>
+        //public void startListen()
+        //{
+        //    var myKeyEventHandeler = new KeyEventHandler(mainForm_KeyDown);
+        //    service.KeyDownEvent += myKeyEventHandeler;//钩住键按下
+        //    service.Start();//安装键盘钩子
+        //}
 
-        /// <summary>
-        /// 结束监听
-        /// </summary>
-        public void stopListen()
-        {
-            if (myKeyEventHandeler != null)
-            {
-                service.KeyDownEvent -= myKeyEventHandeler;//取消按键事件
-                myKeyEventHandeler = null;
-                service.Stop();//关闭键盘钩子
-            }
-        }
+        ///// <summary>
+        ///// 结束监听
+        ///// </summary>
+        //public void stopListen()
+        //{
+        //    if (myKeyEventHandeler != null)
+        //    {
+        //        service.KeyDownEvent -= myKeyEventHandeler;//取消按键事件
+        //        myKeyEventHandeler = null;
+        //        service.Stop();//关闭键盘钩子
+        //    }
+        //}
 
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -278,13 +304,23 @@ namespace WindowsFormsApp
             //{
             //    task = true;
             //}
-            //if (e.KeyChar.Equals(Keys.F4) && eventMethod.mouseClick == true)
+            //if (e.KeyChar.Equals(Keys.F4))
             //{
             //    //timerMouseEvent.Stop();
             //    //eventMethod.mouseClick = false;
             //    task = false;
             //    MessageBox.Show("任务结束");
             //}
+        }
+
+        private void txtMouse_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMin_TextChanged(object sender, EventArgs e)
+        {
+            min = Convert.ToInt32(txtMin.Text);
         }
     }
 }

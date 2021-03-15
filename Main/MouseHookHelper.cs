@@ -226,21 +226,21 @@ namespace Main
                         pointInfo.Y * 65536 / Screen.PrimaryScreen.Bounds.Height, 0, 0);
 
 
-            //第二次
-            Thread.Sleep(random.Next(300, 600));
+            ////第二次
+            //Thread.Sleep(random.Next(300, 600));
 
 
-            //按下鼠标左键
-            mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTDOWN,
-                        pointInfo.X * 65536 / Screen.PrimaryScreen.Bounds.Width,
-                        pointInfo.Y * 65536 / Screen.PrimaryScreen.Bounds.Height, 0, 0);
+            ////按下鼠标左键
+            //mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTDOWN,
+            //            pointInfo.X * 65536 / Screen.PrimaryScreen.Bounds.Width,
+            //            pointInfo.Y * 65536 / Screen.PrimaryScreen.Bounds.Height, 0, 0);
 
-            Thread.Sleep(random.Next(200, 400));
+            //Thread.Sleep(random.Next(200, 400));
 
-            //松开鼠标左键
-            mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTUP,
-                        pointInfo.X * 65536 / Screen.PrimaryScreen.Bounds.Width,
-                        pointInfo.Y * 65536 / Screen.PrimaryScreen.Bounds.Height, 0, 0);
+            ////松开鼠标左键
+            //mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTUP,
+            //            pointInfo.X * 65536 / Screen.PrimaryScreen.Bounds.Width,
+            //            pointInfo.Y * 65536 / Screen.PrimaryScreen.Bounds.Height, 0, 0);
 
         }
 
