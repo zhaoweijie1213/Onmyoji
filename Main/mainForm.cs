@@ -169,7 +169,7 @@ namespace WindowsFormsApp
         }
 
         int count = 0;
-        private void timerMouseEvent_Tick(object sender, EventArgs e)
+        private async Task timerMouseEvent_TickAsync(object sender, EventArgs e)
         {
             if (task)
             {
@@ -182,33 +182,62 @@ namespace WindowsFormsApp
                 }
                 else
                 {
-                    Stopwatch sw = new Stopwatch();
-                    sw.Start();
-                    //耗时程序
-
-                    EventMethodService eventMethod = new EventMethodService();
-                    //txtMouse.Text = "开始";
-                    //2个点击左边,一个点击右边 
-                    eventMethod.MouseClick(rects);
-
-                    timerMouseEvent.Stop();
-                    Thread.Sleep((min+4) * 1000);
-                    //timerMouseEvent.Start();
-                    //2 点击左边
-                    eventMethod.SecondMouseClick(rects);
-                    //3 点击左边
-                    eventMethod.SecondMouseClick(rects);
-                    Thread.Sleep(1000);
-                    timerMouseEvent.Start();
-                    this.Activate();
-                    sw.Stop();
-                    TimeSpan ts = sw.Elapsed;
-                    txtMouse.Text = ts.TotalSeconds.ToString();
-                    txtWindowSpace.Text = $"共{count++}次";
-                  
+                    await MouseClickMethod(DateTime.Now.Second);
                 }
             }
         }
+        /// <summary>
+        /// 异步方法
+        /// </summary>
+        Task quanTask;
+        /// <summary>
+        /// 鼠标点击方法
+        /// </summary>
+        /// <param name="flag"></param>
+        /// <returns></returns>
+        public async Task MouseClickMethod(int flag)
+        {
+            if (quanTask != null && !quanTask.IsCompleted)
+            {
+                Console.WriteLine("-------上一次还未完成--------");
+                return;
+            }
+            Console.WriteLine(flag + "==============开始===========。。。。");
+            quanTask = Task.Run(() =>
+            {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                //耗时程序
+
+                EventMethodService eventMethod = new EventMethodService();
+                //txtMouse.Text = "开始";
+                //2个点击左边,一个点击右边 
+                eventMethod.MouseClick(rects);
+
+                timerMouseEvent.Stop();
+                Thread.Sleep((min + 4) * 1000);
+                //timerMouseEvent.Start();
+                //2 点击左边
+                eventMethod.SecondMouseClick(rects);
+                //3 点击左边
+                eventMethod.SecondMouseClick(rects);
+                Thread.Sleep(1000);
+                timerMouseEvent.Start();
+                this.Activate();
+                sw.Stop();
+                TimeSpan ts = sw.Elapsed;
+                txtMouse.Text = ts.TotalSeconds.ToString();
+                txtWindowSpace.Text = $"共{count++}次";
+
+            });//委托方法
+            await quanTask;
+            if (quanTask.IsCompleted)
+            {
+                Console.WriteLine(flag + "==============完成===========");
+            }
+        }
+
+
 
         /// <summary>
         /// 获取窗口图片
