@@ -92,7 +92,7 @@ namespace Main.Service
         /// <param name="rect"></param>
         public void SecondMouseClick(List<RECT> rect)
         {
-            //右边区域
+            //右边区域                                                                                                                                                                                                                                                                                                                                                                                                                                                            
             PointRange rpoint = new PointRange
             {
                 MinX = 914,
