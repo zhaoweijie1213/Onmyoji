@@ -23,7 +23,7 @@ namespace WindowsFormsApp
         //private static readonly int x = 1356;
         //private static readonly int y = 220;
 
-        KeyEventHandler myKeyEventHandeler;
+        //KeyEventHandler myKeyEventHandeler;
         readonly KeyboardHook service = new KeyboardHook();
         bool task = false;
         int min = 0;
@@ -168,23 +168,30 @@ namespace WindowsFormsApp
             }
         }
 
-        int count = 0;
-        private async Task timerMouseEvent_TickAsync(object sender, EventArgs e)
+        int count = 1;
+        double totalSecond = 0;
+        private void timerMouseEvent_Tick(object sender, EventArgs e)
         {
-            if (task)
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            //耗时程序
+            //eventMethod.mouseClick = true;
+            timerMouseEvent.Stop();
+            if (rects.Count() == 0)
             {
-                //eventMethod.mouseClick = true;
-                timerMouseEvent.Stop();
-                if (rects.Count() == 0)
-                {
-                    task = false;
-                    MessageBox.Show("没有找到窗体!");
-                }
-                else
-                {
-                    await MouseClickMethod(DateTime.Now.Second);
-                }
+                task = false;
+                MessageBox.Show("没有找到窗体!");
             }
+            else
+            {
+                _ = MouseClickMethod(DateTime.Now.Second);
+            }
+            sw.Stop();
+            TimeSpan ts = sw.Elapsed;
+            txtMouse.Text = ts.TotalSeconds.ToString();
+            txtWindowSpace.Text = $"共{count++}次";
+            totalSecond += ts.TotalSeconds;
+            txtFormSpace.Text = $"共{totalSecond / 60}分钟";
         }
         /// <summary>
         /// 异步方法
@@ -205,10 +212,6 @@ namespace WindowsFormsApp
             Console.WriteLine(flag + "==============开始===========。。。。");
             quanTask = Task.Run(() =>
             {
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
-                //耗时程序
-
                 EventMethodService eventMethod = new EventMethodService();
                 //txtMouse.Text = "开始";
                 //2个点击左边,一个点击右边 
@@ -224,11 +227,6 @@ namespace WindowsFormsApp
                 Thread.Sleep(1000);
                 timerMouseEvent.Start();
                 this.Activate();
-                sw.Stop();
-                TimeSpan ts = sw.Elapsed;
-                txtMouse.Text = ts.TotalSeconds.ToString();
-                txtWindowSpace.Text = $"共{count++}次";
-
             });//委托方法
             await quanTask;
             if (quanTask.IsCompleted)
