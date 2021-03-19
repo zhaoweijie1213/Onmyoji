@@ -337,7 +337,7 @@ namespace Main.Service
                 X = ThirdX,
                 Y = ThirdY
             });
-            //Thread.Sleep(rnd.Next(200, 300));
+            Thread.Sleep(rnd.Next(200, 300));
             //LeftMouseClick(new POINT()
             //{
             //    X = ThirdX,
