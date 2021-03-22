@@ -4,9 +4,5 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AlibabaCloud.SDK.Ocr20191230" Version="0.0.13" />
-  </ItemGroup>
-
 
 </Project>

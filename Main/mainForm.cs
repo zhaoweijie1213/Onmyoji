@@ -23,10 +23,10 @@ namespace WindowsFormsApp
         //private static readonly int x = 1356;
         //private static readonly int y = 220;
 
-        /// <summary>
-        /// 监听
-        /// </summary>
-        Task listenKey;
+        ///// <summary>
+        ///// 监听
+        ///// </summary>
+        //Task listenKey;
 
         KeyEventHandler myKeyEventHandeler;
         readonly KeyboardHook service = new KeyboardHook();
@@ -295,6 +295,7 @@ namespace WindowsFormsApp
             //  这里写具体实现
             if (e.KeyCode.Equals(Keys.F1) && task == false)
             {
+                MessageBox.Show("Task Start!");
                 task = true;
                 timerMouseEvent.Start();
             }
