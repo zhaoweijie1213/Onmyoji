@@ -23,7 +23,12 @@ namespace WindowsFormsApp
         //private static readonly int x = 1356;
         //private static readonly int y = 220;
 
-        //KeyEventHandler myKeyEventHandeler;
+        /// <summary>
+        /// 监听
+        /// </summary>
+        Task listenKey;
+
+        KeyEventHandler myKeyEventHandeler;
         readonly KeyboardHook service = new KeyboardHook();
         bool task = false;
         int min = 0;
@@ -45,7 +50,12 @@ namespace WindowsFormsApp
 
         private void mainForm_Load(object sender, EventArgs e)
         {
-            //startListen();
+            startListen();
+            //listenKey = Task.Run(() =>
+            //{
+            //    startListen();
+            //});
+            //_ = listenKey;
         }
         int hHook;
         List<MouseHookHelper.RECT> rects;
@@ -281,44 +291,43 @@ namespace WindowsFormsApp
         /// <param name="e"></param>
         private void mainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            EventMethodService eventMethod = new EventMethodService();
+            //EventMethodService eventMethod = new EventMethodService();
             //  这里写具体实现
-            if (e.KeyCode.Equals(Keys.F1))
+            if (e.KeyCode.Equals(Keys.F1) && task == false)
             {
                 task = true;
+                timerMouseEvent.Start();
             }
-            if (e.KeyCode.Equals(Keys.F4))
+            if (e.KeyCode.Equals(Keys.F4) && task == true)
             {
-                //timerMouseEvent.Stop();
-                //eventMethod.mouseClick = false;
                 task = false;
                 timerMouseEvent.Stop();
-                MessageBox.Show("任务结束");
+                MessageBox.Show("Task end!");
             }
         }
 
-        ///// <summary>
-        ///// 开始监听
-        ///// </summary>
-        //public void startListen()
-        //{
-        //    var myKeyEventHandeler = new KeyEventHandler(mainForm_KeyDown);
-        //    service.KeyDownEvent += myKeyEventHandeler;//钩住键按下
-        //    service.Start();//安装键盘钩子
-        //}
+        /// <summary>
+        /// 开始监听
+        /// </summary>
+        public void startListen()
+        {
+            var myKeyEventHandeler = new KeyEventHandler(mainForm_KeyDown);
+            service.KeyDownEvent += myKeyEventHandeler;//钩住键按下
+            service.Start();//安装键盘钩子
+        }
 
-        ///// <summary>
-        ///// 结束监听
-        ///// </summary>
-        //public void stopListen()
-        //{
-        //    if (myKeyEventHandeler != null)
-        //    {
-        //        service.KeyDownEvent -= myKeyEventHandeler;//取消按键事件
-        //        myKeyEventHandeler = null;
-        //        service.Stop();//关闭键盘钩子
-        //    }
-        //}
+        /// <summary>
+        /// 结束监听
+        /// </summary>
+        public void stopListen()
+        {
+            if (myKeyEventHandeler != null)
+            {
+                service.KeyDownEvent -= myKeyEventHandeler;//取消按键事件
+                myKeyEventHandeler = null;
+                service.Stop();//关闭键盘钩子
+            }
+        }
 
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
