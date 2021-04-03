@@ -75,7 +75,7 @@ namespace WindowsFormsApp
             rects = eventMethod.GetRects();
             if (rects.Count()>0)
             {
-                //MessageBox.Show("查找窗体成功!");
+                MessageBox.Show("查找窗体成功!");
                 //timerMouseEvent.Enabled = true;
                 min = txtMin.Text == null ? 22 : Convert.ToInt32(txtMin.Text);
             }
@@ -211,10 +211,10 @@ namespace WindowsFormsApp
         {
             if (quanTask != null && !quanTask.IsCompleted)
             {
-                Console.WriteLine("-------上一次还未完成--------");
+                //Console.WriteLine("-------上一次还未完成--------");
                 return;
             }
-            Console.WriteLine(flag + "==============开始===========。。。。");
+            //Console.WriteLine(flag + "==============开始===========。。。。");
             quanTask = Task.Run(() =>
             {
                 Stopwatch sw = new Stopwatch();
@@ -295,7 +295,7 @@ namespace WindowsFormsApp
             //  这里写具体实现
             if (e.KeyCode.Equals(Keys.F1) && task == false)
             {
-                MessageBox.Show("Task Start!");
+                //MessageBox.Show("Task Start!");
                 task = true;
                 timerMouseEvent.Start();
             }
