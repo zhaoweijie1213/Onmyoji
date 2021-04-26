@@ -27,7 +27,8 @@ namespace Main
 
             //保存图片
             EventService.SaveImage(img);
-            var page = ocr.Process(img);
+            //orc图像识别
+            //var page = ocr.Process(img);
         }
     }
 
