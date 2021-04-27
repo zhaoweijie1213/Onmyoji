@@ -28,6 +28,7 @@ namespace Main.Service
         /// <returns></returns>
         public bool StartTaskForPHash(WindowInfo[] windowsList)
         {
+            bool state = false;
             //比较两张图片的评分
             float score = 0;
             var list = windowsList.ToList();
@@ -43,11 +44,11 @@ namespace Main.Service
                 //string gameHash = SimilarPhoto.GetHash(image);
                 var hash = GetMainPic(i);
                 score = ImagePhash.GetCrossCorrelation(gameHash, hash);
-
+                state = score >= 0.7f;
             }
             //默认值90%
             //return score > DEFAULT_THRESHOLD;
-            return score > 0.8f;
+            return state;
         }
 
         /// <summary>
