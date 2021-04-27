@@ -6,15 +6,17 @@ namespace Main.Service
 {
     /// <summary>
     /// 相似的照片
-    /// 感知哈希算法
+    /// 均值哈希算法
+    /// 现在已弃用,使用感知哈希算法
     /// </summary>
     public class SimilarPhoto
     {
         //Image SourceImg;
 
-        public Image GetImage(string filePath)
+        public static Image GetImage(string filePath)
         {
-            return Image.FromFile(filePath);
+            using var img = Image.FromFile(filePath);
+            return img;
         }
 
         //public SimilarPhoto(Stream stream)
@@ -27,12 +29,13 @@ namespace Main.Service
         /// 获取哈希
         /// </summary>
         /// <returns></returns>
-        public String GetHash(Image SourceImg)
+        public static String GetHash(Image SourceImg)
         {
-            Image image = ReduceSize(SourceImg);
+            using Image image = ReduceSize(SourceImg);
             Byte[] grayValues = ReduceColor(image);
             Byte average = CalcAverage(grayValues);
             String reslut = ComputeBits(grayValues, average);
+
             return reslut;
         }
 
@@ -43,7 +46,7 @@ namespace Main.Service
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        private Image ReduceSize(Image SourceImg,int width = 8, int height = 8)
+        private static Image ReduceSize(Image SourceImg,int width = 8, int height = 8)
         {
             Image image = SourceImg.GetThumbnailImage(width, height, () => { return false; }, IntPtr.Zero);
             return image;
@@ -55,9 +58,9 @@ namespace Main.Service
         /// </summary>
         /// <param name="image"></param>
         /// <returns></returns>
-        private Byte[] ReduceColor(Image image)
+        private static Byte[] ReduceColor(Image image)
         {
-            Bitmap bitMap = new Bitmap(image);
+            Bitmap bitMap = new(image);
             Byte[] grayValues = new Byte[image.Width * image.Height];
 
             for (int x = 0; x < image.Width; x++)
@@ -75,7 +78,7 @@ namespace Main.Service
         /// </summary>
         /// <param name="values"></param>
         /// <returns></returns>
-        private Byte CalcAverage(byte[] values)
+        private static Byte CalcAverage(byte[] values)
         {
             int sum = 0;
             for (int i = 0; i < values.Length; i++)
@@ -89,7 +92,7 @@ namespace Main.Service
         /// <param name="values"></param>
         /// <param name="averageValue"></param>
         /// <returns></returns>
-        private String ComputeBits(byte[] values, byte averageValue)
+        private static string ComputeBits(byte[] values, byte averageValue)
         {
             char[] result = new char[values.Length];
             for (int i = 0; i < values.Length; i++)
@@ -108,10 +111,10 @@ namespace Main.Service
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static Int32 CalcSimilarDegree(string a, string b)
+        public static int CalcSimilarDegree(string a, string b)
         {
             if (a.Length != b.Length)
-                throw new ArgumentException();
+                return -1;
             int count = 0;
             for (int i = 0; i < a.Length; i++)
             {
@@ -121,9 +124,13 @@ namespace Main.Service
             return count;
         }
 
-        public bool GetResult(string a, string b)
+        public static bool GetResult(string a, string b)
         {
             var count = CalcSimilarDegree(a, b);
+            if (count==-1)
+            {
+                return false;
+            }
             return count <= 5;
         }
     }

@@ -236,7 +236,7 @@ namespace WindowsFormsApp
                 //timerMouseEvent.Stop();
                 Thread.Sleep((min + 4) * 1000);
                 //timerMouseEvent.Start();
-                TaskExcuteService taskExcuteService = new TaskExcuteService();
+                TaskExcuteService taskExcuteService = new();
                
                 while (!contrastPic)
                 {
@@ -393,7 +393,7 @@ namespace WindowsFormsApp
 
         private void txtMin_TextChanged(object sender, EventArgs e)
         {
-            min = Convert.ToInt32(txtMin.Text);
+            min = Convert.ToInt32(txtMin.Text ?? "22");
         }
     }
 }

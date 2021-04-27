@@ -47,7 +47,7 @@ namespace Main.Service
             string jsonfile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");//JSON文件路径
 
             using StreamReader file = File.OpenText(jsonfile);
-            using JsonTextReader reader = new JsonTextReader(file);
+            using JsonTextReader reader = new(file);
             JObject o = (JObject)JToken.ReadFrom(reader);
             var value = o[key].ToString();
             return value;
