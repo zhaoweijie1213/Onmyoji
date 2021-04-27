@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static CSharpAPIsDemo;
 using static Main.JobTool;
 
 namespace WindowsFormsApp
@@ -28,6 +29,10 @@ namespace WindowsFormsApp
         ///// </summary>
         //Task listenKey;
 
+        ///// <summary>
+        ///// 正在运行
+        ///// </summary>
+        //bool isRunning = false;
         KeyEventHandler myKeyEventHandeler;
         readonly KeyboardHook service = new KeyboardHook();
         bool task = false;
@@ -59,6 +64,7 @@ namespace WindowsFormsApp
         }
         int hHook;
         List<MouseHookHelper.RECT> rects;
+        WindowInfo[] windowInfos;
         /// <summary>
         /// 获取游戏句柄
         /// </summary>
@@ -72,7 +78,7 @@ namespace WindowsFormsApp
             //};
             //得到所有阴阳师的窗体
             EventMethodService eventMethod = new EventMethodService();
-            rects = eventMethod.GetRects();
+            rects = eventMethod.GetRects(ref windowInfos);
             if (rects.Count()>0)
             {
                 MessageBox.Show("查找窗体成功!");
@@ -202,6 +208,7 @@ namespace WindowsFormsApp
         /// 异步方法
         /// </summary>
         Task quanTask;
+        bool contrastPic = false;
         /// <summary>
         /// 鼠标点击方法
         /// </summary>
@@ -214,7 +221,7 @@ namespace WindowsFormsApp
                 //Console.WriteLine("-------上一次还未完成--------");
                 return;
             }
-            //Console.WriteLine(flag + "==============开始===========。。。。");
+
             quanTask = Task.Run(() =>
             {
                 Stopwatch sw = new Stopwatch();
@@ -222,27 +229,36 @@ namespace WindowsFormsApp
                 //耗时程序
                 EventMethodService eventMethod = new EventMethodService();
                 //txtMouse.Text = "开始";
-                //2个点击左边,一个点击右边 
+                //开始
                 eventMethod.MouseClick(rects);
 
                 this.Activate();
                 //timerMouseEvent.Stop();
                 Thread.Sleep((min + 4) * 1000);
                 //timerMouseEvent.Start();
-                //2 点击左边
-                eventMethod.SecondMouseClick(rects);
-                //3 点击左边
-                eventMethod.SecondMouseClick(rects);
-                Thread.Sleep(1000);
+                TaskExcuteService taskExcuteService = new TaskExcuteService();
+               
+                while (!contrastPic)
+                {
+                    contrastPic = taskExcuteService.StartTask(windowInfos);
+                    //2 结算 step1
+                    eventMethod.SecondMouseClick(rects);
+                    ////3 结算 step2
+                    //eventMethod.SecondMouseClick(rects);
+                    //Thread.Sleep(1000);
+                }
+
                 sw.Stop();
                 TimeSpan ts = sw.Elapsed;
                 txtMouse.Text = ts.TotalSeconds.ToString();
                 txtWindowSpace.Text = $"共{count++}次";
                 totalSecond += ts.TotalSeconds;
                 txtFormSpace.Text = $"共{totalSecond / 60}分钟";
-              
+
             });//委托方法
             await quanTask;
+
+
             //判断是否已完成
             if (quanTask.IsCompleted)
             {

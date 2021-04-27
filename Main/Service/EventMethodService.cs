@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using static CSharpAPIsDemo;
 using static Main.MouseHookHelper;
 
 namespace Main.Service
@@ -27,12 +28,12 @@ namespace Main.Service
         //public  decimal LspYmin = 112 / 536;
         //public  decimal LspYmax = 344 / 536;
 
-        public List<RECT> GetRects()
+        public List<RECT> GetRects(ref WindowInfo[] windowsList)
         {
             CSharpAPIsDemo api = new CSharpAPIsDemo();
             List<RECT> rect = new List<RECT>();
             //得到所有窗体
-            var windowsList = api.GetAllDesktopWindows();
+            windowsList = api.GetAllDesktopWindows();
             foreach (var item in windowsList)
             {
                 //得到窗口的坐标
