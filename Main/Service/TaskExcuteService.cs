@@ -26,25 +26,25 @@ namespace Main.Service
         /// 感知哈希
         /// </summary>
         /// <returns></returns>
-        public bool StartTaskForPHash(WindowInfo[] windowsList)
+        public bool StartTaskForPHash(List<Bitmap> imageList)
         {
             bool state = false;
             //比较两张图片的评分
             float score = 0;
-            var list = windowsList.ToList();
-            for (int i = 0; i < list.Count; i++)
+    
+            for (int i = 0; i < imageList.Count; i++)
             {
-                ////获取图片
-                using Bitmap image = (Bitmap)MouseHookHelper.Capture(list[i].hWnd);
+                //////获取图片
+                //using Bitmap image = (Bitmap)MouseHookHelper.Capture(list[i].hWnd);
 
                 //SimilarPhoto similarPhoto = new ();
                 //Image mainImage = null;
                 //获取游戏图片的哈希
-                var gameHash = ComputeDigest(image.ToLuminanceImage());
+                var gameHash = ComputeDigest(imageList[i].ToLuminanceImage());
                 //string gameHash = SimilarPhoto.GetHash(image);
                 var hash = GetMainPic(i);
                 score = ImagePhash.GetCrossCorrelation(gameHash, hash);
-                state = score >= 0.7f;
+                state = score > 0.45f;
             }
             //默认值90%
             //return score > DEFAULT_THRESHOLD;
@@ -57,15 +57,14 @@ namespace Main.Service
         /// </summary>
         /// <param name="windowsList"></param>
         /// <returns></returns>
-        public bool StartTaskForAHash(WindowInfo[] windowsList)
+        public bool StartTaskForAHash(List<Image> imageList)
         {
             bool state = false;
  
-            var list = windowsList.ToList();
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < imageList.Count; i++)
             {
                 ////获取图片
-                using Image image = MouseHookHelper.Capture(list[i].hWnd);
+                Image image = imageList[i];
                 //SimilarPhoto similarPhoto = new ();
                 //Image mainImage = null;
                 //获取游戏图片的哈希
@@ -121,17 +120,17 @@ namespace Main.Service
             //第一张
             if (id == 0)
             {
-                mainImage = SimilarPhoto.GetImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\1.png"));
+                mainImage = SimilarPhoto.GetImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\MainImage\\1.png"));
 
             }
             if (id == 1)
             {
-                mainImage = SimilarPhoto.GetImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\2.png"));
+                mainImage = SimilarPhoto.GetImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\MainImage\\2.png"));
 
             }
             if (id == 2)
             {
-                mainImage = SimilarPhoto.GetImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\3.png"));
+                mainImage = SimilarPhoto.GetImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\MainImage\\3.png"));
 
             }
             var value = SimilarPhoto.GetHash(mainImage);

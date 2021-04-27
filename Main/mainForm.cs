@@ -240,12 +240,21 @@ namespace WindowsFormsApp
                 bool contrastPic = false;
                 while (!contrastPic)
                 {
-                    contrastPic = taskExcuteService.StartTaskForPHash(windowInfos);
                     //2 结算 step1
                     eventMethod.SecondMouseClick(rects);
                     ////3 结算 step2
-                    //eventMethod.SecondMouseClick(rects);
-                    Thread.Sleep(1000);
+                    eventMethod.SecondMouseClick(rects);
+                    List<Bitmap> list = new();
+                    foreach (var item in windowInfos)
+                    {
+                        ////获取图片
+                        using Image image = MouseHookHelper.Capture(item.hWnd);
+                        Bitmap bmp = new Bitmap(image);
+                        list.Add(bmp);
+                        //list.Add(image);
+                    }
+                    contrastPic = taskExcuteService.StartTaskForPHash(list);
+        
                 }
 
                 sw.Stop();
@@ -282,21 +291,25 @@ namespace WindowsFormsApp
         private void btnPictrue_Click(object sender, EventArgs e)
         {
 
-            CSharpAPIsDemo api = new CSharpAPIsDemo();
-            //得到所有阴阳师的窗体
-            var windowsList = api.GetAllDesktopWindows();
-            if (windowsList.Length==0)
-            {
-                MessageBox.Show("没有找到窗体");
-                return;
-            }
-            foreach (var item in windowsList)
+            //CSharpAPIsDemo api = new CSharpAPIsDemo();
+            ////得到所有阴阳师的窗体
+            //var windowsList = api.GetAllDesktopWindows();
+            //if (windowsList.Length==0)
+            //{
+            //    MessageBox.Show("没有找到窗体");
+            //    return;
+            //}
+            List<Bitmap> list = new();
+            foreach (var item in windowInfos)
             {
                 ////获取图片
                 Image image = MouseHookHelper.Capture(item.hWnd);
                 Bitmap bmp = new Bitmap(image);
                 PicGetHelper.GetP(bmp);
+                list.Add(bmp);
             }
+            TaskExcuteService taskExcuteService = new();
+            bool contrastPic = taskExcuteService.StartTaskForPHash(list);
         }
 
 
