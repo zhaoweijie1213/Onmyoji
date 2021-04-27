@@ -14,19 +14,19 @@ namespace Main
 
         #region 根据句柄寻找窗体并发送消息
 
-        [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
+        [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true, CharSet = CharSet.Unicode)]
         //参数1:指的是类名。参数2，指的是窗口的标题名。两者至少要知道1个
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
-        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern IntPtr FindWindowEx(IntPtr? parentHandle, IntPtr? childAfter, string lclassName, string windowTitle);
 
 
 
-        [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true, CharSet = CharSet.Auto)]
+        [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern IntPtr SendMessage(IntPtr hwnd, uint wMsg, int wParam, string lParam);
 
-        [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true, CharSet = CharSet.Auto)]
+        [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern IntPtr SendMessage(IntPtr hwnd, uint wMsg, int wParam, int lParam);
 
         #endregion
@@ -214,14 +214,14 @@ namespace Main
             SetCursorPos(pointInfo.X, pointInfo.Y);
 
             //按下鼠标左键
-            mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTDOWN,
+            _ = mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTDOWN,
                         pointInfo.X * 65536 / Screen.PrimaryScreen.Bounds.Width,
                         pointInfo.Y * 65536 / Screen.PrimaryScreen.Bounds.Height, 0, 0);
 
             Thread.Sleep(random.Next(200, 400));
 
             //松开鼠标左键
-            mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTUP,
+            _ = mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTUP,
                         pointInfo.X * 65536 / Screen.PrimaryScreen.Bounds.Width,
                         pointInfo.Y * 65536 / Screen.PrimaryScreen.Bounds.Height, 0, 0);
 
@@ -231,14 +231,14 @@ namespace Main
 
 
             //按下鼠标左键
-            mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTDOWN,
+            _ = mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTDOWN,
                         pointInfo.X * 65536 / Screen.PrimaryScreen.Bounds.Width,
                         pointInfo.Y * 65536 / Screen.PrimaryScreen.Bounds.Height, 0, 0);
 
             Thread.Sleep(random.Next(200, 400));
 
             //松开鼠标左键
-            mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTUP,
+            _ = mouse_event(MouseHookHelper.MOUSEEVENTF_LEFTUP,
                         pointInfo.X * 65536 / Screen.PrimaryScreen.Bounds.Width,
                         pointInfo.Y * 65536 / Screen.PrimaryScreen.Bounds.Height, 0, 0);
 

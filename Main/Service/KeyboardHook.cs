@@ -43,11 +43,11 @@ namespace Main.Service
         public static extern int CallNextHookEx(int idHook, int nCode, Int32 wParam, IntPtr lParam);
 
         // 取得当前线程编号（线程钩子需要用到）
-        [DllImport("kernel32.dll")]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         static extern int GetCurrentThreadId();
 
         //使用WINDOWS API函数代替获取当前实例的函数,防止钩子失效
-        [DllImport("kernel32.dll")]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         public static extern IntPtr GetModuleHandle(string name);
 
         public void Start()
@@ -132,7 +132,7 @@ namespace Main.Service
                 if (KeyPressEvent != null && wParam == WM_KEYDOWN)
                 {
                     byte[] keyState = new byte[256];
-                    GetKeyboardState(keyState);
+                    _ = GetKeyboardState(keyState);
 
                     byte[] inBuffer = new byte[2];
                     if (ToAscii(MyKeyboardHookStruct.vkCode, MyKeyboardHookStruct.scanCode, keyState, inBuffer, MyKeyboardHookStruct.flags) == 1)

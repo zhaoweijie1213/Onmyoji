@@ -29,10 +29,10 @@ namespace WindowsFormsApp
         ///// </summary>
         //Task listenKey;
 
-        ///// <summary>
-        ///// 正在运行
-        ///// </summary>
-        //bool isRunning = false;
+        /// <summary>
+        /// 正在运行
+        /// </summary>
+        bool isRunning = false;
         KeyEventHandler myKeyEventHandeler;
         readonly KeyboardHook service = new KeyboardHook();
         bool task = false;
@@ -76,10 +76,11 @@ namespace WindowsFormsApp
             //{
             //    mouseClick = true
             //};
+            //isRunning = TaskExcuteService.PHasTest();
             //得到所有阴阳师的窗体
-            EventMethodService eventMethod = new EventMethodService();
+            EventMethodService eventMethod = new();
             rects = eventMethod.GetRects(ref windowInfos);
-            if (rects.Count()>0)
+            if (rects.Count > 0)
             {
                 MessageBox.Show("查找窗体成功!");
                 //timerMouseEvent.Enabled = true;
@@ -127,11 +128,11 @@ namespace WindowsFormsApp
         static extern void mouse_event(MouseHookHelper.MouseEventFlag flags, int dx, int dy,
             uint data, UIntPtr extraInfo); //UIntPtr指针多句柄类型
 
-        [DllImport("user32.dll")]
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         static extern IntPtr FindWindow(string strClass, string strWindow);
 
         //该函数获取一个窗口句柄,该窗口雷鸣和窗口名与给定字符串匹配 hwnParent=Null从桌面窗口查找
-        [DllImport("user32.dll")]
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter,
             string strClass, string strWindow);
 
@@ -192,7 +193,7 @@ namespace WindowsFormsApp
             {
                 timerMouseEvent.Stop();
                 //eventMethod.mouseClick = true;
-                if (rects.Count() == 0)
+                if (rects.Count == 0)
                 {
                     task = false;
                     MessageBox.Show("没有找到窗体!");
@@ -208,7 +209,6 @@ namespace WindowsFormsApp
         /// 异步方法
         /// </summary>
         Task quanTask;
-        bool contrastPic = false;
         /// <summary>
         /// 鼠标点击方法
         /// </summary>
@@ -237,15 +237,17 @@ namespace WindowsFormsApp
                 Thread.Sleep((min + 4) * 1000);
                 //timerMouseEvent.Start();
                 TaskExcuteService taskExcuteService = new();
-               
+
+                //图片对比状态
+                bool contrastPic = false;
                 while (!contrastPic)
                 {
-                    contrastPic = taskExcuteService.StartTask(windowInfos);
+                    contrastPic = taskExcuteService.StartTaskForPHash(windowInfos);
                     //2 结算 step1
                     eventMethod.SecondMouseClick(rects);
                     ////3 结算 step2
                     //eventMethod.SecondMouseClick(rects);
-                    //Thread.Sleep(1000);
+                    Thread.Sleep(1000);
                 }
 
                 sw.Stop();
