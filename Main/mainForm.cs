@@ -29,10 +29,10 @@ namespace WindowsFormsApp
         ///// </summary>
         //Task listenKey;
 
-        /// <summary>
-        /// 正在运行
-        /// </summary>
-        bool isRunning = false;
+        ///// <summary>
+        ///// 正在运行
+        ///// </summary>
+        //bool isRunning = false;
         KeyEventHandler myKeyEventHandeler;
         readonly KeyboardHook service = new KeyboardHook();
         bool task = false;
@@ -221,7 +221,7 @@ namespace WindowsFormsApp
                 //Console.WriteLine("-------上一次还未完成--------");
                 return;
             }
-
+            //this.Activate();
             quanTask = Task.Run(() =>
             {
                 Stopwatch sw = new Stopwatch();
@@ -232,8 +232,6 @@ namespace WindowsFormsApp
                 //开始
                 eventMethod.MouseClick(rects);
 
-                this.Activate();
-                //timerMouseEvent.Stop();
                 Thread.Sleep((min + 4) * 1000);
                 //timerMouseEvent.Start();
                 TaskExcuteService taskExcuteService = new();

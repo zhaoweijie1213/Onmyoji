@@ -39,8 +39,8 @@ namespace Main.Service
                 //SimilarPhoto similarPhoto = new ();
                 //Image mainImage = null;
                 //获取游戏图片的哈希
-                //string gameHash = SimilarPhoto.GetHash(image);
                 var gameHash = ComputeDigest(image.ToLuminanceImage());
+                //string gameHash = SimilarPhoto.GetHash(image);
                 var hash = GetMainPic(i);
                 score = ImagePhash.GetCrossCorrelation(gameHash, hash);
 
