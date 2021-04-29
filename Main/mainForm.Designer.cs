@@ -59,35 +59,37 @@ namespace WindowsFormsApp
             // 
             // btnSearch
             // 
+            this.btnSearch.BackColor = System.Drawing.Color.Transparent;
             this.btnSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSearch.BackgroundImage")));
             this.btnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Location = new System.Drawing.Point(60, 25);
+            this.btnSearch.Location = new System.Drawing.Point(128, 46);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 66);
             this.btnSearch.TabIndex = 0;
             this.btnSearch.Text = "查找窗口";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnMouse
             // 
+            this.btnMouse.BackColor = System.Drawing.Color.Transparent;
             this.btnMouse.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMouse.BackgroundImage")));
             this.btnMouse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnMouse.FlatAppearance.BorderSize = 0;
             this.btnMouse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMouse.Location = new System.Drawing.Point(60, 108);
+            this.btnMouse.Location = new System.Drawing.Point(128, 129);
             this.btnMouse.Name = "btnMouse";
             this.btnMouse.Size = new System.Drawing.Size(75, 60);
             this.btnMouse.TabIndex = 1;
             this.btnMouse.Text = "鼠标位置";
-            this.btnMouse.UseVisualStyleBackColor = true;
+            this.btnMouse.UseVisualStyleBackColor = false;
             this.btnMouse.Click += new System.EventHandler(this.btnMouse_Click);
             // 
             // txtMouse
             // 
-            this.txtMouse.Location = new System.Drawing.Point(272, 172);
+            this.txtMouse.Location = new System.Drawing.Point(340, 193);
             this.txtMouse.Name = "txtMouse";
             this.txtMouse.Size = new System.Drawing.Size(41, 23);
             this.txtMouse.TabIndex = 3;
@@ -95,12 +97,13 @@ namespace WindowsFormsApp
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(272, 264);
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.Location = new System.Drawing.Point(340, 285);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
             this.button2.Text = "安装钩子";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // timerMouseEvent
@@ -111,26 +114,29 @@ namespace WindowsFormsApp
             // 
             // btnPictrue
             // 
+            this.btnPictrue.BackColor = System.Drawing.Color.Transparent;
             this.btnPictrue.FlatAppearance.BorderSize = 0;
+            this.btnPictrue.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Snow;
+            this.btnPictrue.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MintCream;
             this.btnPictrue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPictrue.Location = new System.Drawing.Point(60, 189);
+            this.btnPictrue.Location = new System.Drawing.Point(128, 210);
             this.btnPictrue.Name = "btnPictrue";
             this.btnPictrue.Size = new System.Drawing.Size(75, 59);
             this.btnPictrue.TabIndex = 6;
             this.btnPictrue.Text = "获取窗口图片";
-            this.btnPictrue.UseVisualStyleBackColor = true;
+            this.btnPictrue.UseVisualStyleBackColor = false;
             this.btnPictrue.Click += new System.EventHandler(this.btnPictrue_Click);
             // 
             // txtWindowSpace
             // 
-            this.txtWindowSpace.Location = new System.Drawing.Point(376, 172);
+            this.txtWindowSpace.Location = new System.Drawing.Point(444, 193);
             this.txtWindowSpace.Name = "txtWindowSpace";
             this.txtWindowSpace.Size = new System.Drawing.Size(41, 23);
             this.txtWindowSpace.TabIndex = 7;
             // 
             // txtFormSpace
             // 
-            this.txtFormSpace.Location = new System.Drawing.Point(476, 172);
+            this.txtFormSpace.Location = new System.Drawing.Point(544, 193);
             this.txtFormSpace.Name = "txtFormSpace";
             this.txtFormSpace.Size = new System.Drawing.Size(41, 23);
             this.txtFormSpace.TabIndex = 8;
@@ -138,7 +144,8 @@ namespace WindowsFormsApp
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(323, 175);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(391, 196);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 17);
             this.label1.TabIndex = 9;
@@ -147,7 +154,8 @@ namespace WindowsFormsApp
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(423, 175);
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(491, 196);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 17);
             this.label2.TabIndex = 10;
@@ -163,7 +171,8 @@ namespace WindowsFormsApp
             // lblHelp
             // 
             this.lblHelp.AutoSize = true;
-            this.lblHelp.Location = new System.Drawing.Point(223, 9);
+            this.lblHelp.BackColor = System.Drawing.Color.Transparent;
+            this.lblHelp.Location = new System.Drawing.Point(291, 30);
             this.lblHelp.Name = "lblHelp";
             this.lblHelp.Size = new System.Drawing.Size(147, 17);
             this.lblHelp.TabIndex = 11;
@@ -171,9 +180,10 @@ namespace WindowsFormsApp
             // 
             // GameTypeGgroup
             // 
+            this.GameTypeGgroup.BackColor = System.Drawing.Color.Transparent;
             this.GameTypeGgroup.Controls.Add(this.YeyuanhuoRadioBtn);
             this.GameTypeGgroup.Controls.Add(this.YuhunRadioBtn);
-            this.GameTypeGgroup.Location = new System.Drawing.Point(223, 29);
+            this.GameTypeGgroup.Location = new System.Drawing.Point(291, 50);
             this.GameTypeGgroup.Name = "GameTypeGgroup";
             this.GameTypeGgroup.Size = new System.Drawing.Size(294, 46);
             this.GameTypeGgroup.TabIndex = 19;
@@ -206,12 +216,13 @@ namespace WindowsFormsApp
             // 
             // TimeGroupRadioBtn
             // 
+            this.TimeGroupRadioBtn.BackColor = System.Drawing.Color.Transparent;
             this.TimeGroupRadioBtn.Controls.Add(this.label4);
             this.TimeGroupRadioBtn.Controls.Add(this.timeRadioBtn30);
             this.TimeGroupRadioBtn.Controls.Add(this.timeRadioBtn22);
             this.TimeGroupRadioBtn.Controls.Add(this.timeRadioBtn18);
             this.TimeGroupRadioBtn.Controls.Add(this.txtMin);
-            this.TimeGroupRadioBtn.Location = new System.Drawing.Point(223, 91);
+            this.TimeGroupRadioBtn.Location = new System.Drawing.Point(291, 112);
             this.TimeGroupRadioBtn.Name = "TimeGroupRadioBtn";
             this.TimeGroupRadioBtn.Size = new System.Drawing.Size(294, 52);
             this.TimeGroupRadioBtn.TabIndex = 20;
@@ -273,7 +284,8 @@ namespace WindowsFormsApp
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(223, 175);
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(291, 196);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 17);
             this.label3.TabIndex = 21;
@@ -284,7 +296,9 @@ namespace WindowsFormsApp
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(568, 311);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ClientSize = new System.Drawing.Size(732, 397);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TimeGroupRadioBtn);
             this.Controls.Add(this.GameTypeGgroup);

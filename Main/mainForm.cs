@@ -269,6 +269,11 @@ namespace WindowsFormsApp
         private void btnPictrue_Click(object sender, EventArgs e)
         {
             List<Bitmap> list = new();
+            if (windowInfos == null)
+            {
+                MessageBox.Show(" Not found the Windows! Did you start the game? ");
+                return;
+            }
             for (int i = 0; i < windowInfos.Length; i++)
             {
                 ////获取图片
