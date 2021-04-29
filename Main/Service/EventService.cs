@@ -16,13 +16,13 @@ namespace Main.Service
         /// <summary>
         /// 保存图片
         /// </summary>
-        public static void SaveImage(Image img)
+        public static void SaveImage(Image img,string fileName)
         {
             using Bitmap bmp = new Bitmap(img);
             bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
             Image image = bmp;
-            string fileName = Guid.NewGuid().ToString().ToUpper() + ".png";
-            //string fileName = DateTime.Now.Ticks.ToString() + random + ".png";
+            //string fileName = Guid.NewGuid().ToString().ToUpper() + ".png";
+            fileName = $"{fileName}.png";
             //获取项目wwwroot目录
             //string path = AppDomain.CurrentDomain.BaseDirectory;
             //string path = Readjson("imagePath");

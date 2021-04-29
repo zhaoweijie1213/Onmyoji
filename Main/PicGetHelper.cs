@@ -19,14 +19,14 @@ namespace Main
     /// </summary>
     public static class PicGetHelper
     {
-        public static void GetP(Bitmap img)
+        public static void GetP(Bitmap img,string fileName)
         {
             using var ocr = new TesseractEngine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tessdata"), "chi_sim", EngineMode.Default);
             //转黑白图片
             //var image = ImageWordService.ToBlackWhite(img);
 
             //保存图片
-            EventService.SaveImage(img);
+            EventService.SaveImage(img,fileName);
             //orc图像识别
             //var page = ocr.Process(img);
         }

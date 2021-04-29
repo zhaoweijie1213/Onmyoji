@@ -43,9 +43,18 @@ namespace WindowsFormsApp
             this.label2 = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.lblHelp = new System.Windows.Forms.Label();
+            this.GameTypeGgroup = new System.Windows.Forms.GroupBox();
+            this.YeyuanhuoRadioBtn = new System.Windows.Forms.RadioButton();
+            this.YuhunRadioBtn = new System.Windows.Forms.RadioButton();
+            this.TimeGroupRadioBtn = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.timeRadioBtn30 = new System.Windows.Forms.RadioButton();
+            this.timeRadioBtn22 = new System.Windows.Forms.RadioButton();
+            this.timeRadioBtn18 = new System.Windows.Forms.RadioButton();
             this.txtMin = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.GameTypeGgroup.SuspendLayout();
+            this.TimeGroupRadioBtn.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSearch
@@ -54,7 +63,7 @@ namespace WindowsFormsApp
             this.btnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Location = new System.Drawing.Point(50, 29);
+            this.btnSearch.Location = new System.Drawing.Point(60, 25);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 66);
             this.btnSearch.TabIndex = 0;
@@ -68,7 +77,7 @@ namespace WindowsFormsApp
             this.btnMouse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnMouse.FlatAppearance.BorderSize = 0;
             this.btnMouse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMouse.Location = new System.Drawing.Point(50, 112);
+            this.btnMouse.Location = new System.Drawing.Point(60, 108);
             this.btnMouse.Name = "btnMouse";
             this.btnMouse.Size = new System.Drawing.Size(75, 60);
             this.btnMouse.TabIndex = 1;
@@ -78,15 +87,15 @@ namespace WindowsFormsApp
             // 
             // txtMouse
             // 
-            this.txtMouse.Location = new System.Drawing.Point(353, 136);
+            this.txtMouse.Location = new System.Drawing.Point(272, 172);
             this.txtMouse.Name = "txtMouse";
-            this.txtMouse.Size = new System.Drawing.Size(246, 23);
+            this.txtMouse.Size = new System.Drawing.Size(41, 23);
             this.txtMouse.TabIndex = 3;
             this.txtMouse.TextChanged += new System.EventHandler(this.txtMouse_TextChanged);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(353, 318);
+            this.button2.Location = new System.Drawing.Point(272, 264);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -104,7 +113,7 @@ namespace WindowsFormsApp
             // 
             this.btnPictrue.FlatAppearance.BorderSize = 0;
             this.btnPictrue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPictrue.Location = new System.Drawing.Point(50, 193);
+            this.btnPictrue.Location = new System.Drawing.Point(60, 189);
             this.btnPictrue.Name = "btnPictrue";
             this.btnPictrue.Size = new System.Drawing.Size(75, 59);
             this.btnPictrue.TabIndex = 6;
@@ -114,35 +123,35 @@ namespace WindowsFormsApp
             // 
             // txtWindowSpace
             // 
-            this.txtWindowSpace.Location = new System.Drawing.Point(353, 206);
+            this.txtWindowSpace.Location = new System.Drawing.Point(376, 172);
             this.txtWindowSpace.Name = "txtWindowSpace";
-            this.txtWindowSpace.Size = new System.Drawing.Size(246, 23);
+            this.txtWindowSpace.Size = new System.Drawing.Size(41, 23);
             this.txtWindowSpace.TabIndex = 7;
             // 
             // txtFormSpace
             // 
-            this.txtFormSpace.Location = new System.Drawing.Point(353, 264);
+            this.txtFormSpace.Location = new System.Drawing.Point(476, 172);
             this.txtFormSpace.Name = "txtFormSpace";
-            this.txtFormSpace.Size = new System.Drawing.Size(246, 23);
+            this.txtFormSpace.Size = new System.Drawing.Size(41, 23);
             this.txtFormSpace.TabIndex = 8;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(353, 176);
+            this.label1.Location = new System.Drawing.Point(323, 175);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(167, 17);
+            this.label1.Size = new System.Drawing.Size(47, 17);
             this.label1.TabIndex = 9;
-            this.label1.Text = "鼠标相对于屏幕左上角的坐标:";
+            this.label1.Text = "总次数:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(353, 241);
+            this.label2.Location = new System.Drawing.Point(423, 175);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(167, 17);
+            this.label2.Size = new System.Drawing.Size(47, 17);
             this.label2.TabIndex = 10;
-            this.label2.Text = "鼠标相对于窗体左上角的坐标:";
+            this.label2.Text = "总耗时:";
             // 
             // notifyIcon1
             // 
@@ -154,49 +163,131 @@ namespace WindowsFormsApp
             // lblHelp
             // 
             this.lblHelp.AutoSize = true;
-            this.lblHelp.Location = new System.Drawing.Point(353, 29);
+            this.lblHelp.Location = new System.Drawing.Point(223, 9);
             this.lblHelp.Name = "lblHelp";
             this.lblHelp.Size = new System.Drawing.Size(147, 17);
             this.lblHelp.TabIndex = 11;
             this.lblHelp.Text = "*F1开始任务，F4结束任务";
             // 
+            // GameTypeGgroup
+            // 
+            this.GameTypeGgroup.Controls.Add(this.YeyuanhuoRadioBtn);
+            this.GameTypeGgroup.Controls.Add(this.YuhunRadioBtn);
+            this.GameTypeGgroup.Location = new System.Drawing.Point(223, 29);
+            this.GameTypeGgroup.Name = "GameTypeGgroup";
+            this.GameTypeGgroup.Size = new System.Drawing.Size(294, 46);
+            this.GameTypeGgroup.TabIndex = 19;
+            this.GameTypeGgroup.TabStop = false;
+            this.GameTypeGgroup.Text = "类型";
+            // 
+            // YeyuanhuoRadioBtn
+            // 
+            this.YeyuanhuoRadioBtn.AutoSize = true;
+            this.YeyuanhuoRadioBtn.Location = new System.Drawing.Point(77, 19);
+            this.YeyuanhuoRadioBtn.Name = "YeyuanhuoRadioBtn";
+            this.YeyuanhuoRadioBtn.Size = new System.Drawing.Size(62, 21);
+            this.YeyuanhuoRadioBtn.TabIndex = 1;
+            this.YeyuanhuoRadioBtn.Text = "业原火";
+            this.YeyuanhuoRadioBtn.UseVisualStyleBackColor = true;
+            this.YeyuanhuoRadioBtn.CheckedChanged += new System.EventHandler(this.GameType_RadioChanged);
+            // 
+            // YuhunRadioBtn
+            // 
+            this.YuhunRadioBtn.AutoSize = true;
+            this.YuhunRadioBtn.Checked = true;
+            this.YuhunRadioBtn.Location = new System.Drawing.Point(21, 19);
+            this.YuhunRadioBtn.Name = "YuhunRadioBtn";
+            this.YuhunRadioBtn.Size = new System.Drawing.Size(50, 21);
+            this.YuhunRadioBtn.TabIndex = 0;
+            this.YuhunRadioBtn.TabStop = true;
+            this.YuhunRadioBtn.Text = "御魂";
+            this.YuhunRadioBtn.UseVisualStyleBackColor = true;
+            this.YuhunRadioBtn.CheckedChanged += new System.EventHandler(this.GameType_RadioChanged);
+            // 
+            // TimeGroupRadioBtn
+            // 
+            this.TimeGroupRadioBtn.Controls.Add(this.label4);
+            this.TimeGroupRadioBtn.Controls.Add(this.timeRadioBtn30);
+            this.TimeGroupRadioBtn.Controls.Add(this.timeRadioBtn22);
+            this.TimeGroupRadioBtn.Controls.Add(this.timeRadioBtn18);
+            this.TimeGroupRadioBtn.Controls.Add(this.txtMin);
+            this.TimeGroupRadioBtn.Location = new System.Drawing.Point(223, 91);
+            this.TimeGroupRadioBtn.Name = "TimeGroupRadioBtn";
+            this.TimeGroupRadioBtn.Size = new System.Drawing.Size(294, 52);
+            this.TimeGroupRadioBtn.TabIndex = 20;
+            this.TimeGroupRadioBtn.TabStop = false;
+            this.TimeGroupRadioBtn.Text = "时间(s)";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(164, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 17);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "自定义:";
+            // 
+            // timeRadioBtn30
+            // 
+            this.timeRadioBtn30.AutoSize = true;
+            this.timeRadioBtn30.Location = new System.Drawing.Point(123, 20);
+            this.timeRadioBtn30.Name = "timeRadioBtn30";
+            this.timeRadioBtn30.Size = new System.Drawing.Size(40, 21);
+            this.timeRadioBtn30.TabIndex = 22;
+            this.timeRadioBtn30.Text = "30";
+            this.timeRadioBtn30.UseVisualStyleBackColor = true;
+            this.timeRadioBtn30.CheckedChanged += new System.EventHandler(this.time_RadioChanged);
+            // 
+            // timeRadioBtn22
+            // 
+            this.timeRadioBtn22.AutoSize = true;
+            this.timeRadioBtn22.Checked = true;
+            this.timeRadioBtn22.Location = new System.Drawing.Point(77, 20);
+            this.timeRadioBtn22.Name = "timeRadioBtn22";
+            this.timeRadioBtn22.Size = new System.Drawing.Size(40, 21);
+            this.timeRadioBtn22.TabIndex = 21;
+            this.timeRadioBtn22.TabStop = true;
+            this.timeRadioBtn22.Text = "22";
+            this.timeRadioBtn22.UseVisualStyleBackColor = true;
+            this.timeRadioBtn22.CheckedChanged += new System.EventHandler(this.time_RadioChanged);
+            // 
+            // timeRadioBtn18
+            // 
+            this.timeRadioBtn18.AutoSize = true;
+            this.timeRadioBtn18.Location = new System.Drawing.Point(31, 20);
+            this.timeRadioBtn18.Name = "timeRadioBtn18";
+            this.timeRadioBtn18.Size = new System.Drawing.Size(40, 21);
+            this.timeRadioBtn18.TabIndex = 20;
+            this.timeRadioBtn18.Text = "18";
+            this.timeRadioBtn18.UseVisualStyleBackColor = true;
+            this.timeRadioBtn18.CheckedChanged += new System.EventHandler(this.time_RadioChanged);
+            // 
             // txtMin
             // 
-            this.txtMin.Location = new System.Drawing.Point(353, 80);
+            this.txtMin.Location = new System.Drawing.Point(217, 19);
             this.txtMin.Name = "txtMin";
-            this.txtMin.Size = new System.Drawing.Size(246, 23);
-            this.txtMin.TabIndex = 12;
-            this.txtMin.Text = "22";
+            this.txtMin.Size = new System.Drawing.Size(30, 23);
+            this.txtMin.TabIndex = 19;
             this.txtMin.TextChanged += new System.EventHandler(this.txtMin_TextChanged);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(353, 112);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(123, 21);
-            this.checkBox1.TabIndex = 13;
-            this.checkBox1.Text = "查看鼠标运行轨迹";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(353, 57);
+            this.label3.Location = new System.Drawing.Point(223, 175);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 17);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "时间(S)";
+            this.label3.Size = new System.Drawing.Size(49, 17);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "单次(s):";
             // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(723, 402);
+            this.ClientSize = new System.Drawing.Size(568, 311);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.txtMin);
+            this.Controls.Add(this.TimeGroupRadioBtn);
+            this.Controls.Add(this.GameTypeGgroup);
             this.Controls.Add(this.lblHelp);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -216,6 +307,10 @@ namespace WindowsFormsApp
             this.SizeChanged += new System.EventHandler(this.mainForm_SizeChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mainForm_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mainForm_KeyPress);
+            this.GameTypeGgroup.ResumeLayout(false);
+            this.GameTypeGgroup.PerformLayout();
+            this.TimeGroupRadioBtn.ResumeLayout(false);
+            this.TimeGroupRadioBtn.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,8 +330,15 @@ namespace WindowsFormsApp
         private System.Windows.Forms.TextBox txtFormSpace;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Label lblHelp;
+        private System.Windows.Forms.GroupBox GameTypeGgroup;
+        private System.Windows.Forms.RadioButton YeyuanhuoRadioBtn;
+        private System.Windows.Forms.RadioButton YuhunRadioBtn;
+        private System.Windows.Forms.GroupBox TimeGroupRadioBtn;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RadioButton timeRadioBtn30;
+        private System.Windows.Forms.RadioButton timeRadioBtn22;
+        private System.Windows.Forms.RadioButton timeRadioBtn18;
         private System.Windows.Forms.TextBox txtMin;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label3;
     }
 }

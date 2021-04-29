@@ -36,7 +36,13 @@ namespace WindowsFormsApp
         KeyEventHandler myKeyEventHandeler;
         readonly KeyboardHook service = new KeyboardHook();
         bool task = false;
-        int min = 0;
+        int min = 22;
+
+        /// <summary>
+        /// 类型
+        /// </summary>
+        GameType gameType = GameType.yu;
+
         public mainForm()
         {
             InitializeComponent();
@@ -84,7 +90,7 @@ namespace WindowsFormsApp
             {
                 MessageBox.Show("查找窗体成功!");
                 //timerMouseEvent.Enabled = true;
-                min = txtMin.Text == null ? 22 : Convert.ToInt32(txtMin.Text);
+                //min = txtMin.Text == null ? 22 : Convert.ToInt32(txtMin.Text);
             }
             else
             {
@@ -191,18 +197,27 @@ namespace WindowsFormsApp
         {
             if (task)
             {
+                //耗时程序
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
                 timerMouseEvent.Stop();
                 //eventMethod.mouseClick = true;
                 if (rects.Count == 0)
                 {
                     task = false;
-                    MessageBox.Show("没有找到窗体!");
+                    MessageBox.Show("Not found the Window!");
                 }
                 else
                 {
                     _ = MouseClickMethod(DateTime.Now.Second);
                 }
                 //timerMouseEvent.Start();
+                sw.Stop();
+                TimeSpan ts = sw.Elapsed;
+                txtMouse.Text = ts.TotalSeconds.ToString();
+                txtWindowSpace.Text = $"{count++}次";
+                totalSecond += ts.TotalSeconds;
+                txtFormSpace.Text = $"共{totalSecond / 60}分钟";
             }
         }
         /// <summary>
@@ -222,56 +237,15 @@ namespace WindowsFormsApp
                 return;
             }
             //this.Activate();
-            quanTask = Task.Run(() =>
+            if (gameType==GameType.yu)
             {
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
-                //耗时程序
-                EventMethodService eventMethod = new EventMethodService();
-                //txtMouse.Text = "开始";
-                //开始
-                eventMethod.MouseClick(rects);
-
-                Thread.Sleep((min + 4) * 1000);
-                //timerMouseEvent.Start();
-                TaskExcuteService taskExcuteService = new();
-
-                //图片对比状态
-                bool contrastPic = false;
-                while (!contrastPic)
-                {
-                    if (!task)
-                    {
-                        return;
-                    }
-                    //2 结算 step1
-                    eventMethod.SecondMouseClick(rects);
-                    ////3 结算 step2
-                    eventMethod.SecondMouseClick(rects);
-                    List<Bitmap> list = new();
-                    foreach (var item in windowInfos)
-                    {
-                        ////获取图片
-                        using Image image = MouseHookHelper.Capture(item.hWnd);
-                        Bitmap bmp = new Bitmap(image);
-                        list.Add(bmp);
-                        //list.Add(image);
-                    }
-                    contrastPic = taskExcuteService.StartTaskForPHash(list);
-        
-                }
-
-                sw.Stop();
-                TimeSpan ts = sw.Elapsed;
-                txtMouse.Text = ts.TotalSeconds.ToString();
-                txtWindowSpace.Text = $"共{count++}次";
-                totalSecond += ts.TotalSeconds;
-                txtFormSpace.Text = $"共{totalSecond / 60}分钟";
-
-            });//委托方法
+                quanTask = Task.Run(() => RunningYu());//委托方法
+            }
+            if (gameType == GameType.ye)
+            {
+                quanTask = Task.Run(() => RunningYe());//委托方法
+            }
             await quanTask;
-
-
             //判断是否已完成
             if (quanTask.IsCompleted)
             {
@@ -294,24 +268,19 @@ namespace WindowsFormsApp
         /// <param name="e"></param>
         private void btnPictrue_Click(object sender, EventArgs e)
         {
-
-            //CSharpAPIsDemo api = new CSharpAPIsDemo();
-            ////得到所有阴阳师的窗体
-            //var windowsList = api.GetAllDesktopWindows();
-            //if (windowsList.Length==0)
-            //{
-            //    MessageBox.Show("没有找到窗体");
-            //    return;
-            //}
             List<Bitmap> list = new();
-            foreach (var item in windowInfos)
+            for (int i = 0; i < windowInfos.Length; i++)
             {
                 ////获取图片
-                Image image = MouseHookHelper.Capture(item.hWnd);
+                Image image = MouseHookHelper.Capture(windowInfos[i].hWnd);
                 Bitmap bmp = new Bitmap(image);
-                PicGetHelper.GetP(bmp);
+                PicGetHelper.GetP(bmp, (i+1).ToString());
                 list.Add(bmp);
             }
+            //foreach (var item in windowInfos)
+            //{
+             
+            //}
             TaskExcuteService taskExcuteService = new();
             bool contrastPic = taskExcuteService.StartTaskForPHash(list);
         }
@@ -408,9 +377,91 @@ namespace WindowsFormsApp
 
         }
 
+        /// <summary>
+        /// 自定义时长
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtMin_TextChanged(object sender, EventArgs e)
         {
             min = Convert.ToInt32(txtMin.Text ?? "22");
+        }
+
+        /// <summary>
+        /// 选择刷一局的时长
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void time_RadioChanged(object sender, EventArgs e)
+        {
+            if (timeRadioBtn18.Checked)
+            {
+                min = 18;
+            }
+            if (timeRadioBtn22.Checked)
+            {
+                min = 22;
+            }
+            if (timeRadioBtn30.Checked)
+            {
+                min = 30;
+            }
+        }
+
+        /// <summary>
+        /// 选择游戏类型 : 业原火或者御魂
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GameType_RadioChanged(object sender, EventArgs e)
+        {
+            if (YuhunRadioBtn.Checked)
+            {
+                gameType = GameType.yu;
+            }
+            if (YeyuanhuoRadioBtn.Checked)
+            {
+                gameType = GameType.ye;
+            }
+        }
+
+        private void RunningYu()
+        {
+     
+ 
+            EventMethodService eventMethod = new EventMethodService();
+            //开始
+            eventMethod.MouseClick(rects);
+            Thread.Sleep((min + 4) * 1000);
+            TaskExcuteService taskExcuteService = new();
+            //图片对比状态
+            bool contrastPic = false;
+            while (!contrastPic)
+            {
+                if (!task)
+                {
+                    return;
+                }
+                //2 结算 step1
+                eventMethod.SecondMouseClick(rects);
+                ////3 结算 step2
+                eventMethod.SecondMouseClick(rects);
+                List<Bitmap> list = new();
+                foreach (var item in windowInfos)
+                {
+                    ////获取图片
+                    using Image image = MouseHookHelper.Capture(item.hWnd);
+                    Bitmap bmp = new Bitmap(image);
+                    list.Add(bmp);
+                }
+                contrastPic = taskExcuteService.StartTaskForPHash(list);
+            }
+
+        }
+
+        private void RunningYe()
+        {
+
         }
     }
 }
