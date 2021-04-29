@@ -240,6 +240,10 @@ namespace WindowsFormsApp
                 bool contrastPic = false;
                 while (!contrastPic)
                 {
+                    if (!task)
+                    {
+                        return;
+                    }
                     //2 结算 step1
                     eventMethod.SecondMouseClick(rects);
                     ////3 结算 step2

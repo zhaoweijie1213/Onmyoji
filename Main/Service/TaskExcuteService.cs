@@ -28,10 +28,10 @@ namespace Main.Service
         /// <returns></returns>
         public bool StartTaskForPHash(List<Bitmap> imageList)
         {
-            bool state = false;
+            int state = 0;
             //比较两张图片的评分
-            float score = 0;
-    
+            float score;
+            int count = 0;
             for (int i = 0; i < imageList.Count; i++)
             {
                 //////获取图片
@@ -44,11 +44,12 @@ namespace Main.Service
                 //string gameHash = SimilarPhoto.GetHash(image);
                 var hash = GetMainPic(i);
                 score = ImagePhash.GetCrossCorrelation(gameHash, hash);
-                state = score > 0.45f;
+                state = score >= 0.7f ? 1 : 0; 
+                count += state;
             }
             //默认值90%
             //return score > DEFAULT_THRESHOLD;
-            return state;
+            return count == 3;
         }
 
         /// <summary>
