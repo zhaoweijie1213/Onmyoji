@@ -64,7 +64,7 @@ namespace WindowsFormsApp
             this.btnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSearch.Location = new System.Drawing.Point(91, 74);
+            this.btnSearch.Location = new System.Drawing.Point(79, 30);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(99, 35);
             this.btnSearch.TabIndex = 0;
@@ -79,7 +79,7 @@ namespace WindowsFormsApp
             this.btnMouse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnMouse.FlatAppearance.BorderSize = 0;
             this.btnMouse.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnMouse.Location = new System.Drawing.Point(91, 157);
+            this.btnMouse.Location = new System.Drawing.Point(79, 105);
             this.btnMouse.Name = "btnMouse";
             this.btnMouse.Size = new System.Drawing.Size(99, 35);
             this.btnMouse.TabIndex = 1;
@@ -99,7 +99,7 @@ namespace WindowsFormsApp
             // 
             this.button2.BackColor = System.Drawing.Color.Transparent;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(91, 301);
+            this.button2.Location = new System.Drawing.Point(79, 255);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(99, 34);
             this.button2.TabIndex = 5;
@@ -120,7 +120,7 @@ namespace WindowsFormsApp
             this.btnPictrue.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Snow;
             this.btnPictrue.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MintCream;
             this.btnPictrue.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPictrue.Location = new System.Drawing.Point(91, 238);
+            this.btnPictrue.Location = new System.Drawing.Point(79, 180);
             this.btnPictrue.Name = "btnPictrue";
             this.btnPictrue.Size = new System.Drawing.Size(99, 35);
             this.btnPictrue.TabIndex = 6;
@@ -299,7 +299,7 @@ namespace WindowsFormsApp
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(732, 397);
+            this.ClientSize = new System.Drawing.Size(650, 326);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TimeGroupRadioBtn);
             this.Controls.Add(this.GameTypeGgroup);
