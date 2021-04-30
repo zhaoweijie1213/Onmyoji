@@ -63,10 +63,10 @@ namespace WindowsFormsApp
             this.btnSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSearch.BackgroundImage")));
             this.btnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSearch.FlatAppearance.BorderSize = 0;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Location = new System.Drawing.Point(128, 46);
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSearch.Location = new System.Drawing.Point(91, 74);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 66);
+            this.btnSearch.Size = new System.Drawing.Size(99, 35);
             this.btnSearch.TabIndex = 0;
             this.btnSearch.Text = "查找窗口";
             this.btnSearch.UseVisualStyleBackColor = false;
@@ -78,10 +78,10 @@ namespace WindowsFormsApp
             this.btnMouse.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMouse.BackgroundImage")));
             this.btnMouse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnMouse.FlatAppearance.BorderSize = 0;
-            this.btnMouse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMouse.Location = new System.Drawing.Point(128, 129);
+            this.btnMouse.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMouse.Location = new System.Drawing.Point(91, 157);
             this.btnMouse.Name = "btnMouse";
-            this.btnMouse.Size = new System.Drawing.Size(75, 60);
+            this.btnMouse.Size = new System.Drawing.Size(99, 35);
             this.btnMouse.TabIndex = 1;
             this.btnMouse.Text = "鼠标位置";
             this.btnMouse.UseVisualStyleBackColor = false;
@@ -98,9 +98,10 @@ namespace WindowsFormsApp
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.Location = new System.Drawing.Point(340, 285);
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Location = new System.Drawing.Point(91, 301);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(99, 34);
             this.button2.TabIndex = 5;
             this.button2.Text = "安装钩子";
             this.button2.UseVisualStyleBackColor = false;
@@ -118,10 +119,10 @@ namespace WindowsFormsApp
             this.btnPictrue.FlatAppearance.BorderSize = 0;
             this.btnPictrue.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Snow;
             this.btnPictrue.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MintCream;
-            this.btnPictrue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPictrue.Location = new System.Drawing.Point(128, 210);
+            this.btnPictrue.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPictrue.Location = new System.Drawing.Point(91, 238);
             this.btnPictrue.Name = "btnPictrue";
-            this.btnPictrue.Size = new System.Drawing.Size(75, 59);
+            this.btnPictrue.Size = new System.Drawing.Size(99, 35);
             this.btnPictrue.TabIndex = 6;
             this.btnPictrue.Text = "获取窗口图片";
             this.btnPictrue.UseVisualStyleBackColor = false;
@@ -174,9 +175,9 @@ namespace WindowsFormsApp
             this.lblHelp.BackColor = System.Drawing.Color.Transparent;
             this.lblHelp.Location = new System.Drawing.Point(291, 30);
             this.lblHelp.Name = "lblHelp";
-            this.lblHelp.Size = new System.Drawing.Size(147, 17);
+            this.lblHelp.Size = new System.Drawing.Size(99, 17);
             this.lblHelp.TabIndex = 11;
-            this.lblHelp.Text = "*F1开始任务，F4结束任务";
+            this.lblHelp.Text = "*F1开始，F4结束";
             // 
             // GameTypeGgroup
             // 
@@ -297,7 +298,7 @@ namespace WindowsFormsApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(732, 397);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TimeGroupRadioBtn);
@@ -315,7 +316,6 @@ namespace WindowsFormsApp
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "mainForm";
-            this.Text = "无限樱饼";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainForm_FormClosing);
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.SizeChanged += new System.EventHandler(this.mainForm_SizeChanged);

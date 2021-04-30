@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 using static CSharpAPIsDemo;
 using static Main.JobTool;
 
@@ -62,6 +63,7 @@ namespace WindowsFormsApp
         private void mainForm_Load(object sender, EventArgs e)
         {
             startListen();
+            btnPictrue.FlatAppearance.MouseOverBackColor= System.Drawing.Color.FromArgb(100, 220, 220, 220);
             //listenKey = Task.Run(() =>
             //{
             //    startListen();
