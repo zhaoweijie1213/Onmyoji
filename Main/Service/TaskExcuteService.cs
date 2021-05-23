@@ -1,4 +1,5 @@
-﻿using Shipwreck.Phash;
+﻿using Main.Enum;
+using Shipwreck.Phash;
 using Shipwreck.Phash.Bitmaps;
 using System;
 using System.Collections.Concurrent;
@@ -19,6 +20,7 @@ namespace Main.Service
     {
         //bool state { get; set; } = false;
         public static ConcurrentDictionary<int, Digest> keyValuePairs { get; set; } = new();
+        public static ConcurrentDictionary<GameType, Digest> keyValueGameType { get; set; } = new();
 
         /// <summary>
         /// 任务开始,比较两张图片的相似度
@@ -44,12 +46,47 @@ namespace Main.Service
                 //string gameHash = SimilarPhoto.GetHash(image);
                 var hash = GetMainPic(i);
                 score = ImagePhash.GetCrossCorrelation(gameHash, hash);
-                state = score >= 0.7f ? 1 : 0; 
+                state = score >= 0.8f ? 1 : 0; 
                 count += state;
             }
             //默认值90%
             //return score > DEFAULT_THRESHOLD;
-            return count == 3;
+            return count == imageList.Count;
+        }
+
+
+        /// <summary>
+        /// 任务开始,比较两张图片的相似度
+        /// 默认值90%
+        /// 感知哈希
+        /// </summary>
+        /// <param name="imageList"></param>
+        /// <param name="gameType"></param>
+        /// <returns></returns>
+        public bool StartTaskForPHash(List<Bitmap> imageList, GameType gameType)
+        {
+            int state = 0;
+            //比较两张图片的评分
+            float score;
+            int count = 0;
+            for (int i = 0; i < imageList.Count; i++)
+            {
+                //////获取图片
+                //using Bitmap image = (Bitmap)MouseHookHelper.Capture(list[i].hWnd);
+
+                //SimilarPhoto similarPhoto = new ();
+                //Image mainImage = null;
+                //获取游戏图片的哈希
+                var gameHash = ComputeDigest(imageList[i].ToLuminanceImage());
+                //string gameHash = SimilarPhoto.GetHash(image);
+                var hash = GetMainPic(i,gameType);
+                score = GetCrossCorrelation(gameHash, hash);
+                state = score >= 0.8f ? 1 : 0;
+                count += state;
+            }
+            //默认值90%
+            //return score > DEFAULT_THRESHOLD;
+            return count == imageList.Count;
         }
 
         /// <summary>
@@ -113,6 +150,26 @@ namespace Main.Service
             return hash;
         }
 
+
+        public Digest GetMainPic(int id,GameType gameType)
+        {
+            if (!keyValueGameType.TryGetValue(gameType,out Digest hash))
+            {
+                if (gameType == GameType.ling)
+                {
+                    using var bitmap = (Bitmap)Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\yuling\\1.png"));
+                    hash = ComputeDigest(bitmap.ToLuminanceImage());
+                }
+                if (gameType == GameType.ye)
+                {
+                    using var bitmap = (Bitmap)Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\yeyuanhuo\\1.png"));
+                    hash = ComputeDigest(bitmap.ToLuminanceImage());
+                }
+            }
+
+            return hash;
+        }
+
         public string GetMainPicForAHash(int id)
         {
 
@@ -160,5 +217,9 @@ namespace Main.Service
             var score = ImagePhash.GetCrossCorrelation(hash, hash1);
             return score >= 0.9f;
         }
+
+
+
+
     }
 }

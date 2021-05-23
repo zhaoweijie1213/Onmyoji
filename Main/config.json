@@ -1,5 +1,7 @@
 {
-  "imagePath": "JobImage\\",
+  "imagePath": "Images\\MainImage\\",
+  "yulingPath": "Images\\yuling\\",
+  "yeyuanhuoPath": "Images\\yeyuanhuo\\",
   //∞¢¿Ô‘∆AccessKey
   "aliyunAccessKey": {
     "AccessKeyID": "LTAI4GBui8Q5abpDAMV8RMxm",

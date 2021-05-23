@@ -59,6 +59,12 @@
     <None Update="Images\MainImage\3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Images\yeyuanhuo\1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\yuling\1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="tessdata\chi_sim.traineddata">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

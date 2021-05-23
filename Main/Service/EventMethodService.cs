@@ -345,6 +345,115 @@ namespace Main.Service
             //    Y = ThirdY
             //});
         }
+
+
+        //挑战位置 0.1%                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+        PointRange mainPoint = new PointRange
+        {
+            MinX = 890,
+            MaxX = 940,
+            MinY = 820,
+            MaxY = 929
+        };
+
+        //左边区域
+        PointRange leftPoint = new PointRange
+        {
+            MinX = 095,
+            MaxX = 200,
+            MinY = 210,
+            MaxY = 641
+        };
+
+        /// <summary>
+        /// 获取点坐标
+        /// 业原火,御灵
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <returns></returns>
+        public List<POINT> GetRand(List<RECT> rect)
+        {
+            List<POINT> points = new();
+            foreach (var item in rect)
+            {
+                Random rnd = new Random(Guid.NewGuid().GetHashCode());
+                int windowsWidth = rect[0].Right - item.Left;
+                int windowsHeight = rect[0].Bottom - item.Top;
+
+                int firstX = rect[0].Left + rnd.Next(windowsWidth * (int)(mainPoint.MinX) / 1000, windowsWidth * (int)(mainPoint.MaxX) / 1000);
+                int firstY = rect[0].Top + rnd.Next(windowsHeight * (int)(mainPoint.MinY) / 1000, windowsHeight * (int)(mainPoint.MaxY) / 1000);
+
+                var point = new POINT()
+                {
+                    X = firstX,
+                    Y = firstY
+                };
+                points.Add(point);
+            }
+            return points;
+        }
+
+
+        /// <summary>
+        /// 获取点坐标
+        /// 业原火,御灵
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <returns></returns>
+        public List<POINT> GetLeftRand(List<RECT> rect)
+        {
+            List<POINT> points = new();
+            foreach (var item in rect)
+            {
+                Random rnd = new Random(Guid.NewGuid().GetHashCode());
+                int windowsWidth = rect[0].Right - item.Left;
+                int windowsHeight = rect[0].Bottom - item.Top;
+
+                int firstX = rect[0].Left + rnd.Next(windowsWidth * (int)(leftPoint.MinX) / 1000, windowsWidth * (int)(leftPoint.MaxX) / 1000);
+                int firstY = rect[0].Top + rnd.Next(windowsHeight * (int)(leftPoint.MinY) / 1000, windowsHeight * (int)(leftPoint.MaxY) / 1000);
+
+                var point = new POINT()
+                {
+                    X = firstX,
+                    Y = firstY
+                };
+                points.Add(point);
+            }
+            return points;
+        }
+
+        /// <summary>
+        /// 点击事件
+        /// 御灵，业原火
+        /// </summary>
+        /// <param name="rect"></param>
+        public void Click(List<RECT> rect)
+        {
+            var points = GetRand(rect);
+            foreach (var item in points)
+            {
+                Random rnd = new Random(Guid.NewGuid().GetHashCode());
+                LeftMouseClick(item);
+                Thread.Sleep(rnd.Next(200, 300));
+            }
+        }
+
+
+        /// <summary>
+        /// 点击左边事件
+        /// 御灵，业原火
+        /// </summary>
+        /// <param name="rect"></param>
+        public void ClickLeft(List<RECT> rect)
+        {
+            var points = GetLeftRand(rect);
+            foreach (var item in points)
+            {
+                Random rnd = new Random(Guid.NewGuid().GetHashCode());
+                LeftMouseClick(item);
+                Thread.Sleep(rnd.Next(200, 300));
+            }
+        }
     }
 
 }

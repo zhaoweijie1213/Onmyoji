@@ -15,7 +15,11 @@ namespace Main.Enum
         /// <summary>
         /// 业原火
         /// </summary>
-        ye=2
+        ye=2,
+        /// <summary>
+        /// 御灵
+        /// </summary>
+        ling=3
     }
 
 }

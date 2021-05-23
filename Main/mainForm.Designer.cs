@@ -53,6 +53,8 @@ namespace WindowsFormsApp
             this.timeRadioBtn18 = new System.Windows.Forms.RadioButton();
             this.txtMin = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnTestPic = new System.Windows.Forms.Button();
+            this.yulingRadio = new System.Windows.Forms.RadioButton();
             this.GameTypeGgroup.SuspendLayout();
             this.TimeGroupRadioBtn.SuspendLayout();
             this.SuspendLayout();
@@ -137,7 +139,7 @@ namespace WindowsFormsApp
             // 
             // txtFormSpace
             // 
-            this.txtFormSpace.Location = new System.Drawing.Point(544, 193);
+            this.txtFormSpace.Location = new System.Drawing.Point(563, 193);
             this.txtFormSpace.Name = "txtFormSpace";
             this.txtFormSpace.Size = new System.Drawing.Size(41, 23);
             this.txtFormSpace.TabIndex = 8;
@@ -158,9 +160,9 @@ namespace WindowsFormsApp
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(491, 196);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 17);
+            this.label2.Size = new System.Drawing.Size(66, 17);
             this.label2.TabIndex = 10;
-            this.label2.Text = "总耗时:";
+            this.label2.Text = "总耗时(m):";
             // 
             // notifyIcon1
             // 
@@ -182,11 +184,12 @@ namespace WindowsFormsApp
             // GameTypeGgroup
             // 
             this.GameTypeGgroup.BackColor = System.Drawing.Color.Transparent;
+            this.GameTypeGgroup.Controls.Add(this.yulingRadio);
             this.GameTypeGgroup.Controls.Add(this.YeyuanhuoRadioBtn);
             this.GameTypeGgroup.Controls.Add(this.YuhunRadioBtn);
             this.GameTypeGgroup.Location = new System.Drawing.Point(291, 50);
             this.GameTypeGgroup.Name = "GameTypeGgroup";
-            this.GameTypeGgroup.Size = new System.Drawing.Size(294, 46);
+            this.GameTypeGgroup.Size = new System.Drawing.Size(313, 46);
             this.GameTypeGgroup.TabIndex = 19;
             this.GameTypeGgroup.TabStop = false;
             this.GameTypeGgroup.Text = "类型";
@@ -225,7 +228,7 @@ namespace WindowsFormsApp
             this.TimeGroupRadioBtn.Controls.Add(this.txtMin);
             this.TimeGroupRadioBtn.Location = new System.Drawing.Point(291, 112);
             this.TimeGroupRadioBtn.Name = "TimeGroupRadioBtn";
-            this.TimeGroupRadioBtn.Size = new System.Drawing.Size(294, 52);
+            this.TimeGroupRadioBtn.Size = new System.Drawing.Size(313, 52);
             this.TimeGroupRadioBtn.TabIndex = 20;
             this.TimeGroupRadioBtn.TabStop = false;
             this.TimeGroupRadioBtn.Text = "时间(s)";
@@ -292,6 +295,29 @@ namespace WindowsFormsApp
             this.label3.TabIndex = 21;
             this.label3.Text = "单次(s):";
             // 
+            // btnTestPic
+            // 
+            this.btnTestPic.BackColor = System.Drawing.Color.Transparent;
+            this.btnTestPic.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTestPic.Location = new System.Drawing.Point(291, 255);
+            this.btnTestPic.Name = "btnTestPic";
+            this.btnTestPic.Size = new System.Drawing.Size(99, 34);
+            this.btnTestPic.TabIndex = 22;
+            this.btnTestPic.Text = "测试图片";
+            this.btnTestPic.UseVisualStyleBackColor = false;
+            this.btnTestPic.Click += new System.EventHandler(this.btnTestPic_Click);
+            // 
+            // yulingRadio
+            // 
+            this.yulingRadio.AutoSize = true;
+            this.yulingRadio.Location = new System.Drawing.Point(146, 19);
+            this.yulingRadio.Name = "yulingRadio";
+            this.yulingRadio.Size = new System.Drawing.Size(50, 21);
+            this.yulingRadio.TabIndex = 2;
+            this.yulingRadio.TabStop = true;
+            this.yulingRadio.Text = "御灵";
+            this.yulingRadio.UseVisualStyleBackColor = true;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -300,6 +326,7 @@ namespace WindowsFormsApp
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(650, 326);
+            this.Controls.Add(this.btnTestPic);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TimeGroupRadioBtn);
             this.Controls.Add(this.GameTypeGgroup);
@@ -354,6 +381,8 @@ namespace WindowsFormsApp
         private System.Windows.Forms.RadioButton timeRadioBtn18;
         private System.Windows.Forms.TextBox txtMin;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnTestPic;
+        private System.Windows.Forms.RadioButton yulingRadio;
     }
 }
 

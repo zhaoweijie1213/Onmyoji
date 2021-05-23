@@ -1,4 +1,5 @@
-﻿using Main.Service;
+﻿using Main.Enum;
+using Main.Service;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,14 +20,14 @@ namespace Main
     /// </summary>
     public static class PicGetHelper
     {
-        public static void GetP(Bitmap img,string fileName)
+        public static void GetP(Bitmap img,string fileName,GameType gameType)
         {
-            using var ocr = new TesseractEngine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tessdata"), "chi_sim", EngineMode.Default);
+            //using var ocr = new TesseractEngine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tessdata"), "chi_sim", EngineMode.Default);
             //转黑白图片
             //var image = ImageWordService.ToBlackWhite(img);
 
             //保存图片
-            EventService.SaveImage(img,fileName);
+            EventService.SaveImage(img,fileName, gameType);
             //orc图像识别
             //var page = ocr.Process(img);
         }
