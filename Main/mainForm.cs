@@ -35,7 +35,7 @@ namespace WindowsFormsApp
         ///// </summary>
         //bool isRunning = false;
         KeyEventHandler myKeyEventHandeler;
-        readonly KeyboardHook service = new KeyboardHook();
+        readonly KeyboardHook service = new();
         bool task = false;
         int min = 22;
 
@@ -209,7 +209,7 @@ namespace WindowsFormsApp
                 }
                 else
                 {
-                    _ = MouseClickMethod(DateTime.Now.Second);
+                    _ = MouseClickMethod();
                 }
                 //timerMouseEvent.Start();
    
@@ -224,10 +224,10 @@ namespace WindowsFormsApp
         /// </summary>
         /// <param name="flag"></param>
         /// <returns></returns>
-        public async Task MouseClickMethod(int flag)
+        public async Task MouseClickMethod()
         {
             //耗时程序
-            Stopwatch sw = new Stopwatch();
+            Stopwatch sw = new();
             sw.Start();
             if (quanTask != null && !quanTask.IsCompleted)
             {
@@ -241,7 +241,7 @@ namespace WindowsFormsApp
             }
             if (gameType == GameType.ye || gameType==GameType.ling)
             {
-                quanTask = Task.Run(() => RunningYe());//委托方法
+                quanTask = Task.Run(() => RunningYeOrLing());//委托方法
             }
             await quanTask;
             //判断是否已完成
@@ -284,7 +284,7 @@ namespace WindowsFormsApp
             {
                 ////获取图片
                 Image image = MouseHookHelper.Capture(windowInfos[i].hWnd);
-                Bitmap bmp = new Bitmap(image);
+                Bitmap bmp = new(image);
                 PicGetHelper.GetP(bmp, (i+1).ToString(), gameType);
                 list.Add(bmp);
             }
@@ -292,8 +292,9 @@ namespace WindowsFormsApp
             //{
              
             //}
-            TaskExcuteService taskExcuteService = new();
-            bool contrastPic = taskExcuteService.StartTaskForPHash(list);
+            bool contrastPic = TaskExcuteService.StartTaskForPHash(list,gameType);
+
+            MessageBox.Show(contrastPic.ToString());
         }
 
 
@@ -444,11 +445,10 @@ namespace WindowsFormsApp
         {
      
  
-            EventMethodService eventMethod = new EventMethodService();
+            EventMethodService eventMethod = new();
             //开始
             eventMethod.MouseClick(rects);
             Thread.Sleep((min + 4) * 1000);
-            TaskExcuteService taskExcuteService = new();
             //图片对比状态
             bool contrastPic = false;
             while (!contrastPic)
@@ -466,10 +466,10 @@ namespace WindowsFormsApp
                 {
                     ////获取图片
                     using Image image = MouseHookHelper.Capture(item.hWnd);
-                    Bitmap bmp = new Bitmap(image);
+                    Bitmap bmp = new(image);
                     list.Add(bmp);
                 }
-                contrastPic = taskExcuteService.StartTaskForPHash(list);
+                contrastPic = TaskExcuteService.StartTaskForPHash(list, GameType.yu);
             }
 
         }
@@ -477,13 +477,11 @@ namespace WindowsFormsApp
         /// <summary>
         /// 业原火,御灵
         /// </summary>
-        private void RunningYe()
+        private void RunningYeOrLing()
         {
-            EventMethodService eventMethod = new EventMethodService();
+            EventMethodService eventMethod = new();
             //开始
             eventMethod.Click(rects);
-
-            TaskExcuteService taskExcuteService = new();
             //图片对比状态
             bool contrastPic = false;
             while (!contrastPic)
@@ -503,26 +501,24 @@ namespace WindowsFormsApp
                     Bitmap bmp = new(image);
                     list.Add(bmp);
                 }
-                contrastPic = taskExcuteService.StartTaskForPHash(list,gameType);
+                contrastPic = TaskExcuteService.StartTaskForPHash(list,gameType);
             }
         }
 
         private void btnTestPic_Click(object sender, EventArgs e)
         {
-            TaskExcuteService taskExcuteService = new();
+            //TaskExcuteService taskExcuteService = new();
             List<Bitmap> list = new();
             foreach (var item in windowInfos)
             {
                 ////获取图片
                 using Image image = MouseHookHelper.Capture(item.hWnd);
-                Bitmap bmp = new Bitmap(image);
+                Bitmap bmp = new(image);
                 list.Add(bmp);
             }
             //图片对比状态
-            bool contrastPic = false;
-            contrastPic = taskExcuteService.StartTaskForPHash(list);
+            bool contrastPic = TaskExcuteService.StartTaskForPHash(list, gameType);
+            MessageBox.Show(contrastPic.ToString());
         }
     }
-
-
 }

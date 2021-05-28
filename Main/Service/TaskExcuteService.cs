@@ -20,43 +20,10 @@ namespace Main.Service
     {
         //bool state { get; set; } = false;
         public static ConcurrentDictionary<int, Digest> keyValuePairs { get; set; } = new();
-        public static ConcurrentDictionary<GameType, Digest> keyValueGameType { get; set; } = new();
-
-        /// <summary>
-        /// 任务开始,比较两张图片的相似度
-        /// 默认值90%
-        /// 感知哈希
-        /// </summary>
-        /// <returns></returns>
-        public bool StartTaskForPHash(List<Bitmap> imageList)
-        {
-            bool state = true;
-            //比较两张图片的评分
-            float score;
-            int count = 0;
-            for (int i = 0; i < imageList.Count; i++)
-            {
-                //////获取图片
-                //using Bitmap image = (Bitmap)MouseHookHelper.Capture(list[i].hWnd);
-
-                //SimilarPhoto similarPhoto = new ();
-                //Image mainImage = null;
-                //获取游戏图片的哈希
-                var gameHash = ComputeDigest(imageList[i].ToLuminanceImage());
-                //string gameHash = SimilarPhoto.GetHash(image);
-                var hash = GetMainPic(i);
-                score = GetCrossCorrelation(gameHash, hash);
-                if(score < 0.8f)
-                {
-                    state = false;
-                }
-            }
-            //默认值90%
-            //return score > DEFAULT_THRESHOLD;
-            return state;
-        }
+        public static ConcurrentDictionary<string, Digest> keyValueGameType { get; set; } = new();
 
 
+        #region 感知哈希算法
         /// <summary>
         /// 任务开始,比较两张图片的相似度
         /// 默认值90%
@@ -65,14 +32,14 @@ namespace Main.Service
         /// <param name="imageList"></param>
         /// <param name="gameType"></param>
         /// <returns></returns>
-        public bool StartTaskForPHash(List<Bitmap> imageList, GameType gameType)
+        public static bool StartTaskForPHash(List<Bitmap> imageList, GameType gameType)
         {
             bool state = true;
-            //比较两张图片的评分
-            float score;
-            int count = 0;
+
             for (int i = 0; i < imageList.Count; i++)
             {
+                //比较两张图片的评分
+                float score;
                 //////获取图片
                 //using Bitmap image = (Bitmap)MouseHookHelper.Capture(list[i].hWnd);
 
@@ -83,7 +50,8 @@ namespace Main.Service
                 //string gameHash = SimilarPhoto.GetHash(image);
                 var hash = GetMainPic(i,gameType);
                 score = GetCrossCorrelation(gameHash, hash);
-                if (score < 0.8f)
+                //如果低于70%
+                if (score < 0.7f)
                 {
                     state = false;
                 }
@@ -93,13 +61,52 @@ namespace Main.Service
             return state;
         }
 
+
+        /// <summary>
+        /// 获取参照图
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="gameType"></param>
+        /// <returns></returns>
+        public static Digest GetMainPic(int id, GameType gameType)
+        {
+            if (!keyValueGameType.TryGetValue($"{gameType}_{id}", out Digest hash))
+            {
+                if (gameType == GameType.yu)
+                {
+                    using var bitmap = (Bitmap)Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Images\\MainImage\\{id + 1}.png"));
+                    hash = ComputeDigest(bitmap.ToLuminanceImage());
+
+                }
+                if (gameType == GameType.ling)
+                {
+                    using var bitmap = (Bitmap)Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\yuling\\1.png"));
+                    hash = ComputeDigest(bitmap.ToLuminanceImage());
+                }
+                if (gameType == GameType.ye)
+                {
+                    using var bitmap = (Bitmap)Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\yeyuanhuo\\1.png"));
+                    hash = ComputeDigest(bitmap.ToLuminanceImage());
+                }
+
+                keyValueGameType.TryAdd($"{gameType}_{id}", hash);
+            }
+
+            return hash;
+        }
+
+        #endregion
+
+
+        #region 均值哈希算法
+
         /// <summary>
         /// 任务开始,比较两张图片的相似度
         /// 均值哈希
         /// </summary>
         /// <param name="windowsList"></param>
         /// <returns></returns>
-        public bool StartTaskForAHash(List<Image> imageList)
+        public static bool StartTaskForAHash(List<Image> imageList)
         {
             bool state = false;
  
@@ -119,45 +126,8 @@ namespace Main.Service
             return state;
         }
 
-        public Digest GetMainPic(int id)
-        {
-            if (!keyValuePairs.TryGetValue(id, out Digest hash))
-            {
-                //Image mainImage = null;
-                //Bitmap bitmap = null;
-                //第一张
 
-                //mainImage = SimilarPhoto.GetImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\1.png"));
-                using var bitmap = (Bitmap)Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Images\\MainImage\\{id + 1}.png"));
-                hash = ComputeDigest(bitmap.ToLuminanceImage());
-
-                //var score = ImagePhash.GetCrossCorrelation(hash1, hash2);
-                keyValuePairs.TryAdd(id, hash);
-            }
-            return hash;
-        }
-
-
-        public Digest GetMainPic(int id,GameType gameType)
-        {
-            if (!keyValueGameType.TryGetValue(gameType,out Digest hash))
-            {
-                if (gameType == GameType.ling)
-                {
-                    using var bitmap = (Bitmap)Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\yuling\\1.png"));
-                    hash = ComputeDigest(bitmap.ToLuminanceImage());
-                }
-                if (gameType == GameType.ye)
-                {
-                    using var bitmap = (Bitmap)Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\yeyuanhuo\\1.png"));
-                    hash = ComputeDigest(bitmap.ToLuminanceImage());
-                }
-            }
-
-            return hash;
-        }
-
-        public string GetMainPicForAHash(int id)
+        public static string GetMainPicForAHash(int id)
         {
 
             Image mainImage = null;
@@ -187,6 +157,14 @@ namespace Main.Service
 
             return value;
         }
+
+
+        #endregion
+
+
+
+
+
 
         /// <summary>
         /// 测试方法
