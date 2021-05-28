@@ -30,7 +30,7 @@ namespace Main.Service
         /// <returns></returns>
         public bool StartTaskForPHash(List<Bitmap> imageList)
         {
-            int state = 0;
+            bool state = true;
             //比较两张图片的评分
             float score;
             int count = 0;
@@ -45,13 +45,15 @@ namespace Main.Service
                 var gameHash = ComputeDigest(imageList[i].ToLuminanceImage());
                 //string gameHash = SimilarPhoto.GetHash(image);
                 var hash = GetMainPic(i);
-                score = ImagePhash.GetCrossCorrelation(gameHash, hash);
-                state = score >= 0.8f ? 1 : 0; 
-                count += state;
+                score = GetCrossCorrelation(gameHash, hash);
+                if(score < 0.8f)
+                {
+                    state = false;
+                }
             }
             //默认值90%
             //return score > DEFAULT_THRESHOLD;
-            return count == imageList.Count;
+            return state;
         }
 
 
@@ -65,7 +67,7 @@ namespace Main.Service
         /// <returns></returns>
         public bool StartTaskForPHash(List<Bitmap> imageList, GameType gameType)
         {
-            int state = 0;
+            bool state = true;
             //比较两张图片的评分
             float score;
             int count = 0;
@@ -81,12 +83,14 @@ namespace Main.Service
                 //string gameHash = SimilarPhoto.GetHash(image);
                 var hash = GetMainPic(i,gameType);
                 score = GetCrossCorrelation(gameHash, hash);
-                state = score >= 0.8f ? 1 : 0;
-                count += state;
+                if (score < 0.8f)
+                {
+                    state = false;
+                }
             }
             //默认值90%
             //return score > DEFAULT_THRESHOLD;
-            return count == imageList.Count;
+            return state;
         }
 
         /// <summary>
@@ -122,28 +126,11 @@ namespace Main.Service
                 //Image mainImage = null;
                 //Bitmap bitmap = null;
                 //第一张
-                if (id == 0)
-                {
-                    //mainImage = SimilarPhoto.GetImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\1.png"));
-                    using var bitmap = (Bitmap)Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\MainImage\\1.png"));
-                    hash = ComputeDigest(bitmap.ToLuminanceImage());
-                }
-                if (id == 1)
-                {
-                    //mainImage = SimilarPhoto.GetImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\2.png"));
-                    using var bitmap = (Bitmap)Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\MainImage\\2.png"));
-                    hash = ComputeDigest(bitmap.ToLuminanceImage());
-                }
-                if (id == 2)
-                {
-                    //mainImage = SimilarPhoto.GetImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\3.png"));
-                    using var bitmap = (Bitmap)Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\MainImage\\3.png"));
-                    hash = ComputeDigest(bitmap.ToLuminanceImage());
-                }
-                //value = SimilarPhoto.GetHash(mainImage);
-                //var bitmap = (Bitmap)Image.FromFile(fullPathToImage);
 
-             
+                //mainImage = SimilarPhoto.GetImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\1.png"));
+                using var bitmap = (Bitmap)Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Images\\MainImage\\{id + 1}.png"));
+                hash = ComputeDigest(bitmap.ToLuminanceImage());
+
                 //var score = ImagePhash.GetCrossCorrelation(hash1, hash2);
                 keyValuePairs.TryAdd(id, hash);
             }
