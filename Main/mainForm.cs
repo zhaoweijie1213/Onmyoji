@@ -288,9 +288,10 @@ namespace WindowsFormsApp
                 PicGetHelper.GetP(bmp, (i+1).ToString(), gameType);
                 list.Add(bmp);
             }
+            TaskExcuteService.keyValueGameType.Clear();
             //foreach (var item in windowInfos)
             //{
-             
+
             //}
             bool contrastPic = TaskExcuteService.StartTaskForPHash(list,gameType);
 

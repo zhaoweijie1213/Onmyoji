@@ -19,7 +19,7 @@ namespace Main.Service
     public class TaskExcuteService : ImagePhash
     {
         //bool state { get; set; } = false;
-        public static ConcurrentDictionary<int, Digest> keyValuePairs { get; set; } = new();
+        //public static ConcurrentDictionary<int, Digest> keyValuePairs { get; set; } = new();
         public static ConcurrentDictionary<string, Digest> keyValueGameType { get; set; } = new();
 
 
