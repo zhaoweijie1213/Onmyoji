@@ -46,7 +46,7 @@ namespace Main.Service
                 //string gameHash = SimilarPhoto.GetHash(image);
                 var hash = GetMainPic(i);
                 score = ImagePhash.GetCrossCorrelation(gameHash, hash);
-                state = score >= 0.8f ? 1 : 0; 
+                state = score >= 0.7f ? 1 : 0; 
                 count += state;
             }
             //默认值90%
@@ -81,7 +81,7 @@ namespace Main.Service
                 //string gameHash = SimilarPhoto.GetHash(image);
                 var hash = GetMainPic(i,gameType);
                 score = GetCrossCorrelation(gameHash, hash);
-                state = score >= 0.8f ? 1 : 0;
+                state = score >= 0.7f ? 1 : 0;
                 count += state;
             }
             //默认值90%
