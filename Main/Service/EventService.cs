@@ -32,7 +32,7 @@ namespace Main.Service
             {
                  path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Readjson("imagePath"));
             }
-            if (gameType == GameType.ye)
+            if (gameType == GameType.ye||gameType==GameType.activity)
             {
                 path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Readjson("yeyuanhuoPath"));
             }

@@ -243,6 +243,10 @@ namespace WindowsFormsApp
             {
                 quanTask = Task.Run(() => RunningYeOrLing());//委托方法
             }
+            if (gameType == GameType.activity)
+            {
+                quanTask = Task.Run(() => RunningActivity());//委托方法
+            }
             await quanTask;
             //判断是否已完成
             if (quanTask.IsCompleted)
@@ -505,6 +509,43 @@ namespace WindowsFormsApp
                 contrastPic = TaskExcuteService.StartTaskForPHash(list,gameType);
             }
         }
+
+
+        /// <summary>
+        /// 活动
+        /// </summary>
+
+        private void RunningActivity()
+        {
+            EventMethodService eventMethod = new();
+            //开始
+            eventMethod.Click(rects);
+            Thread.Sleep(6000);
+            //图片对比状态
+            bool contrastPic = false;
+            while (!contrastPic)
+            {
+                if (!task)
+                {
+                    return;
+                }
+                Thread.Sleep(3000);
+                //2 结算 step1
+                eventMethod.ClickLeft(rects);
+                List<Bitmap> list = new();
+                foreach (var item in windowInfos)
+                {
+                    ////获取图片
+                    using Image image = MouseHookHelper.Capture(item.hWnd);
+                    Bitmap bmp = new(image);
+                    list.Add(bmp);
+                }
+                contrastPic = TaskExcuteService.StartTaskForPHash(list, gameType);
+            }
+
+        }
+
+
 
         private void btnTestPic_Click(object sender, EventArgs e)
         {

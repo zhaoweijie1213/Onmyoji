@@ -19,7 +19,12 @@ namespace Main.Enum
         /// <summary>
         /// 御灵
         /// </summary>
-        ling=3
+        ling=3,
+
+        /// <summary>
+        /// 活动
+        /// </summary>
+        activity=4
     }
 
 }

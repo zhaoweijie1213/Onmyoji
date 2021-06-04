@@ -89,6 +89,11 @@ namespace Main.Service
                     hash = ComputeDigest(bitmap.ToLuminanceImage());
                 }
 
+                if (gameType == GameType.activity)
+                {
+                    using var bitmap = (Bitmap)Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\yeyuanhuo\\1.png"));
+                    hash = ComputeDigest(bitmap.ToLuminanceImage());
+                }
                 keyValueGameType.TryAdd($"{gameType}_{id}", hash);
             }
 

@@ -44,6 +44,7 @@ namespace WindowsFormsApp
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.lblHelp = new System.Windows.Forms.Label();
             this.GameTypeGgroup = new System.Windows.Forms.GroupBox();
+            this.yulingRadio = new System.Windows.Forms.RadioButton();
             this.YeyuanhuoRadioBtn = new System.Windows.Forms.RadioButton();
             this.YuhunRadioBtn = new System.Windows.Forms.RadioButton();
             this.TimeGroupRadioBtn = new System.Windows.Forms.GroupBox();
@@ -54,7 +55,7 @@ namespace WindowsFormsApp
             this.txtMin = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnTestPic = new System.Windows.Forms.Button();
-            this.yulingRadio = new System.Windows.Forms.RadioButton();
+            this.activityRadioBtn = new System.Windows.Forms.RadioButton();
             this.GameTypeGgroup.SuspendLayout();
             this.TimeGroupRadioBtn.SuspendLayout();
             this.SuspendLayout();
@@ -184,6 +185,7 @@ namespace WindowsFormsApp
             // GameTypeGgroup
             // 
             this.GameTypeGgroup.BackColor = System.Drawing.Color.Transparent;
+            this.GameTypeGgroup.Controls.Add(this.activityRadioBtn);
             this.GameTypeGgroup.Controls.Add(this.yulingRadio);
             this.GameTypeGgroup.Controls.Add(this.YeyuanhuoRadioBtn);
             this.GameTypeGgroup.Controls.Add(this.YuhunRadioBtn);
@@ -193,6 +195,17 @@ namespace WindowsFormsApp
             this.GameTypeGgroup.TabIndex = 19;
             this.GameTypeGgroup.TabStop = false;
             this.GameTypeGgroup.Text = "类型";
+            // 
+            // yulingRadio
+            // 
+            this.yulingRadio.AutoSize = true;
+            this.yulingRadio.Location = new System.Drawing.Point(146, 19);
+            this.yulingRadio.Name = "yulingRadio";
+            this.yulingRadio.Size = new System.Drawing.Size(50, 21);
+            this.yulingRadio.TabIndex = 2;
+            this.yulingRadio.TabStop = true;
+            this.yulingRadio.Text = "御灵";
+            this.yulingRadio.UseVisualStyleBackColor = true;
             // 
             // YeyuanhuoRadioBtn
             // 
@@ -307,16 +320,16 @@ namespace WindowsFormsApp
             this.btnTestPic.UseVisualStyleBackColor = false;
             this.btnTestPic.Click += new System.EventHandler(this.btnTestPic_Click);
             // 
-            // yulingRadio
+            // activityRadioBtn
             // 
-            this.yulingRadio.AutoSize = true;
-            this.yulingRadio.Location = new System.Drawing.Point(146, 19);
-            this.yulingRadio.Name = "yulingRadio";
-            this.yulingRadio.Size = new System.Drawing.Size(50, 21);
-            this.yulingRadio.TabIndex = 2;
-            this.yulingRadio.TabStop = true;
-            this.yulingRadio.Text = "御灵";
-            this.yulingRadio.UseVisualStyleBackColor = true;
+            this.activityRadioBtn.AutoSize = true;
+            this.activityRadioBtn.Location = new System.Drawing.Point(200, 19);
+            this.activityRadioBtn.Name = "activityRadioBtn";
+            this.activityRadioBtn.Size = new System.Drawing.Size(50, 21);
+            this.activityRadioBtn.TabIndex = 3;
+            this.activityRadioBtn.TabStop = true;
+            this.activityRadioBtn.Text = "活动";
+            this.activityRadioBtn.UseVisualStyleBackColor = true;
             // 
             // mainForm
             // 
@@ -383,6 +396,7 @@ namespace WindowsFormsApp
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnTestPic;
         private System.Windows.Forms.RadioButton yulingRadio;
+        private System.Windows.Forms.RadioButton activityRadioBtn;
     }
 }
 
