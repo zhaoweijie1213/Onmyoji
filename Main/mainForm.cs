@@ -520,7 +520,7 @@ namespace WindowsFormsApp
             EventMethodService eventMethod = new();
             //开始
             eventMethod.Click(rects);
-            Thread.Sleep(6000);
+            Thread.Sleep(3000);
             //图片对比状态
             bool contrastPic = false;
             while (!contrastPic)

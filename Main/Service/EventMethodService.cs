@@ -434,7 +434,7 @@ namespace Main.Service
             {
                 Random rnd = new Random(Guid.NewGuid().GetHashCode());
                 LeftMouseClick(item);
-                Thread.Sleep(rnd.Next(200, 300));
+                Thread.Sleep(rnd.Next(800, 1000));
             }
         }
 
